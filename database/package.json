@@ -1,0 +1,42 @@
+{
+  "name": "@fantasy-survivor/database",
+  "version": "1.0.0",
+  "description": "Accommodating database for @fantasy-survivor",
+  "author": "Spencer Kline (dskline1@gmail.com)",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run typeorm schema:sync && npm run hasura:reload",
+    "reset": "npm run typeorm schema:drop",
+    "migration:create": "npm run typeorm migration:create",
+    "migration:generate": "npm run typeorm migration:generate",
+    "tsnode": "ts-node -r tsconfig-paths/register",
+    "typeorm": "npm run tsnode ./node_modules/.bin/typeorm",
+    "seed": "npm run tsnode ./node_modules/.bin/typeorm-seeding seed",
+    "hasura:reload": "npm run tsnode ./util/hasura/reload && npm run gqless:generate",
+    "gqless:generate": "npm run tsnode ./node_modules/.bin/gqless generate"
+  },
+  "repository": "https://github.com/dskline/fantasy-survivor/database",
+  "dependencies": {
+    "convict": "6.0.0",
+    "faker": "4.1.0",
+    "glob": "7.1.6",
+    "path": "0.12.7",
+    "pg": "8.2.1",
+    "typeorm": "0.2.25",
+    "typeorm-seeding": "1.6.1"
+  },
+  "devDependencies": {
+    "@gqless/cli": "0.0.1-alpha.31",
+    "@types/faker": "4.1.12",
+    "eslint": "6.8.0",
+    "eslint-config-dskline": "1.2.4",
+    "module-alias": "2.2.2",
+    "ts-node": "8.10.1",
+    "typescript": "3.9.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "dskline"
+    ]
+  }
+}

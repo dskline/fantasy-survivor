@@ -1,0 +1,56 @@
+{
+  "name": "@fantasy-survivor/webapp",
+  "version": "1.0.0-beta.0",
+  "description": "A fantasy-type drafting platform for the hit CBS reality TV show, Survivor",
+  "author": "Spencer Kline (dskline1@gmail.com)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": "https://github.com/dskline/fantasy-survivor",
+  "dependencies": {
+    "@gqless/react": "0.0.1-alpha.28",
+    "@material-ui/core": "4.9.14",
+    "@material-ui/icons": "4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.53",
+    "classnames": "2.2.6",
+    "convict": "6.0.0",
+    "gqless": "0.0.1-alpha.29",
+    "graphql": "15.0.0",
+    "next": "9.4.2",
+    "next-manifest": "3.0.1",
+    "next-pwa": "2.4.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "sass": "1.26.5"
+  },
+  "devDependencies": {
+    "@material-ui/types": "5.1.0",
+    "@types/convict": "^5.2.1",
+    "@types/node": "13.13.5",
+    "eslint": "6.8.0",
+    "eslint-config-dskline": "1.2.4",
+    "ts-node": "8.10.1",
+    "typescript": "3.9.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "dskline"
+    ],
+    "ignorePatterns": [
+      "**/generated/**/*"
+    ],
+    "settings": {
+      "polyfills": [
+        "fetch"
+      ]
+    }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "> 0.2%"
+  ]
+}

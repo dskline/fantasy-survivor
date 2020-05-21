@@ -1,0 +1,19 @@
+{
+  "env": {
+    "doc": "The application environment",
+    "format": ["production", "development", "staging"],
+    "default": "development",
+    "env": "NODE_ENV"
+  },
+  "isDebugMode": {
+    "doc": "Flag to enable debug features (disabled in production)",
+    "format": [true, false],
+    "default": false,
+    "env": "DEBUG_MODE"
+  },
+  "gqlEndpoint": {
+    "doc": "The primary graphql endpoint for database operations",
+    "default": "http://localhost:8080/v1/graphql",
+    "env": "GRAPHQL_ENDPOINT"
+  }
+}
