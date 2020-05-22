@@ -104,21 +104,18 @@ const videos = [
   // }
 ]
 
-const HomePage: NextPage = () => {
+const HomePage: NextPage<{videoId: number}> = ({ videoId }) => {
   const router = useRouter()
   const [isAnswerDisplayed, setIsAnswerDisplayed] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isPlayingAnswer, setIsPlayingAnswer] = useState(false)
-  const [videoId, setVideoId] = useState(undefined)
   const [video, setVideo] = useState(undefined)
   const [youtubeRef, setYoutubeRef] = useState(undefined)
 
   useEffect(() => {
-    const index: number = parseInt(router.query.id as string) - 1
-    setVideoId(index)
-    setVideo(videos[index])
-  }, [router])
+    setVideo(videos[videoId])
+  }, [])
 
   useEffect(() => {
     setIsAnswerDisplayed(!!localStorage.getItem('ANSWERS_ON'))
@@ -180,7 +177,7 @@ const HomePage: NextPage = () => {
         >
           <div>
             <div style={{ fontSize: '8vw' }}>
-              {`Question #${router.query.id}`}
+              {`Question #${videoId + 1}`}
             </div>
             {isLoading && <div style={{ fontSize: '3vw' }}>Loading...</div>}
             {youtubeRef && !isPlaying && (
@@ -250,5 +247,23 @@ const HomePage: NextPage = () => {
       </div>
     </BasePage>
   )
+}
+export function getStaticProps ({ params }) {
+  return {
+    props: {
+      videoId: parseInt(params.id as string) - 1
+    }
+  }
+}
+export function getStaticPaths () {
+  return {
+    paths: videos.map((video, index) => ({
+      params: {
+        id: `${index + 1}`,
+        video
+      }
+    })),
+    fallback: false
+  }
 }
 export default HomePage
