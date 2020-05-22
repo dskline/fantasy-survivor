@@ -1,14 +1,17 @@
 import React, { FunctionComponent } from 'react'
-import { blue } from '@material-ui/core/colors'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+
+import { colors } from 'src/config/css/colors.json'
 
 type Props = {}
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: {
+      main: colors.primary
+    },
     secondary: {
-      main: '#f44336',
+      main: colors.light,
     },
   },
 })

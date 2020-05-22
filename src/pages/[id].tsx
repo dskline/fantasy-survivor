@@ -131,9 +131,7 @@ const HomePage: NextPage = () => {
   }
 
   const handleReady = e => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
+    setIsLoading(false)
     setYoutubeRef(e.target)
   }
 
@@ -181,13 +179,20 @@ const HomePage: NextPage = () => {
           }}
         >
           <div>
-            <div style={{ fontSize: '9vw' }}>
+            <div style={{ fontSize: '8vw' }}>
               {`Question #${router.query.id}`}
             </div>
             {isLoading && <div style={{ fontSize: '3vw' }}>Loading...</div>}
-            <div style={{ fontSize: '3vw', opacity: isLoading || isPlaying ? 0 : 100, transition: 'opacity 5s ease 3s' }}>
-              Autoplay disabled (hit play!)
-            </div>
+            {youtubeRef && !isPlaying && (
+              <Button
+                color='secondary'
+                onClick={() => {
+                  handleStart()
+                }}
+              >
+                <PlayCircleFilledIcon style={{ fontSize: '8vw' }} />
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -227,21 +232,12 @@ const HomePage: NextPage = () => {
       >
         <Button
           variant='contained'
-          style={{ width: '33vw', height: '100%', minHeight: 50 }}
+          style={{ width: '50vw', height: '100%', minHeight: 50 }}
           onClick={() => {
             router.reload()
           }}
         >
           <Replay30Icon style={{ fontSize: '8vw' }} />
-        </Button>
-        <Button
-          variant='contained'
-          style={{ width: '33vw', height: '100%', minHeight: 50 }}
-          onClick={() => {
-            handleStart()
-          }}
-        >
-          <PlayCircleFilledIcon style={{ fontSize: '8vw' }} />
         </Button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', paddingBottom: '2rem' }}>
