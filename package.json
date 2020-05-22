@@ -24,14 +24,16 @@
     "next-pwa": "2.4.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-youtube": "7.11.2",
     "sass": "1.26.5"
   },
   "devDependencies": {
     "@material-ui/types": "5.1.0",
+    "@types/youtube": "0.0.38",
     "@types/convict": "^5.2.1",
     "@types/node": "13.13.5",
     "eslint": "6.8.0",
-    "eslint-config-dskline": "1.2.4",
+    "eslint-config-dskline": "1.2.5",
     "ts-node": "8.10.1",
     "typescript": "3.9.3"
   },
@@ -49,8 +51,6 @@
     }
   },
   "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "> 0.2%"
+    "last 2 versions, > 0.2%, not dead"
   ]
 }
