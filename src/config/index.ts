@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 
-const config = {
+const config: Config = {
   public: {
     ...getConfig().publicRuntimeConfig
     // -- hot reload variables --
@@ -8,7 +8,7 @@ const config = {
   private: {
     ...getConfig().serverRuntimeConfig
     // -- hot reload variables --
-  }
+  },
 }
 
 export default config
