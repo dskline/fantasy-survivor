@@ -4,6 +4,10 @@ const packageJson = require('../../../package.json')
 const { palette } = require('../../config/css/colors.json')
 const chakraColors = require('@chakra-ui/core/dist/theme/colors')
 
+function rgb2hex (rgb) {
+  return '#' + ('00000' + (rgb[0] << 16 | rgb[1] << 8 | rgb[2]).toString(16)).slice(-6).toUpperCase()
+}
+
 const prod = process.env.NODE_ENV === 'production'
 
 const iconSizes = [72, 96, 128, 144, 152, 192, 384, 512]
@@ -27,7 +31,7 @@ module.exports = extraOptions => withPlugins({
     shortName: 'Fantasy Survivor',
     display: 'minimal-ui',
     description: packageJson.description,
-    themeColor: palette.primary['500'],
+    themeColor: rgb2hex(palette.primary['500']),
     backgroundColor: chakraColors.default.gray['200'],
     icons: iconSizes.map(size => ({
       src: `/favicon/icon-${size}x${size}.png`,
