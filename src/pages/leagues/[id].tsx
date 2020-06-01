@@ -15,11 +15,9 @@ const Seasons = graphql(() => (
 
 const SeasonDetails = graphql(() => (
   <BasePage>
-    <div>
-      <LazyContainer>
-        <Seasons />
-      </LazyContainer>
-    </div>
+    <LazyContainer>
+      <Seasons />
+    </LazyContainer>
   </BasePage>
 ))
 
