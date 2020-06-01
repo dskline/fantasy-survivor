@@ -1,17 +1,20 @@
-import React, { FunctionComponent } from 'react'
+import React, { FC } from 'react'
 import Head from 'next/head'
 
-import BaseMaterialUIPage from 'src/templates/core/material-ui/BaseMaterialUIPage'
+import Box from 'src/components/_layout/Box'
+import BackgroundUpdater from 'src/features/pwa/BackgroundUpdater'
+import ThemeProvider from 'src/features/theme/ThemeProvider'
 
-type Props = {}
-
-const BasePage: FunctionComponent<Props> = ({ children }) => (
-  <BaseMaterialUIPage>
+const BasePage: FC = ({ children }) => (
+  <ThemeProvider>
     <Head>
       <title>Fantasy Survivor</title>
     </Head>
-    {children}
-  </BaseMaterialUIPage>
+    <BackgroundUpdater />
+    <Box minHeight='100vh'>
+      {children}
+    </Box>
+  </ThemeProvider>
 )
 
 export default BasePage
