@@ -1,9 +1,7 @@
 import React, { FC, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 
 import useToast from 'src/components/Toast'
-
-const NewAppVersionAlert = dynamic(() => import('src/features/pwa/NewAppVersionAlert'), { ssr: false })
+import NewAppVersionAlert from 'src/features/pwa/NewAppVersionAlert'
 
 const BackgroundUpdater: FC = () => {
   const { toast } = useToast()

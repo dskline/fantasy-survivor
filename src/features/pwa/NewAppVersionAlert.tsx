@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import Box from 'src/components/_layout/Box'
 import Alert, { AlertDescription, AlertIcon } from 'src/components/Alert'
@@ -8,6 +8,7 @@ export const UPDATE_APP_BUTTON_ID = 'pwa-update-app-button'
 
 type NewAppVersionAlert = FC<{ onClose: () => void, id: string }>;
 const NewAppVersionAlert: NewAppVersionAlert = ({ onClose, id }) => {
+  const [isReloadingPage, setIsReloadingPage] = useState(false)
 
   useEffect(() => {
     document.getElementById(UPDATE_APP_BUTTON_ID).focus()
@@ -39,10 +40,13 @@ const NewAppVersionAlert: NewAppVersionAlert = ({ onClose, id }) => {
             variantColor='blue'
             onClick={(): void => {
               window.workbox.addEventListener('controlling', () => {
+                setIsReloadingPage(true)
                 window.location.reload()
               })
               window.workbox.messageSW({ type: 'SKIP_WAITING' })
             }}
+            loadingText='Updating...'
+            isLoading={isReloadingPage}
           >
             Update
           </Button>
