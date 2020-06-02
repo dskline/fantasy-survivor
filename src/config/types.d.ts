@@ -3,9 +3,9 @@ declare type Config = {
     env: 'development' | 'staging' | 'production',
     isDebugMode: boolean,
     gqlEndpoint: string,
-    cloudinaryCloudName: string
+    cloudinaryCloudName: string,
+    googleAnalyticsId: string
   },
   private: {
-    googleAnalyticsId: string
   }
 }

@@ -24,7 +24,6 @@
   "googleAnalyticsId": {
     "doc": "The ID authorized from Google Analytics",
     "default": "UA-xxxxxxxxx-1",
-    "env": "GOOGLE_ANALYTICS_ID",
-    "sensitive": true
+    "env": "GOOGLE_ANALYTICS_ID"
   }
 }
