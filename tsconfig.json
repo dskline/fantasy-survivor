@@ -22,7 +22,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "strict": false
+    "strict": false,
+    "typeRoots": ["src/@types"]
   },
   "exclude": ["database"]
 }
