@@ -4,7 +4,7 @@ import config from 'src/config'
 
 export const init = (): void => {
   if (config.public.env === 'production') {
-    ReactGA.initialize(config.private.googleAnalyticsId, {
+    ReactGA.initialize(config.public.googleAnalyticsId, {
       gaOptions: {
         siteSpeedSampleRate: 100,
       },
