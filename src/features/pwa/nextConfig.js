@@ -31,6 +31,7 @@ module.exports = extraOptions => withPlugins({
     shortName: 'Fantasy Survivor',
     display: 'minimal-ui',
     description: packageJson.description,
+    // eslint-disable-next-line @typescript-eslint/camelcase
     start_url: '/',
     themeColor: rgb2hex(palette.primary['500']),
     backgroundColor: chakraColors.default.gray['200'],
