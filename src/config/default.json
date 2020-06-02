@@ -16,6 +16,11 @@
     "default": "http://localhost:8080/v1/graphql",
     "env": "GRAPHQL_ENDPOINT"
   },
+  "cloudinaryCloudName": {
+    "doc": "The cloud name given to the cloudinary bucket that images are hosted on (will be migrated to a new if the need arises)",
+    "default": "spencerkline",
+    "env": "CLOUD_NAME"
+  },
   "googleAnalyticsId": {
     "doc": "The ID authorized from Google Analytics",
     "default": "UA-xxxxxxxxx-1",
