@@ -1,0 +1,328 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"The root type for creating and mutating data"
+type Mutation {
+    "Deletes zero or more records from the collection"
+    deleteFromrolesCollection(
+        "The maximum number of records in the collection permitted to be affected"
+        atMost: Int! = 1,
+        "Restricts the mutation's impact to records matching the critera"
+        filter: rolesFilter
+    ): rolesDeleteResponse!
+    "Deletes zero or more records from the collection"
+    deleteFromuser_rolesCollection(
+        "The maximum number of records in the collection permitted to be affected"
+        atMost: Int! = 1,
+        "Restricts the mutation's impact to records matching the critera"
+        filter: user_rolesFilter
+    ): user_rolesDeleteResponse!
+    "Adds one or more `rolesInsertResponse` records to the collection"
+    insertIntorolesCollection(objects: [rolesInsertInput!]!): rolesInsertResponse
+    "Adds one or more `user_rolesInsertResponse` records to the collection"
+    insertIntouser_rolesCollection(objects: [user_rolesInsertInput!]!): user_rolesInsertResponse
+    "Updates zero or more records in the collection"
+    updaterolesCollection(
+        "The maximum number of records in the collection permitted to be affected"
+        atMost: Int! = 1,
+        "Restricts the mutation's impact to records matching the critera"
+        filter: rolesFilter,
+        "Fields that are set will be updated for all records matching the `filter`"
+        set: rolesUpdateInput!
+    ): rolesUpdateResponse!
+    "Updates zero or more records in the collection"
+    updateuser_rolesCollection(
+        "The maximum number of records in the collection permitted to be affected"
+        atMost: Int! = 1,
+        "Restricts the mutation's impact to records matching the critera"
+        filter: user_rolesFilter,
+        "Fields that are set will be updated for all records matching the `filter`"
+        set: user_rolesUpdateInput!
+    ): user_rolesUpdateResponse!
+}
+
+type PageInfo {
+    endCursor: String
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+}
+
+"The root type for querying data"
+type Query {
+    "A pagable collection of type `roles`"
+    rolesCollection(
+        "Query values in the collection after the provided cursor"
+        after: Cursor,
+        "Query values in the collection before the provided cursor"
+        before: Cursor,
+        "Filters to apply to the results set when querying from the collection"
+        filter: rolesFilter,
+        "Query the first `n` records in the collection"
+        first: Int,
+        "Query the last `n` records in the collection"
+        last: Int,
+        "Sort order to apply to the collection"
+        orderBy: [rolesOrderBy!]
+    ): rolesConnection
+    "A pagable collection of type `user_roles`"
+    user_rolesCollection(
+        "Query values in the collection after the provided cursor"
+        after: Cursor,
+        "Query values in the collection before the provided cursor"
+        before: Cursor,
+        "Filters to apply to the results set when querying from the collection"
+        filter: user_rolesFilter,
+        "Query the first `n` records in the collection"
+        first: Int,
+        "Query the last `n` records in the collection"
+        last: Int,
+        "Sort order to apply to the collection"
+        orderBy: [user_rolesOrderBy!]
+    ): user_rolesConnection
+}
+
+type roles {
+    display_name: String!
+    id: String!
+    user_rolesCollection(
+        "Query values in the collection after the provided cursor"
+        after: Cursor,
+        "Query values in the collection before the provided cursor"
+        before: Cursor,
+        "Filters to apply to the results set when querying from the collection"
+        filter: user_rolesFilter,
+        "Query the first `n` records in the collection"
+        first: Int,
+        "Query the last `n` records in the collection"
+        last: Int,
+        "Sort order to apply to the collection"
+        orderBy: [user_rolesOrderBy!]
+    ): user_rolesConnection
+}
+
+type rolesConnection {
+    edges: [rolesEdge!]!
+    pageInfo: PageInfo!
+}
+
+type rolesDeleteResponse {
+    "Count of the records impacted by the mutation"
+    affectedCount: Int!
+    "Array of records impacted by the mutation"
+    records: [roles!]!
+}
+
+type rolesEdge {
+    cursor: String!
+    node: roles
+}
+
+type rolesInsertResponse {
+    "Count of the records impacted by the mutation"
+    affectedCount: Int!
+    "Array of records impacted by the mutation"
+    records: [roles!]!
+}
+
+type rolesUpdateResponse {
+    "Count of the records impacted by the mutation"
+    affectedCount: Int!
+    "Array of records impacted by the mutation"
+    records: [roles!]!
+}
+
+type user_roles {
+    role_id: String!
+    roles: roles
+    user_id: UUID!
+}
+
+type user_rolesConnection {
+    edges: [user_rolesEdge!]!
+    pageInfo: PageInfo!
+}
+
+type user_rolesDeleteResponse {
+    "Count of the records impacted by the mutation"
+    affectedCount: Int!
+    "Array of records impacted by the mutation"
+    records: [user_roles!]!
+}
+
+type user_rolesEdge {
+    cursor: String!
+    node: user_roles
+}
+
+type user_rolesInsertResponse {
+    "Count of the records impacted by the mutation"
+    affectedCount: Int!
+    "Array of records impacted by the mutation"
+    records: [user_roles!]!
+}
+
+type user_rolesUpdateResponse {
+    "Count of the records impacted by the mutation"
+    affectedCount: Int!
+    "Array of records impacted by the mutation"
+    records: [user_roles!]!
+}
+
+"Defines a per-field sorting order"
+enum OrderByDirection {
+    AscNullsFirst
+    AscNullsLast
+    DescNullsFirst
+    DescNullsLast
+}
+
+scalar BigInt
+
+scalar Cursor
+
+scalar Date
+
+scalar Datetime
+
+scalar JSON
+
+scalar Time
+
+scalar UUID
+
+"Boolean expression comparing fields on type \"BigInt\""
+input BigIntFilter {
+    eq: BigInt
+    gt: BigInt
+    gte: BigInt
+    lt: BigInt
+    lte: BigInt
+    neq: BigInt
+}
+
+"Boolean expression comparing fields on type \"Boolean\""
+input BooleanFilter {
+    eq: Boolean
+    gt: Boolean
+    gte: Boolean
+    lt: Boolean
+    lte: Boolean
+    neq: Boolean
+}
+
+"Boolean expression comparing fields on type \"Date\""
+input DateFilter {
+    eq: Date
+    gt: Date
+    gte: Date
+    lt: Date
+    lte: Date
+    neq: Date
+}
+
+"Boolean expression comparing fields on type \"Datetime\""
+input DatetimeFilter {
+    eq: Datetime
+    gt: Datetime
+    gte: Datetime
+    lt: Datetime
+    lte: Datetime
+    neq: Datetime
+}
+
+"Boolean expression comparing fields on type \"Float\""
+input FloatFilter {
+    eq: Float
+    gt: Float
+    gte: Float
+    lt: Float
+    lte: Float
+    neq: Float
+}
+
+"Boolean expression comparing fields on type \"Int\""
+input IntFilter {
+    eq: Int
+    gt: Int
+    gte: Int
+    lt: Int
+    lte: Int
+    neq: Int
+}
+
+"Boolean expression comparing fields on type \"JSON\""
+input JSONFilter {
+    eq: JSON
+    neq: JSON
+}
+
+"Boolean expression comparing fields on type \"String\""
+input StringFilter {
+    eq: String
+    gt: String
+    gte: String
+    lt: String
+    lte: String
+    neq: String
+}
+
+"Boolean expression comparing fields on type \"Time\""
+input TimeFilter {
+    eq: Time
+    gt: Time
+    gte: Time
+    lt: Time
+    lte: Time
+    neq: Time
+}
+
+"Boolean expression comparing fields on type \"UUID\""
+input UUIDFilter {
+    eq: UUID
+    neq: UUID
+}
+
+input rolesFilter {
+    display_name: StringFilter
+    id: StringFilter
+}
+
+input rolesInsertInput {
+    display_name: String
+    id: String
+}
+
+input rolesOrderBy {
+    display_name: OrderByDirection
+    id: OrderByDirection
+}
+
+input rolesUpdateInput {
+    display_name: String
+    id: String
+}
+
+input user_rolesFilter {
+    role_id: StringFilter
+    user_id: UUIDFilter
+}
+
+input user_rolesInsertInput {
+    role_id: String
+    user_id: UUID
+}
+
+input user_rolesOrderBy {
+    role_id: OrderByDirection
+    user_id: OrderByDirection
+}
+
+input user_rolesUpdateInput {
+    role_id: String
+    user_id: UUID
+}
