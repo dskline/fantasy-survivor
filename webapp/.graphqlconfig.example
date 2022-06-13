@@ -1,5 +1,5 @@
 {
-  "name": "Untitled GraphQL Schema",
+  "name": "Fantasy Survivor GraphQL Config",
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {

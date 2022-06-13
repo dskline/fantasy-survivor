@@ -1,0 +1,26 @@
+schema:
+  - ${NEXT_PUBLIC_SUPABASE_GRAPHQL_URL}:
+      headers:
+        apiKey: ${SUPABASE_SERVICE_KEY}
+documents: './features/**/*.ts'
+generates:
+  features/core/db/graphql/schema.ts:
+    - typescript
+  features/:
+    preset: near-operation-file
+    presetConfig:
+      folder: __generated__
+      extension: .types.ts
+      baseTypesPath: core/db/graphql/schema.ts
+    plugins:
+      - typescript-operations
+config:
+  namingConvention:
+    typeNames: change-case-all#pascalCase
+    transformUnderscore: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+    - eslint --fix
+  beforeDone:
+    - git add .
