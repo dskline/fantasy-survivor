@@ -57,6 +57,7 @@ GRANT ALL ON TABLE public.user_roles TO postgres;
 
 GRANT ALL ON TABLE public.user_roles TO service_role;
 
-insert into roles (id, display_name) values ('admin', 'Administrator');
-insert into roles (id, display_name) values ('developer', 'Administrator');
-insert into roles (id, display_name) values ('contributor', 'Contributor');
+insert into roles (id, display_name)
+values ('admin', 'Administrator'),
+       ('developer', 'Administrator'),
+       ('contributor', 'Contributor');
