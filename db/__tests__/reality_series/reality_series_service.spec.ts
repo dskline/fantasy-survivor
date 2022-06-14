@@ -17,7 +17,7 @@ describe("admin access on reality_series table", () => {
   });
 
   it("should be writable", async () => {
-    const slug = `test_slug`;
+    const slug = `testslug`;
     let { data: realitySeries } = await supabase.from("reality_series").insert({
       slug,
       title: "test",

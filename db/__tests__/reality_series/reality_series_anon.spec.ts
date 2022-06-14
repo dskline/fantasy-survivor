@@ -43,7 +43,7 @@ describe("anon access on reality_series table", () => {
       .update({
         title: "new value",
       })
-      .eq("slug", "survivor_us");
+      .eq("slug", testSlug);
 
     expect(error).toBeDefined();
   });
