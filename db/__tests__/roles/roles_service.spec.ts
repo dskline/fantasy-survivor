@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import dbClient from "@/__tests__/dbClient";
 import { SupabaseClient } from '@supabase/supabase-js'
+import { uuid } from '@supabase/supabase-js/dist/main/lib/helpers'
 
 describe("admin access on roles table", () => {
   let supabase: SupabaseClient;
@@ -15,7 +16,7 @@ describe("admin access on roles table", () => {
   });
 
   it("should be writable", async () => {
-    const id = `test_id`;
+    const id = uuid();
     let { data: roles } = await supabase.from("roles").insert({
       id,
       display_name: "test",
