@@ -57,7 +57,7 @@ export const seed = async (series: Array<RealitySeries>) => {
           nickname: contestant.nickname,
         }))
       );
-      await supabase.from("contestant_seasons").upsert(
+      const { error } = await supabase.from("contestant_seasons").upsert(
         contestants.map((contestant) => ({
           season: seasonId,
           contestant: contestant.slug,
