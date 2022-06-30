@@ -31,10 +31,8 @@ export const seed = async (series: Array<RealitySeries>) => {
           logo_src: `${show.slug}_${season.order}`,
           order: season.order,
           title: season.title || `Season ${season.order}`,
-        })
-        .match({
-          reality_series: show.slug,
-          order: season.order,
+        }, {
+          onConflict: 'reality_series,order'
         });
       const seasonId = seasonData?.[0]?.id;
 
