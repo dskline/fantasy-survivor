@@ -1,5 +1,5 @@
-import { seedSurvivor } from './survivor';
+import { seedSurvivor } from "./survivor/survivor.seed";
 
 export const seedData = async () => {
- await seedSurvivor();
-}
+  await seedSurvivor();
+};

@@ -1,81 +1,31 @@
-import { Contestant, Tribe } from "@/seed/survivor/index";
-import dbClient from "@/seed/dbClient";
+import { Tribe } from "@/seed/survivor/index";
+// import { survivor42 } from "@/seed/survivor/us/42/episodes";
+import { dbClient } from "@/seed/dbClient";
+import { Rule, rules } from "@/seed/survivor/rules";
 
-export type SurvivorEpisode = {
-  events: Array<{
-    eventKey: string;
-    players: Array<string>;
-  }>;
-};
 export type Season = {
+  id?: string;
   order: number;
   title?: string;
   logo_src: string;
   tribes: Array<Tribe>;
-  // episodes: Array<SurvivorEpisode>,
 };
 export type RealitySeries = {
   slug: string;
   seasons: Array<Season>;
 };
 
-export const seed = async (series: Array<RealitySeries>) => {
+export const seedSurvivor = async () => {
   const supabase = await dbClient();
-
-  for (const show of series) {
-    for (const season of show.seasons) {
-      const { data: seasonData } = await supabase
-        .from("seasons")
-        .upsert({
-          reality_series: show.slug,
-          logo_src: `${show.slug}_${season.order}`,
-          order: season.order,
-          title: season.title || `Season ${season.order}`,
-        }, {
-          onConflict: 'reality_series,order'
-        });
-      const seasonId = seasonData?.[0]?.id;
-
-      const contestants = season.tribes
-        .map((tribe) => {
-          return tribe.contestants.map((contestant) => {
-            return {
-              ...(typeof contestant === "object"
-                ? contestant
-                : buildContestantFromString(contestant as string)),
-              teamColor: tribe.color,
-            };
-          });
-        })
-        .flat();
-
-      await supabase.from("contestants").upsert(
-        contestants.map((contestant) => ({
-          slug: contestant.slug,
-          firstname: contestant.firstname,
-          surname: contestant.surname,
-          nickname: contestant.nickname,
-        }))
-      );
-      const { error } = await supabase.from("contestant_seasons").upsert(
-        contestants.map((contestant) => ({
-          season: seasonId,
-          contestant: contestant.slug,
-          avatar_src: `${contestant.slug}_${season.order}_Avatar`,
-          portrait_src: `${contestant.slug}_${season.order}_Portrait`,
-          team_color: contestant.teamColor,
-        }))
-      );
-    }
-  }
+  await supabase.from("rules").upsert(
+    Object.keys(rules).map((r) => {
+      const rule = rules[r as keyof typeof rules] as Rule;
+      return {
+        id: r,
+        description: rule.description,
+        is_negative: rule.isNegative || null,
+      };
+    })
+  );
+  // await survivor42();
 };
-
-function buildContestantFromString(contestant: string): Contestant {
-  const splitName = contestant.split(" ");
-  return {
-    slug: contestant.replace(" ", "_"),
-    firstname: splitName[0],
-    surname: splitName[1],
-    nickname: splitName[0],
-  };
-}

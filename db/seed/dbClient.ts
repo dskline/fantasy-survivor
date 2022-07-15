@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY) {
   throw new Error("NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY is not set");
@@ -15,9 +15,14 @@ if (
   );
 }
 
-export default async function () {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_API_URL!,
-    process.env.VITE_SUPABASE_SERVICE_KEY!
-  );
+let supabase: SupabaseClient;
+
+export async function dbClient() {
+  if (!supabase) {
+    supabase = await createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_API_URL!,
+      process.env.VITE_SUPABASE_SERVICE_KEY!
+    );
+  }
+  return supabase;
 }
