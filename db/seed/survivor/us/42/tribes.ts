@@ -21,8 +21,8 @@ export enum Contestants {
   ZACH = "Zach Wurtenberger",
 }
 
-export const tribes: Tribe[] = [
-  {
+export const tribes: { [key: string]: Tribe } = {
+  Ika: {
     name: "Ika",
     color: "blue",
     contestants: [
@@ -34,7 +34,7 @@ export const tribes: Tribe[] = [
       Contestants.ZACH,
     ],
   },
-  {
+  Taku: {
     name: "Taku",
     color: "orange",
     contestants: [
@@ -43,10 +43,10 @@ export const tribes: Tribe[] = [
       Contestants.LINDSAY,
       Contestants.MARYA,
       Contestants.MARYANNE,
-      Contestants.OMAR
+      Contestants.OMAR,
     ],
   },
-  {
+  Vati: {
     name: "Vati",
     color: "green",
     contestants: [
@@ -55,7 +55,7 @@ export const tribes: Tribe[] = [
       Contestants.JENNY,
       Contestants.HAI,
       Contestants.LYDIA,
-      Contestants.MIKE
+      Contestants.MIKE,
     ],
   },
-];
+};

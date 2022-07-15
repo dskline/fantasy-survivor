@@ -1,5 +1,5 @@
 import { Tribe } from "@/seed/survivor/index";
-// import { survivor42 } from "@/seed/survivor/us/42/episodes";
+import { survivor42 } from "@/seed/survivor/us/42/episodes";
 import { dbClient } from "@/seed/dbClient";
 import { Rule, rules } from "@/seed/survivor/rules";
 
@@ -27,5 +27,5 @@ export const seedSurvivor = async () => {
       };
     })
   );
-  // await survivor42();
+  await survivor42();
 };
