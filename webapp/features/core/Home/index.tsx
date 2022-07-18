@@ -4,14 +4,23 @@ import Image from "@/features/components/Image";
 import { RealitySeries } from "@/features/core/db/graphql/schema";
 
 type Props = {
-  shows?: RealitySeries[]
+  shows?: RealitySeries[];
 };
 const Home = (props: Props) => (
   <>
     <div>{JSON.stringify(props)}</div>
     <div>
       {props.shows?.map((show) => (
-        <>{show.logo_src && <Image width={400} height={300} src={show.logo_src} />}</>
+        <>
+          {show.logo_src && (
+            <Image
+              key={show.logo_src}
+              width={400}
+              height={300}
+              src={show.logo_src}
+            />
+          )}
+        </>
       ))}
     </div>
   </>
