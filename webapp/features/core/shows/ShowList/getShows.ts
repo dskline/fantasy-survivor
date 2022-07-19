@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
 import { client } from "@/features/core/db/graphql/client";
-import { GetShowsQuery } from "@/features/core/shows/ShowList/__generated__/queryShows.types";
+import { GetShowsQuery } from "@/features/core/shows/ShowList/__generated__/getShows.types";
 
-export const QUERY_SHOWS = gql`
+export const GET_SHOWS = gql`
   query GetShows {
     reality_seriesCollection {
       edges {
@@ -18,7 +18,7 @@ export const QUERY_SHOWS = gql`
     }
   }
 `;
-export const queryShows = async () =>
+export const getShows = async () =>
   await client.query<GetShowsQuery>({
-    query: QUERY_SHOWS,
+    query: GET_SHOWS,
   });

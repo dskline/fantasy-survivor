@@ -4,7 +4,7 @@ import { GetStaticProps, NextPage } from "next";
 
 import { RealitySeries } from "@/features/core/db/graphql/schema";
 import Home from "@/features/core/Home";
-import { queryShows } from "@/features/core/shows/ShowList/queryShows";
+import { getShows } from "@/features/core/shows/ShowList/getShows";
 
 type Props = {
   shows?: RealitySeries[];
@@ -13,7 +13,7 @@ const Page: NextPage<Props> = (props) => <Home shows={props.shows} />;
 export default Page;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await queryShows();
+  const { data } = await getShows();
   return {
     props: {
       shows: data?.reality_seriesCollection?.edges.map((edge) => edge.node),
