@@ -9,7 +9,8 @@ const Image = (props: Props) => {
     <NextImage
       src={
         "https://res.cloudinary.com/frontendlive/image/upload/cloudydesktop/fantasy/" +
-        src + ".png"
+        src +
+        ".png"
       }
       {...rest}
     />
