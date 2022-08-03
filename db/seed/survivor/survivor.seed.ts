@@ -7,7 +7,6 @@ export type Season = {
   id?: string;
   order: number;
   title?: string;
-  logo_src: string;
   tribes: Array<Tribe>;
 };
 export type RealitySeries = {

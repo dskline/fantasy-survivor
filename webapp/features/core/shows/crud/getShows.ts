@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 import { client } from "@/features/core/db/graphql/client";
-import { GetShowsQuery } from "@/features/core/shows/ShowList/__generated__/getShows.types";
+import { GetShowsQuery } from "@/features/core/shows/crud/__generated__/getShows.types";
 
 export const GET_SHOWS = gql`
   query GetShows {

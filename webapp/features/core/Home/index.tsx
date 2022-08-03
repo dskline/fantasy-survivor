@@ -9,20 +9,6 @@ type Props = {
 const Home = (props: Props) => (
   <>
     <div>{JSON.stringify(props)}</div>
-    <div>
-      {props.shows?.map((show) => (
-        <>
-          {show.logo_src && (
-            <Image
-              key={show.logo_src}
-              width={400}
-              height={300}
-              src={show.logo_src}
-            />
-          )}
-        </>
-      ))}
-    </div>
   </>
 );
 export default Home;

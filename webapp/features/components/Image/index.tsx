@@ -4,7 +4,7 @@ import NextImage, { ImageProps } from "next/image";
 
 type Props = ImageProps;
 const Image = (props: Props) => {
-  const { src, ...rest } = props;
+  const { src, alt, ...rest } = props;
   return (
     <NextImage
       src={
@@ -12,6 +12,7 @@ const Image = (props: Props) => {
         src +
         ".png"
       }
+      alt={alt || ""}
       {...rest}
     />
   );
