@@ -1,8 +1,8 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import usersMock, { UserRole } from "@/__tests__/users/users.mock";
 
-if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY) {
-  throw new Error("NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY is not set");
+if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  throw new Error("NEXT_PUBLIC_SUPABASE_ANON_KEY is not set");
 }
 if (!process.env.VITE_SUPABASE_SERVICE_KEY) {
   throw new Error("VITE_SUPABASE_SERVICE_KEY is not set");
@@ -25,7 +25,7 @@ export default async function (role: "service" | "anon" | UserRole) {
   }
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_API_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
   if (role === "anon") {
     return supabase;

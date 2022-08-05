@@ -1,7 +1,7 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY) {
-  throw new Error("NEXT_PUBLIC_SUPABASE_PUBLIC_ANON_KEY is not set");
+if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  throw new Error("NEXT_PUBLIC_SUPABASE_ANON_KEY is not set");
 }
 if (!process.env.VITE_SUPABASE_SERVICE_KEY) {
   throw new Error("VITE_SUPABASE_SERVICE_KEY is not set");
