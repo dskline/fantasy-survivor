@@ -62,7 +62,3 @@ CREATE POLICY "Enable access to all users"
     FOR SELECT
     TO public
     USING (true);
-
-INSERT INTO public.league_formats(id, title, description)
-VALUES ('RANK', 'Rank Format',
-        'Each participant privately chooses their favorite contestants in a ranked order. Contestants are then awarded higher points in proportion to how highly they are ranked in each participant''s pool.');
