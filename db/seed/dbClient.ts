@@ -1,8 +1,5 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-  throw new Error("NEXT_PUBLIC_SUPABASE_ANON_KEY is not set");
-}
 if (!process.env.VITE_SUPABASE_SERVICE_KEY) {
   throw new Error("VITE_SUPABASE_SERVICE_KEY is not set");
 }
@@ -15,14 +12,37 @@ if (
   );
 }
 
+const SUPERUSER_EMAIL = "superadmin@fantasy-survivor.com";
+let adminId: string;
 let supabase: SupabaseClient;
 
+export function getAdminId() {
+  return adminId;
+}
 export async function dbClient() {
   if (!supabase) {
     supabase = await createClient(
       process.env.NEXT_PUBLIC_SUPABASE_API_URL!,
       process.env.VITE_SUPABASE_SERVICE_KEY!
     );
+    const { data } = await supabase
+      .from("user_roles")
+      .select("user_id")
+      .eq("role_id", "admin");
+
+    if (data && data[0]) {
+      adminId = data[0].id;
+    } else {
+      const { user } = await supabase.auth.api.createUser({
+        email: SUPERUSER_EMAIL,
+        password: "123123",
+      });
+      await supabase.from("user_roles").upsert({
+        user_id: user!.id,
+        role_id: "admin",
+      });
+      adminId = user!.id;
+    }
   }
   return supabase;
 }
