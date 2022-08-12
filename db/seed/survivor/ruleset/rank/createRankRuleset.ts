@@ -1,9 +1,16 @@
 import { dbClient, getAdminId } from "@/seed/dbClient";
-import { Rule, rules } from "@/seed/survivor/rules";
+import { survivorRules, SurvivorRuleId } from '@/seed/survivor/rules'
 import { survivorUS } from "@/seed/survivor/us";
 
 const FORMAT_ID = "RANK";
 
+type RulesetData = {
+  rules: {
+    [key in SurvivorRuleId]?: {
+      points: number;
+    };
+  };
+};
 export const createRankRuleset = async () => {
   const supabase = await dbClient();
   const formats = await supabase
@@ -18,17 +25,18 @@ export const createRankRuleset = async () => {
       description:
         "Each participant privately chooses their favorite contestants in a ranked order. Contestants are then awarded higher points in proportion to how highly they are ranked in each participant's pool.",
     });
+
+    // Set default rule scores
+    const rulesetData: RulesetData = { rules: {} };
+    for (const ruleId of Object.keys(survivorRules) as SurvivorRuleId[]) {
+      rulesetData.rules[ruleId] = {
+        points: survivorRules[ruleId].defaultPointsAlloted,
+      };
+    }
+
     const { data } = await supabase.from("rulesets").upsert({
       created_by: getAdminId(),
-      data: {
-        rules: Object.keys(rules).map((r) => {
-          const rule = rules[r as keyof typeof rules] as Rule;
-          return {
-            id: r,
-            points: rule.isNegative ? -1 : 1,
-          };
-        }),
-      },
+      data: rulesetData,
     });
     await supabase.from("rs_league_formats").upsert({
       reality_series: survivorUS.slug,

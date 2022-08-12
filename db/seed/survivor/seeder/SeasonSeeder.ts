@@ -1,11 +1,11 @@
-import { rules } from "@/seed/survivor/rules";
+import { SurvivorRuleId } from '@/seed/survivor/rules'
 import { dbClient } from "@/seed/dbClient";
 import { Season } from "@/seed/survivor/survivor.seed";
 
 export type SurvivorEpisode = {
   startTime: Date;
   events: Array<{
-    rule: keyof typeof rules;
+    rule: SurvivorRuleId;
     players: Array<string>;
     comment?: string;
   }>;

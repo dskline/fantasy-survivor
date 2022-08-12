@@ -1,7 +1,7 @@
 import { Tribe } from "@/seed/survivor/index";
 import { survivor42 } from "@/seed/survivor/us/42/episodes";
 import { dbClient } from "@/seed/dbClient";
-import { Rule, rules } from "@/seed/survivor/rules";
+import { SurvivorRuleId, survivorRules } from "@/seed/survivor/rules";
 import { createRankRuleset } from "@/seed/survivor/ruleset/rank/createRankRuleset";
 
 export type Season = {
@@ -18,12 +18,12 @@ export type RealitySeries = {
 export const seedSurvivor = async () => {
   const supabase = await dbClient();
   await supabase.from("rules").upsert(
-    Object.keys(rules).map((r) => {
-      const rule = rules[r as keyof typeof rules] as Rule;
+    Object.keys(survivorRules).map((r) => {
+      const rule = survivorRules[r as SurvivorRuleId];
       return {
         id: r,
         description: rule.description,
-        is_negative: rule.isNegative || null,
+        is_negative: rule.defaultPointsAlloted < 0,
       };
     })
   );
