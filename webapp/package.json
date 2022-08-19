@@ -4,22 +4,26 @@
   "scripts": {
     "start": "doppler run -- next dev",
     "build": "doppler run -- next build",
-    "lint": "next lint",
-    "lint-fix": "prettier --write '{features,pages}/**/*' && next lint --fix",
+    "lint": "eslint features",
+    "lint-fix": "prettier --write '{features,pages}/**/*' && eslint features --fix",
     "test": "vitest",
     "test:coverage": "vitest --coverage && coveralls < coverage/lcov.info",
     "codegen": "doppler run -- graphql-codegen --require dotenv/config"
   },
   "dependencies": {
     "@apollo/client": "3.6.9",
+    "@headlessui/react": "1.6.6",
     "@supabase/auth-helpers-react": "0.2.3",
     "@supabase/auth-helpers-nextjs": "0.2.5",
     "@supabase/supabase-js": "1.35.5",
+    "framer-motion": "7.2.0",
     "graphql": "16.5.0",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.34.0",
+    "react-icons": "4.4.0",
+    "react-toastify": "9.0.8",
     "yup": "0.32.11"
   },
   "devDependencies": {

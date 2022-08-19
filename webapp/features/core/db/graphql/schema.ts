@@ -30,6 +30,7 @@ export type BigIntFilter = {
   eq?: InputMaybe<Scalars["BigInt"]>;
   gt?: InputMaybe<Scalars["BigInt"]>;
   gte?: InputMaybe<Scalars["BigInt"]>;
+  in?: InputMaybe<Array<Scalars["BigInt"]>>;
   lt?: InputMaybe<Scalars["BigInt"]>;
   lte?: InputMaybe<Scalars["BigInt"]>;
   neq?: InputMaybe<Scalars["BigInt"]>;
@@ -40,6 +41,7 @@ export type BooleanFilter = {
   eq?: InputMaybe<Scalars["Boolean"]>;
   gt?: InputMaybe<Scalars["Boolean"]>;
   gte?: InputMaybe<Scalars["Boolean"]>;
+  in?: InputMaybe<Array<Scalars["Boolean"]>>;
   lt?: InputMaybe<Scalars["Boolean"]>;
   lte?: InputMaybe<Scalars["Boolean"]>;
   neq?: InputMaybe<Scalars["Boolean"]>;
@@ -50,6 +52,7 @@ export type DateFilter = {
   eq?: InputMaybe<Scalars["Date"]>;
   gt?: InputMaybe<Scalars["Date"]>;
   gte?: InputMaybe<Scalars["Date"]>;
+  in?: InputMaybe<Array<Scalars["Date"]>>;
   lt?: InputMaybe<Scalars["Date"]>;
   lte?: InputMaybe<Scalars["Date"]>;
   neq?: InputMaybe<Scalars["Date"]>;
@@ -60,6 +63,7 @@ export type DatetimeFilter = {
   eq?: InputMaybe<Scalars["Datetime"]>;
   gt?: InputMaybe<Scalars["Datetime"]>;
   gte?: InputMaybe<Scalars["Datetime"]>;
+  in?: InputMaybe<Array<Scalars["Datetime"]>>;
   lt?: InputMaybe<Scalars["Datetime"]>;
   lte?: InputMaybe<Scalars["Datetime"]>;
   neq?: InputMaybe<Scalars["Datetime"]>;
@@ -70,6 +74,7 @@ export type FloatFilter = {
   eq?: InputMaybe<Scalars["Float"]>;
   gt?: InputMaybe<Scalars["Float"]>;
   gte?: InputMaybe<Scalars["Float"]>;
+  in?: InputMaybe<Array<Scalars["Float"]>>;
   lt?: InputMaybe<Scalars["Float"]>;
   lte?: InputMaybe<Scalars["Float"]>;
   neq?: InputMaybe<Scalars["Float"]>;
@@ -80,6 +85,7 @@ export type IntFilter = {
   eq?: InputMaybe<Scalars["Int"]>;
   gt?: InputMaybe<Scalars["Int"]>;
   gte?: InputMaybe<Scalars["Int"]>;
+  in?: InputMaybe<Array<Scalars["Int"]>>;
   lt?: InputMaybe<Scalars["Int"]>;
   lte?: InputMaybe<Scalars["Int"]>;
   neq?: InputMaybe<Scalars["Int"]>;
@@ -103,6 +109,8 @@ export type Mutation = {
   /** Deletes zero or more records from the collection */
   deleteFromeventsCollection: EventsDeleteResponse;
   /** Deletes zero or more records from the collection */
+  deleteFromleague_formatsCollection: LeagueFormatsDeleteResponse;
+  /** Deletes zero or more records from the collection */
   deleteFromleague_participantsCollection: LeagueParticipantsDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromleaguesCollection: LeaguesDeleteResponse;
@@ -112,6 +120,8 @@ export type Mutation = {
   deleteFromreality_seriesCollection: RealitySeriesDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromrolesCollection: RolesDeleteResponse;
+  /** Deletes zero or more records from the collection */
+  deleteFromrs_league_formatsCollection: RsLeagueFormatsDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromrulesCollection: RulesDeleteResponse;
   /** Deletes zero or more records from the collection */
@@ -128,6 +138,8 @@ export type Mutation = {
   insertIntoepisodesCollection?: Maybe<EpisodesInsertResponse>;
   /** Adds one or more `eventsInsertResponse` records to the collection */
   insertIntoeventsCollection?: Maybe<EventsInsertResponse>;
+  /** Adds one or more `league_formatsInsertResponse` records to the collection */
+  insertIntoleague_formatsCollection?: Maybe<LeagueFormatsInsertResponse>;
   /** Adds one or more `league_participantsInsertResponse` records to the collection */
   insertIntoleague_participantsCollection?: Maybe<LeagueParticipantsInsertResponse>;
   /** Adds one or more `leaguesInsertResponse` records to the collection */
@@ -138,6 +150,8 @@ export type Mutation = {
   insertIntoreality_seriesCollection?: Maybe<RealitySeriesInsertResponse>;
   /** Adds one or more `rolesInsertResponse` records to the collection */
   insertIntorolesCollection?: Maybe<RolesInsertResponse>;
+  /** Adds one or more `rs_league_formatsInsertResponse` records to the collection */
+  insertIntors_league_formatsCollection?: Maybe<RsLeagueFormatsInsertResponse>;
   /** Adds one or more `rulesInsertResponse` records to the collection */
   insertIntorulesCollection?: Maybe<RulesInsertResponse>;
   /** Adds one or more `rulesetsInsertResponse` records to the collection */
@@ -155,6 +169,8 @@ export type Mutation = {
   /** Updates zero or more records in the collection */
   updateeventsCollection: EventsUpdateResponse;
   /** Updates zero or more records in the collection */
+  updateleague_formatsCollection: LeagueFormatsUpdateResponse;
+  /** Updates zero or more records in the collection */
   updateleague_participantsCollection: LeagueParticipantsUpdateResponse;
   /** Updates zero or more records in the collection */
   updateleaguesCollection: LeaguesUpdateResponse;
@@ -164,6 +180,8 @@ export type Mutation = {
   updatereality_seriesCollection: RealitySeriesUpdateResponse;
   /** Updates zero or more records in the collection */
   updaterolesCollection: RolesUpdateResponse;
+  /** Updates zero or more records in the collection */
+  updaters_league_formatsCollection: RsLeagueFormatsUpdateResponse;
   /** Updates zero or more records in the collection */
   updaterulesCollection: RulesUpdateResponse;
   /** Updates zero or more records in the collection */
@@ -199,6 +217,12 @@ export type MutationDeleteFromeventsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromleagueFormatsCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<LeagueFormatsFilter>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationDeleteFromleagueParticipantsCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<LeagueParticipantsFilter>;
@@ -226,6 +250,12 @@ export type MutationDeleteFromrealitySeriesCollectionArgs = {
 export type MutationDeleteFromrolesCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<RolesFilter>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationDeleteFromrsLeagueFormatsCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<RsLeagueFormatsFilter>;
 };
 
 /** The root type for creating and mutating data */
@@ -273,6 +303,11 @@ export type MutationInsertIntoeventsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationInsertIntoleagueFormatsCollectionArgs = {
+  objects: Array<LeagueFormatsInsertInput>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationInsertIntoleagueParticipantsCollectionArgs = {
   objects: Array<LeagueParticipantsInsertInput>;
 };
@@ -295,6 +330,11 @@ export type MutationInsertIntorealitySeriesCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntorolesCollectionArgs = {
   objects: Array<RolesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntorsLeagueFormatsCollectionArgs = {
+  objects: Array<RsLeagueFormatsInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -346,6 +386,13 @@ export type MutationUpdateeventsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationUpdateleagueFormatsCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<LeagueFormatsFilter>;
+  set: LeagueFormatsUpdateInput;
+};
+
+/** The root type for creating and mutating data */
 export type MutationUpdateleagueParticipantsCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<LeagueParticipantsFilter>;
@@ -381,6 +428,13 @@ export type MutationUpdaterolesCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationUpdatersLeagueFormatsCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<RsLeagueFormatsFilter>;
+  set: RsLeagueFormatsUpdateInput;
+};
+
+/** The root type for creating and mutating data */
 export type MutationUpdaterulesCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<RulesFilter>;
@@ -410,9 +464,13 @@ export type MutationUpdateuserRolesCollectionArgs = {
 
 /** Defines a per-field sorting order */
 export enum OrderByDirection {
+  /** Ascending order, nulls first */
   AscNullsFirst = "AscNullsFirst",
+  /** Ascending order, nulls last */
   AscNullsLast = "AscNullsLast",
+  /** Descending order, nulls first */
   DescNullsFirst = "DescNullsFirst",
+  /** Descending order, nulls last */
   DescNullsLast = "DescNullsLast",
 }
 
@@ -435,6 +493,8 @@ export type Query = {
   episodesCollection?: Maybe<EpisodesConnection>;
   /** A pagable collection of type `events` */
   eventsCollection?: Maybe<EventsConnection>;
+  /** A pagable collection of type `league_formats` */
+  league_formatsCollection?: Maybe<LeagueFormatsConnection>;
   /** A pagable collection of type `league_participants` */
   league_participantsCollection?: Maybe<LeagueParticipantsConnection>;
   /** A pagable collection of type `leagues` */
@@ -445,6 +505,8 @@ export type Query = {
   reality_seriesCollection?: Maybe<RealitySeriesConnection>;
   /** A pagable collection of type `roles` */
   rolesCollection?: Maybe<RolesConnection>;
+  /** A pagable collection of type `rs_league_formats` */
+  rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
   /** A pagable collection of type `rules` */
   rulesCollection?: Maybe<RulesConnection>;
   /** A pagable collection of type `rulesets` */
@@ -493,6 +555,16 @@ export type QueryEventsCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<EventsOrderBy>>;
+};
+
+/** The root type for querying data */
+export type QueryLeagueFormatsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<LeagueFormatsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<LeagueFormatsOrderBy>>;
 };
 
 /** The root type for querying data */
@@ -546,6 +618,16 @@ export type QueryRolesCollectionArgs = {
 };
 
 /** The root type for querying data */
+export type QueryRsLeagueFormatsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<RsLeagueFormatsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<RsLeagueFormatsOrderBy>>;
+};
+
+/** The root type for querying data */
 export type QueryRulesCollectionArgs = {
   after?: InputMaybe<Scalars["Cursor"]>;
   before?: InputMaybe<Scalars["Cursor"]>;
@@ -590,6 +672,7 @@ export type StringFilter = {
   eq?: InputMaybe<Scalars["String"]>;
   gt?: InputMaybe<Scalars["String"]>;
   gte?: InputMaybe<Scalars["String"]>;
+  in?: InputMaybe<Array<Scalars["String"]>>;
   lt?: InputMaybe<Scalars["String"]>;
   lte?: InputMaybe<Scalars["String"]>;
   neq?: InputMaybe<Scalars["String"]>;
@@ -600,6 +683,7 @@ export type TimeFilter = {
   eq?: InputMaybe<Scalars["Time"]>;
   gt?: InputMaybe<Scalars["Time"]>;
   gte?: InputMaybe<Scalars["Time"]>;
+  in?: InputMaybe<Array<Scalars["Time"]>>;
   lt?: InputMaybe<Scalars["Time"]>;
   lte?: InputMaybe<Scalars["Time"]>;
   neq?: InputMaybe<Scalars["Time"]>;
@@ -608,6 +692,7 @@ export type TimeFilter = {
 /** Boolean expression comparing fields on type "UUID" */
 export type UuidFilter = {
   eq?: InputMaybe<Scalars["UUID"]>;
+  in?: InputMaybe<Array<Scalars["UUID"]>>;
   neq?: InputMaybe<Scalars["UUID"]>;
 };
 
@@ -660,7 +745,7 @@ export type ContestantSeasonsDeleteResponse = {
 export type ContestantSeasonsEdge = {
   __typename?: "contestant_seasonsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<ContestantSeasons>;
+  node: ContestantSeasons;
 };
 
 export type ContestantSeasonsFilter = {
@@ -750,7 +835,7 @@ export type ContestantsDeleteResponse = {
 export type ContestantsEdge = {
   __typename?: "contestantsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Contestants>;
+  node: Contestants;
 };
 
 export type ContestantsFilter = {
@@ -832,7 +917,7 @@ export type EpisodesDeleteResponse = {
 export type EpisodesEdge = {
   __typename?: "episodesEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Episodes>;
+  node: Episodes;
 };
 
 export type EpisodesFilter = {
@@ -904,7 +989,7 @@ export type EventsDeleteResponse = {
 export type EventsEdge = {
   __typename?: "eventsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Events>;
+  node: Events;
 };
 
 export type EventsFilter = {
@@ -955,6 +1040,93 @@ export type EventsUpdateResponse = {
   records: Array<Events>;
 };
 
+export type LeagueFormats = {
+  __typename?: "league_formats";
+  description: Scalars["String"];
+  id: Scalars["String"];
+  leaguesCollection?: Maybe<LeaguesConnection>;
+  rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
+  title: Scalars["String"];
+};
+
+export type LeagueFormatsLeaguesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<LeaguesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<LeaguesOrderBy>>;
+};
+
+export type LeagueFormatsRsLeagueFormatsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<RsLeagueFormatsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<RsLeagueFormatsOrderBy>>;
+};
+
+export type LeagueFormatsConnection = {
+  __typename?: "league_formatsConnection";
+  edges: Array<LeagueFormatsEdge>;
+  pageInfo: PageInfo;
+};
+
+export type LeagueFormatsDeleteResponse = {
+  __typename?: "league_formatsDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<LeagueFormats>;
+};
+
+export type LeagueFormatsEdge = {
+  __typename?: "league_formatsEdge";
+  cursor: Scalars["String"];
+  node: LeagueFormats;
+};
+
+export type LeagueFormatsFilter = {
+  description?: InputMaybe<StringFilter>;
+  id?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type LeagueFormatsInsertInput = {
+  description?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+export type LeagueFormatsInsertResponse = {
+  __typename?: "league_formatsInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<LeagueFormats>;
+};
+
+export type LeagueFormatsOrderBy = {
+  description?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  title?: InputMaybe<OrderByDirection>;
+};
+
+export type LeagueFormatsUpdateInput = {
+  description?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+export type LeagueFormatsUpdateResponse = {
+  __typename?: "league_formatsUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<LeagueFormats>;
+};
+
 export type LeagueParticipants = {
   __typename?: "league_participants";
   created_at: Scalars["Datetime"];
@@ -991,7 +1163,7 @@ export type LeagueParticipantsDeleteResponse = {
 export type LeagueParticipantsEdge = {
   __typename?: "league_participantsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<LeagueParticipants>;
+  node: LeagueParticipants;
 };
 
 export type LeagueParticipantsFilter = {
@@ -1044,6 +1216,7 @@ export type Leagues = {
   created_by: Scalars["UUID"];
   format?: Maybe<Scalars["String"]>;
   id: Scalars["UUID"];
+  league_formats?: Maybe<LeagueFormats>;
   league_participantsCollection?: Maybe<LeagueParticipantsConnection>;
   ruleset?: Maybe<Scalars["UUID"]>;
   rulesets?: Maybe<Rulesets>;
@@ -1078,7 +1251,7 @@ export type LeaguesDeleteResponse = {
 export type LeaguesEdge = {
   __typename?: "leaguesEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Leagues>;
+  node: Leagues;
 };
 
 export type LeaguesFilter = {
@@ -1164,7 +1337,7 @@ export type LpContestantsDeleteResponse = {
 export type LpContestantsEdge = {
   __typename?: "lp_contestantsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<LpContestants>;
+  node: LpContestants;
 };
 
 export type LpContestantsFilter = {
@@ -1217,10 +1390,30 @@ export type RealitySeries = {
   in_progress: Scalars["Boolean"];
   logo_src: Scalars["String"];
   premiere_time?: Maybe<Scalars["Datetime"]>;
+  rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
+  rulesCollection?: Maybe<RulesConnection>;
   seasonsCollection?: Maybe<SeasonsConnection>;
   slug: Scalars["String"];
   title: Scalars["String"];
   updated_at: Scalars["Datetime"];
+};
+
+export type RealitySeriesRsLeagueFormatsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<RsLeagueFormatsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<RsLeagueFormatsOrderBy>>;
+};
+
+export type RealitySeriesRulesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<RulesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<RulesOrderBy>>;
 };
 
 export type RealitySeriesSeasonsCollectionArgs = {
@@ -1249,7 +1442,7 @@ export type RealitySeriesDeleteResponse = {
 export type RealitySeriesEdge = {
   __typename?: "reality_seriesEdge";
   cursor: Scalars["String"];
-  node?: Maybe<RealitySeries>;
+  node: RealitySeries;
 };
 
 export type RealitySeriesFilter = {
@@ -1341,7 +1534,7 @@ export type RolesDeleteResponse = {
 export type RolesEdge = {
   __typename?: "rolesEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Roles>;
+  node: Roles;
 };
 
 export type RolesFilter = {
@@ -1380,12 +1573,82 @@ export type RolesUpdateResponse = {
   records: Array<Roles>;
 };
 
+export type RsLeagueFormats = {
+  __typename?: "rs_league_formats";
+  default_ruleset: Scalars["UUID"];
+  league_format: Scalars["String"];
+  league_formats?: Maybe<LeagueFormats>;
+  reality_series?: Maybe<RealitySeries>;
+  rulesets?: Maybe<Rulesets>;
+};
+
+export type RsLeagueFormatsConnection = {
+  __typename?: "rs_league_formatsConnection";
+  edges: Array<RsLeagueFormatsEdge>;
+  pageInfo: PageInfo;
+};
+
+export type RsLeagueFormatsDeleteResponse = {
+  __typename?: "rs_league_formatsDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<RsLeagueFormats>;
+};
+
+export type RsLeagueFormatsEdge = {
+  __typename?: "rs_league_formatsEdge";
+  cursor: Scalars["String"];
+  node: RsLeagueFormats;
+};
+
+export type RsLeagueFormatsFilter = {
+  default_ruleset?: InputMaybe<UuidFilter>;
+  league_format?: InputMaybe<StringFilter>;
+  reality_series?: InputMaybe<StringFilter>;
+};
+
+export type RsLeagueFormatsInsertInput = {
+  default_ruleset?: InputMaybe<Scalars["UUID"]>;
+  league_format?: InputMaybe<Scalars["String"]>;
+  reality_series?: InputMaybe<Scalars["String"]>;
+};
+
+export type RsLeagueFormatsInsertResponse = {
+  __typename?: "rs_league_formatsInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<RsLeagueFormats>;
+};
+
+export type RsLeagueFormatsOrderBy = {
+  default_ruleset?: InputMaybe<OrderByDirection>;
+  league_format?: InputMaybe<OrderByDirection>;
+  reality_series?: InputMaybe<OrderByDirection>;
+};
+
+export type RsLeagueFormatsUpdateInput = {
+  default_ruleset?: InputMaybe<Scalars["UUID"]>;
+  league_format?: InputMaybe<Scalars["String"]>;
+  reality_series?: InputMaybe<Scalars["String"]>;
+};
+
+export type RsLeagueFormatsUpdateResponse = {
+  __typename?: "rs_league_formatsUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<RsLeagueFormats>;
+};
+
 export type Rules = {
   __typename?: "rules";
   description: Scalars["String"];
   eventsCollection?: Maybe<EventsConnection>;
   id: Scalars["String"];
   is_negative?: Maybe<Scalars["Boolean"]>;
+  reality_series?: Maybe<RealitySeries>;
 };
 
 export type RulesEventsCollectionArgs = {
@@ -1414,19 +1677,21 @@ export type RulesDeleteResponse = {
 export type RulesEdge = {
   __typename?: "rulesEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Rules>;
+  node: Rules;
 };
 
 export type RulesFilter = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   is_negative?: InputMaybe<BooleanFilter>;
+  reality_series?: InputMaybe<StringFilter>;
 };
 
 export type RulesInsertInput = {
   description?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   is_negative?: InputMaybe<Scalars["Boolean"]>;
+  reality_series?: InputMaybe<Scalars["String"]>;
 };
 
 export type RulesInsertResponse = {
@@ -1441,12 +1706,14 @@ export type RulesOrderBy = {
   description?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
   is_negative?: InputMaybe<OrderByDirection>;
+  reality_series?: InputMaybe<OrderByDirection>;
 };
 
 export type RulesUpdateInput = {
   description?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["String"]>;
   is_negative?: InputMaybe<Scalars["Boolean"]>;
+  reality_series?: InputMaybe<Scalars["String"]>;
 };
 
 export type RulesUpdateResponse = {
@@ -1460,8 +1727,10 @@ export type RulesUpdateResponse = {
 export type Rulesets = {
   __typename?: "rulesets";
   created_by: Scalars["UUID"];
+  data: Scalars["JSON"];
   id: Scalars["UUID"];
   leaguesCollection?: Maybe<LeaguesConnection>;
+  rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
   updated_at: Scalars["Datetime"];
 };
 
@@ -1472,6 +1741,15 @@ export type RulesetsLeaguesCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<LeaguesOrderBy>>;
+};
+
+export type RulesetsRsLeagueFormatsCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<RsLeagueFormatsFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<RsLeagueFormatsOrderBy>>;
 };
 
 export type RulesetsConnection = {
@@ -1491,7 +1769,7 @@ export type RulesetsDeleteResponse = {
 export type RulesetsEdge = {
   __typename?: "rulesetsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Rulesets>;
+  node: Rulesets;
 };
 
 export type RulesetsFilter = {
@@ -1502,6 +1780,7 @@ export type RulesetsFilter = {
 
 export type RulesetsInsertInput = {
   created_by?: InputMaybe<Scalars["UUID"]>;
+  data?: InputMaybe<Scalars["JSON"]>;
   id?: InputMaybe<Scalars["UUID"]>;
   updated_at?: InputMaybe<Scalars["Datetime"]>;
 };
@@ -1522,6 +1801,7 @@ export type RulesetsOrderBy = {
 
 export type RulesetsUpdateInput = {
   created_by?: InputMaybe<Scalars["UUID"]>;
+  data?: InputMaybe<Scalars["JSON"]>;
   id?: InputMaybe<Scalars["UUID"]>;
   updated_at?: InputMaybe<Scalars["Datetime"]>;
 };
@@ -1542,7 +1822,7 @@ export type Seasons = {
   leaguesCollection?: Maybe<LeaguesConnection>;
   logo_src: Scalars["String"];
   order: Scalars["BigInt"];
-  reality_series: Scalars["String"];
+  reality_series?: Maybe<RealitySeries>;
   title: Scalars["String"];
   updated_at: Scalars["Datetime"];
 };
@@ -1591,7 +1871,7 @@ export type SeasonsDeleteResponse = {
 export type SeasonsEdge = {
   __typename?: "seasonsEdge";
   cursor: Scalars["String"];
-  node?: Maybe<Seasons>;
+  node: Seasons;
 };
 
 export type SeasonsFilter = {
@@ -1670,7 +1950,7 @@ export type UserRolesDeleteResponse = {
 export type UserRolesEdge = {
   __typename?: "user_rolesEdge";
   cursor: Scalars["String"];
-  node?: Maybe<UserRoles>;
+  node: UserRoles;
 };
 
 export type UserRolesFilter = {

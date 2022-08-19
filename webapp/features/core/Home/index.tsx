@@ -1,10 +1,7 @@
 import React from "react";
 
-import Image from "@/features/components/Image";
-import { RealitySeries } from "@/features/core/db/graphql/schema";
-
 type Props = {
-  shows?: RealitySeries[];
+  props: any;
 };
 const Home = (props: Props) => (
   <>

@@ -8,14 +8,14 @@ export type GetShowsQuery = {
     __typename?: "reality_seriesConnection";
     edges: Array<{
       __typename?: "reality_seriesEdge";
-      node?: {
+      node: {
         __typename?: "reality_series";
         slug: string;
         title: string;
         in_progress: boolean;
         logo_src: string;
         premiere_time?: any | null;
-      } | null;
+      };
     }>;
   } | null;
 };

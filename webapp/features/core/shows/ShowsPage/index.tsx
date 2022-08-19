@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Image from "@/features/components/Image";
 import { RealitySeries } from "@/features/core/db/graphql/schema";
-import { formatDate } from '@/features/utils/formatters/formatDate'
+import { formatDate } from "@/features/utils/formatters/formatDate";
 
 type Props = {
   upcomingShows: RealitySeries[];
@@ -26,7 +26,7 @@ const ShowsPage = ({ upcomingShows }: Props) => (
           <div key={show.slug}>
             <div className="relative">
               <div className="aspect-video w-full">
-                <Image src={upcomingSeason.logo_src} layout="fill" />
+                <Image src={upcomingSeason.logo_src} layout="fill" alt="" />
               </div>
             </div>
             <h3 className="text-lg font-semibold">{show.title}</h3>
