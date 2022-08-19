@@ -1,5 +1,6 @@
+import path from "node:path";
+
 import { defineConfig } from "vite";
-import path from "path";
 
 export default defineConfig({
   resolve: {
@@ -8,6 +9,8 @@ export default defineConfig({
     },
   },
   envPrefix: ['NEXT_', 'VITE_'],
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   test: {
     globals: true,
     environment: 'jsdom',
