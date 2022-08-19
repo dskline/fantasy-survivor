@@ -1,11 +1,10 @@
 import React from "react";
 
 import { RadioGroup as HeadlessRadioGroup } from "@headlessui/react";
+import classnames from "classnames";
 import { Control, Controller } from "react-hook-form";
 import { UseControllerProps } from "react-hook-form/dist/types/controller";
 import { FieldValues } from "react-hook-form/dist/types/fields";
-
-import { classnames } from "@/features/utils/formatters/classnames";
 
 type Props<T extends FieldValues> = {
   control: Control<T>;

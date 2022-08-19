@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 
+import classnames from "classnames";
 import { Control, Controller, UseFormWatch } from "react-hook-form";
 import { UseControllerProps } from "react-hook-form/dist/types/controller";
 
 import { Rules } from "@/features/core/db/graphql/schema";
 import { CreateLeagueFields } from "@/features/core/leagues/CreateLeaguePage";
-import { classnames } from "@/features/utils/formatters/classnames";
 
 type Props<T> = {
   control: Control<T>;

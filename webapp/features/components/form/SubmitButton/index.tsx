@@ -1,7 +1,6 @@
+import classnames from "classnames";
 import { motion } from "framer-motion";
 import { ImArrowRight2 } from "react-icons/im";
-
-import { classnames } from "@/features/utils/formatters/classnames";
 
 type Props = {
   title: string;
