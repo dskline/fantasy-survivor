@@ -1,47 +1,32 @@
+import { useEffect } from "react";
+
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useUser } from "@supabase/auth-helpers-react";
-import { useForm } from "react-hook-form";
+import { Auth } from "@supabase/ui";
 
-type FormData = {
-  signin: string;
-  register: string;
-};
 type Props = {
   onLogin?: () => void;
 };
 export const LoginForm = ({ onLogin }: Props) => {
-  const { register, handleSubmit } = useForm<FormData>();
-  const { user, error } = useUser();
+  const { user } = useUser();
+  const userId = user?.id;
 
-  const handleLogin = async ({ signin }: FormData) => {
-    // TODO: change this before going to production
-    await supabaseClient.auth.signIn({ email: signin, password: "123123" });
-    onLogin?.();
-  };
-
-  const handleSignup = async ({ register }: FormData) => {
-    // TODO: change this before going to production
-    await supabaseClient.auth.signUp({ email: register, password: "123123" });
-  };
+  useEffect(() => {
+    if (user) {
+      onLogin?.();
+    }
+  }, [userId]);
 
   return (
     <div>
-      <form className="grid auto-cols-min" onSubmit={handleSubmit(handleLogin)}>
-        <input {...register("signin")} placeholder="Email" />
-        <button type="submit">Sign in</button>
-      </form>
-      <form
-        className="grid auto-cols-min"
-        onSubmit={handleSubmit(handleSignup)}
-      >
-        <input {...register("register")} placeholder="Email" />
-        <button type="submit">Sign up</button>
-      </form>
-      {error && <p>{error.message}</p>}
+      <Auth supabaseClient={supabaseClient} />
       {user && (
-        <span>
-          Welcome {user.email} ({user.id})
-        </span>
+        <div>
+          <button onClick={() => supabaseClient.auth.signOut()}>
+            Sign out
+          </button>
+          <div>{JSON.stringify(user)}</div>
+        </div>
       )}
     </div>
   );

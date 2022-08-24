@@ -11,6 +11,7 @@ specifiers:
   '@supabase/auth-helpers-nextjs': 0.2.7
   '@supabase/auth-helpers-react': 0.2.3
   '@supabase/supabase-js': 1.35.6
+  '@supabase/ui': 0.36.5
   '@testing-library/react': 13.3.0
   '@types/node': 18.7.6
   '@types/react': 18.0.17
@@ -44,6 +45,7 @@ dependencies:
   '@supabase/auth-helpers-nextjs': 0.2.7
   '@supabase/auth-helpers-react': 0.2.3
   '@supabase/supabase-js': 1.35.6
+  '@supabase/ui': 0.36.5_react-dom@18.2.0+react@18.2.0
   classnames: 2.3.1
   framer-motion: 7.2.0_react-dom@18.2.0+react@18.2.0
   graphql: 16.6.0
@@ -1709,6 +1711,20 @@ packages:
       '@supabase/storage-js': 1.7.3
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@supabase/ui/0.36.5_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-SdjUf20sCVw0Ap+x4YfGmjMunUz9ZEipc0bwGxj2f5pEWf12qrDQyhhMcoWCWgjWneITfrjFcejV0jA9zTuiEw==}
+    peerDependencies:
+      react: ^16.13.1 || ^17.0.1
+      react-dom: ^16.13.1 || ^17.0.1
+    dependencies:
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    optionalDependencies:
+      fsevents: 2.3.2
     dev: false
 
   /@swc/helpers/0.4.3:
@@ -3968,7 +3984,6 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /function-bind/1.1.1:
