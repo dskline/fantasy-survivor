@@ -19,7 +19,11 @@ export const LoginForm = ({ onLogin }: Props) => {
 
   return (
     <div>
-      <Auth supabaseClient={supabaseClient} />
+      <Auth
+        supabaseClient={supabaseClient}
+        providers={["google", "twitter", "twitch"]}
+        socialColors
+      />
       {user && (
         <div>
           <button onClick={() => supabaseClient.auth.signOut()}>
