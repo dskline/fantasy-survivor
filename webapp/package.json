@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "doppler run -- next dev",
-    "build": "doppler run -- next build",
+    "build": "next build",
+    "build:dev": "doppler run -- next build",
     "lint": "eslint features",
     "lint-fix": "eslint features --fix && prettier --write '{features,pages}/**/*' && eslint features --fix",
     "test": "vitest",
