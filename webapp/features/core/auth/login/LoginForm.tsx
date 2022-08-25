@@ -21,7 +21,7 @@ export const LoginForm = ({ onLogin }: Props) => {
     <div>
       <Auth
         supabaseClient={supabaseClient}
-        providers={["google", "twitter", "twitch"]}
+        // providers={["google", "twitter", "twitch"]}
         socialColors
       />
       {user && (
