@@ -2,17 +2,30 @@ import React from "react";
 
 import NextImage, { ImageProps } from "next/image";
 
-type Props = ImageProps;
+type Props = ImageProps & {
+  options?: string;
+};
 const Image = (props: Props) => {
-  const { src, alt, ...rest } = props;
+  const { src, alt, width, height, options, ...rest } = props;
+
+  const optionsArray = options ? options.split(",") : [];
+  if (width) {
+    optionsArray.push(`w_${width}`);
+  }
+  if (height) {
+    optionsArray.push(`h_${height}`);
+  }
+
+  const url = `https://res.cloudinary.com/frontendlive/image/upload${
+    optionsArray ? "/" + optionsArray.join(",") : ""
+  }/cloudydesktop/fantasy/${src}.png`;
+
   return (
     <NextImage
-      src={
-        "https://res.cloudinary.com/frontendlive/image/upload/cloudydesktop/fantasy/" +
-        src +
-        ".png"
-      }
+      src={url}
       alt={alt || ""}
+      width={width}
+      height={height}
       {...rest}
     />
   );
