@@ -16,7 +16,7 @@ type PillProps = {
 const Pill = ({ children, className }: PillProps) => (
   <div
     className={classnames(
-      "rounded-full bg-gray-300 px-2 py-px text-gray-600",
+      "rounded-full bg-slate-300 px-2 py-px text-slate-600 shadow",
       className
     )}
   >

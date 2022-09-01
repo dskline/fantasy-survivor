@@ -9,15 +9,24 @@ export const RulesTab = ({ format, orderedRules }: LeaguePageProps) => (
     <h3 className="mb-2 text-lg font-semibold">Rules</h3>
     <div className="font-semibold">{format.title}</div>
     <div className="text-sm">{format.description}</div>
-    <div className="my-4 grid max-w-lg grid-cols-[1fr_auto_1fr] gap-4 md:pl-8">
+    <div
+      className={classnames(
+        "my-4 -mx-4 grid grid-cols-[1fr_auto_4fr] gap-y-2 md:-mx-2 md:px-2",
+        "[&>*:nth-child(6n-3)]:bg-slate-200 [&>*:nth-child(6n-4)]:bg-slate-200 [&>*:nth-child(6n-5)]:bg-slate-200"
+      )}
+    >
       {orderedRules.map(({ id, description, points }) => (
         <React.Fragment key={id}>
-          <div className="my-auto">-</div>
-          <div className="my-auto text-sm">{description}</div>
+          <div className="flex h-full items-center pl-4 md:rounded-l-lg md:pl-6">
+            -
+          </div>
+          <div className="flex h-full items-center px-6 py-3 text-sm">
+            {description}
+          </div>
           <div
             className={classnames(
-              "my-auto text-right font-semibold",
-              points > 0 ? "text-green-700" : "text-red-600"
+              "flex h-full items-center justify-end pr-4 font-semibold md:rounded-r-lg md:pr-6",
+              points > 0 ? "text-green-600" : "text-red-500"
             )}
           >
             {points > 0 ? `+${points}` : points}
