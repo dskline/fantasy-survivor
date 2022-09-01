@@ -5,8 +5,10 @@ import {
   GetLeagueQuery,
   GetLeagueQueryVariables,
 } from "@/features/core/leagues/crud/__generated__/getLeague.types";
+import { GET_CONTESTANT_FRAGMENT } from "@/features/core/leagues/crud/getContestant";
 
 export const GET_LEAGUE = gql`
+  ${GET_CONTESTANT_FRAGMENT}
   query GetLeague($leagueFilter: leaguesFilter!) {
     leaguesCollection(filter: $leagueFilter, first: 1) {
       edges {
@@ -37,14 +39,10 @@ export const GET_LEAGUE = gql`
                 }
               }
             }
-          }
-          league_participantsCollection {
-            edges {
-              node {
-                profiles {
-                  id
-                  thumbnail_src
-                  display_name
+            contestant_seasonsCollection {
+              edges {
+                node {
+                  ...GetContestant
                 }
               }
             }

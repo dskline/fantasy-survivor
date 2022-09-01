@@ -1,6 +1,9 @@
-import { GetServerSideProps, NextPage } from "next";
+import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { UserProvider } from "@supabase/auth-helpers-react";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
+import { getLeagues } from "@/features/core/leagues/crud/getLeagues";
 import {
   LeaguePage,
   LeaguePageProps,
@@ -10,11 +13,13 @@ type UrlParams = {
   id: string;
 };
 const Page: NextPage<LeaguePageProps> = (props: LeaguePageProps) => (
-  <LeaguePage {...props} />
+  <UserProvider supabaseClient={supabaseClient}>
+    <LeaguePage {...props} />
+  </UserProvider>
 );
 export default Page;
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   LeaguePageProps,
   UrlParams
 > = async ({ params }) => {
@@ -29,9 +34,6 @@ export const getServerSideProps: GetServerSideProps<
   const season = league.seasons;
   const show = season?.reality_series;
   const format = league.league_formats;
-  const participants = league.league_participantsCollection?.edges.map(
-    (edge) => edge.node.profiles!
-  );
 
   const ruleMetadata = show?.rulesCollection?.edges.map(({ node }) => node);
   const orderedRules: LeaguePageProps["orderedRules"] = [];
@@ -47,18 +49,26 @@ export const getServerSideProps: GetServerSideProps<
   }
   orderedRules.sort((a, b) => b.points - a.points);
 
-  if (!season || !show || !format || !participants) {
+  if (!season || !show || !format) {
     return { notFound: true };
   }
 
   return {
     props: {
+      id: league.id,
       title: league.title,
       show,
       season,
       format,
-      participants,
       orderedRules,
     },
   };
+};
+
+export const getStaticPaths: GetStaticPaths<UrlParams> = async () => {
+  const { data } = await getLeagues();
+  const leagues = data.leaguesCollection?.edges?.map(({ node }) => node);
+  const paths =
+    leagues?.map(({ id }: { id: string }) => ({ params: { id } })) || [];
+  return { paths, fallback: true };
 };

@@ -39,21 +39,25 @@ export type GetLeagueQuery = {
               }>;
             } | null;
           } | null;
-        } | null;
-        league_participantsCollection?: {
-          __typename?: "league_participantsConnection";
-          edges: Array<{
-            __typename?: "league_participantsEdge";
-            node: {
-              __typename?: "league_participants";
-              profiles?: {
-                __typename?: "profiles";
+          contestant_seasonsCollection?: {
+            __typename?: "contestant_seasonsConnection";
+            edges: Array<{
+              __typename?: "contestant_seasonsEdge";
+              node: {
+                __typename?: "contestant_seasons";
                 id: any;
-                thumbnail_src?: string | null;
-                display_name?: string | null;
-              } | null;
-            };
-          }>;
+                portrait_src: string;
+                team_color?: string | null;
+                contestants?: {
+                  __typename?: "contestants";
+                  slug: string;
+                  firstname: string;
+                  surname?: string | null;
+                  nickname?: string | null;
+                } | null;
+              };
+            }>;
+          } | null;
         } | null;
       };
     }>;
