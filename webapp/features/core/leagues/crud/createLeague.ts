@@ -2,6 +2,7 @@ import { RsLeagueFormats } from "@/features/core/db/graphql/schema";
 import { supabase } from "@/features/core/db/supabase";
 import { InsertValues } from "@/features/core/db/supabase/types";
 import { CreateLeagueFields } from "@/features/core/leagues/CreateLeaguePage";
+import { createLeagueParticipant } from "@/features/core/leagues/crud/createLeagueParticipant";
 import { createRuleset } from "@/features/core/leagues/crud/createRuleset";
 
 function isNewRuleset(
@@ -49,12 +50,10 @@ export const createLeague = async (
   if (error) {
     return { error: "Could not create league" };
   }
-  const { data: newParticipant } = await supabase
-    .from<InsertValues<"league_participants">>("league_participants")
-    .insert({
-      league: newLeague[0].id,
-      participant: userId,
-    });
+  const { data: newParticipant } = await createLeagueParticipant({
+    league: newLeague[0].id,
+    participant: userId,
+  });
   if (!newParticipant) {
     return { error: "Could not create league participant" };
   }

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { SubmitButton } from "@/features/components/form/SubmitButton";
 import { LoginModal } from "@/features/core/auth/login/LoginModal";
+import { useAuthValidation } from "@/features/core/auth/useAuthValidation";
 import {
   LeagueFormats,
   RealitySeries,
@@ -42,7 +42,7 @@ export const CreateLeaguePage = ({
   initialValues,
 }: CreateLeagueProps) => {
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  const { user, isLoggedIn } = useAuthValidation();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const form = useForm<CreateLeagueFields>({
@@ -52,10 +52,10 @@ export const CreateLeaguePage = ({
   const ruleset = watch("ruleset");
 
   useEffect(() => {
-    if (!isLoading && !user) {
+    if (!isLoggedIn) {
       setShowLoginModal(true);
     }
-  }, [isLoading, user]);
+  }, [isLoggedIn]);
 
   const onSubmit = async (data: CreateLeagueFields) => {
     if (!user) {
@@ -69,7 +69,7 @@ export const CreateLeaguePage = ({
       data,
       user.id,
       season.id,
-      selectedFormat,
+      selectedFormat
     );
     if (error) {
       toast.error(error, { position: "bottom-center" });
