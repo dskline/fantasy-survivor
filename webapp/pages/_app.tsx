@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { client } from "@/features/core/db/graphql/client";
 
 import "react-toastify/dist/ReactToastify.min.css";
+import "@/features/debug/wdyr";
 import "@/theme/global.css";
 
 const BasePage = ({ Component, pageProps }: AppProps) => (
