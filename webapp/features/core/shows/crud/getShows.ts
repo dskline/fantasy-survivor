@@ -19,6 +19,4 @@ export const GET_SHOWS = gql`
   }
 `;
 export const getShows = async () =>
-  await client.query<GetShowsQuery>({
-    query: GET_SHOWS,
-  });
+  await client.query<GetShowsQuery>(GET_SHOWS, {});

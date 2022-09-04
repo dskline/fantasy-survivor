@@ -1,4 +1,4 @@
-import { gql } from "urql";
+import { Client, gql } from 'urql'
 
 import {
   GetUpcomingShowsQuery,

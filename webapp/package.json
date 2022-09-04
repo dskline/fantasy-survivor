@@ -6,7 +6,7 @@
     "build": "next build",
     "build:dev": "doppler run -- next build",
     "eslint:fix": "eslint {features,pages} --fix",
-    "lint": "eslint features",
+    "lint": "npx tsc --noEmit && npx next lint",
     "lint:fix": "npm run eslint:fix && prettier --write '{features,pages}/**/*' && npm run eslint:fix",
     "test": "vitest",
     "test:coverage": "vitest --coverage && coveralls < coverage/lcov.info",

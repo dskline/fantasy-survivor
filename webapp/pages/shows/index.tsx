@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // Find shows with an upcoming episode
   const upcomingShows = [];
   const showsOnBreak = [];
-  if (data.reality_seriesCollection) {
+  if (data?.reality_seriesCollection) {
     for (const show of data.reality_seriesCollection.edges) {
       const latestSeason = show.node?.seasonsCollection?.edges[0];
       if (latestSeason) {

@@ -40,9 +40,6 @@ export const GET_ROSTERS = gql`
 `;
 
 export const getRosters = async (leagueId: string) =>
-  await client.query<GetRostersQuery, GetRostersQueryVariables>({
-    query: GET_ROSTERS,
-    variables: {
-      leagueFilter: { id: { eq: leagueId } },
-    },
+  await client.query<GetRostersQuery, GetRostersQueryVariables>(GET_ROSTERS, {
+    leagueFilter: { id: { eq: leagueId } },
   });
