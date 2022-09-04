@@ -1,20 +1,17 @@
-import { gql } from "@apollo/client";
+import { gql } from "urql";
 
 import { client } from "@/features/core/db/graphql/client";
 import {
-  GetRosterQuery,
-  GetRosterQueryVariables,
-} from "@/features/core/leagues/crud/__generated__/getRoster.types";
+  GetRostersQuery,
+  GetRostersQueryVariables,
+} from "@/features/core/leagues/crud/__generated__/getRosters.types";
 
-export const GET_ROSTER = gql`
-  query GetRoster(
-    $leagueFilter: leaguesFilter!
-    $userFilter: league_participantsFilter!
-  ) {
+export const GET_ROSTERS = gql`
+  query GetRosters($leagueFilter: leaguesFilter!) {
     leaguesCollection(filter: $leagueFilter, first: 1) {
       edges {
         node {
-          league_participantsCollection(filter: $userFilter) {
+          league_participantsCollection {
             edges {
               node {
                 lp_contestantsCollection {
@@ -42,11 +39,10 @@ export const GET_ROSTER = gql`
   }
 `;
 
-export const getLeague = async (leagueId: string, userId: string) =>
-  await client.query<GetRosterQuery, GetRosterQueryVariables>({
-    query: GET_ROSTER,
+export const getRosters = async (leagueId: string) =>
+  await client.query<GetRostersQuery, GetRostersQueryVariables>({
+    query: GET_ROSTERS,
     variables: {
       leagueFilter: { id: { eq: leagueId } },
-      userFilter: { participant: { eq: userId } },
     },
   });

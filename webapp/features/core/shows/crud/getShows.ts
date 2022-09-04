@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "urql";
 
 import { client } from "@/features/core/db/graphql/client";
 import { GetShowsQuery } from "@/features/core/shows/crud/__generated__/getShows.types";

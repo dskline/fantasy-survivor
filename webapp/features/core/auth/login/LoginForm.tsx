@@ -12,10 +12,10 @@ export const LoginForm = ({ onLogin }: Props) => {
   const userId = user?.id;
 
   useEffect(() => {
-    if (user) {
+    if (userId) {
       onLogin?.();
     }
-  }, [userId]);
+  }, [userId, onLogin]);
 
   return (
     <div>

@@ -1,6 +1,8 @@
 import { GetStaticProps, NextPage } from "next";
 
 import { RealitySeries } from "@/features/core/db/graphql/schema";
+import { ssrClient } from "@/features/core/db/graphql/ssrClient";
+import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getUpcomingShows } from "@/features/core/shows/crud/getUpcomingShows";
 import ShowsPage from "@/features/core/shows/ShowsPage";
 
@@ -11,10 +13,11 @@ type Props = {
 const Page: NextPage<Props> = ({ upcomingShows, showsOnBreak }) => (
   <ShowsPage upcomingShows={upcomingShows} showsOnBreak={showsOnBreak} />
 );
-export default Page;
+export default withUrql(Page);
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await getUpcomingShows();
+  const { client, ssrCache } = ssrClient();
+  const { data } = await getUpcomingShows(client);
 
   // Find shows with an upcoming episode
   const upcomingShows = [];
@@ -35,6 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
+      urqlState: ssrCache.extractData(),
       upcomingShows,
       showsOnBreak,
     },

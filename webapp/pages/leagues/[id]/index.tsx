@@ -2,32 +2,34 @@ import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { UserProvider } from "@supabase/auth-helpers-react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
+import { ssrClient } from "@/features/core/db/graphql/ssrClient";
+import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
 import { getLeagues } from "@/features/core/leagues/crud/getLeagues";
-import {
-  LeaguePage,
-  LeaguePageProps,
-} from "@/features/core/leagues/LeaguePage";
+import { LeaguePage, LeagueProps } from "@/features/core/leagues/LeaguePage";
 
 type UrlParams = {
   id: string;
 };
-const Page: NextPage<LeaguePageProps> = (props: LeaguePageProps) => (
+const Page: NextPage<LeagueProps> = (props: LeagueProps) => (
   <UserProvider supabaseClient={supabaseClient}>
-    <LeaguePage {...props} />
+    {props.id ? <LeaguePage {...props} /> : <></>}
   </UserProvider>
 );
-export default Page;
+export default withUrql(Page);
 
-export const getStaticProps: GetStaticProps<
-  LeaguePageProps,
-  UrlParams
-> = async ({ params }) => {
-  if (!params) {
-    return { notFound: true };
+export const getStaticProps: GetStaticProps<LeagueProps, UrlParams> = async ({
+  params,
+}) => {
+  if (!params?.id) {
+    return {
+      redirect: { destination: "/", permanent: false },
+    };
   }
-  const { data } = await getLeague(params.id);
-  const league = data.leaguesCollection?.edges?.[0]?.node;
+  const { client, ssrCache } = ssrClient();
+  const { data } = await getLeague(client, params.id);
+
+  const league = data?.leaguesCollection?.edges?.[0]?.node;
   if (!league) {
     return { notFound: true };
   }
@@ -36,7 +38,7 @@ export const getStaticProps: GetStaticProps<
   const format = league.league_formats;
 
   const ruleMetadata = show?.rulesCollection?.edges.map(({ node }) => node);
-  const orderedRules: LeaguePageProps["orderedRules"] = [];
+  const orderedRules: LeagueProps["orderedRules"] = [];
   const leagueRules = JSON.parse(league.rulesets?.data).rules;
   for (const rule of ruleMetadata || []) {
     if (leagueRules[rule.id]) {
@@ -55,6 +57,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
+      urqlState: ssrCache.extractData(),
       id: league.id,
       title: league.title,
       show,
@@ -66,8 +69,9 @@ export const getStaticProps: GetStaticProps<
 };
 
 export const getStaticPaths: GetStaticPaths<UrlParams> = async () => {
-  const { data } = await getLeagues();
-  const leagues = data.leaguesCollection?.edges?.map(({ node }) => node);
+  const { client } = ssrClient();
+  const { data } = await getLeagues(client);
+  const leagues = data?.leaguesCollection?.edges?.map(({ node }) => node);
   const paths =
     leagues?.map(({ id }: { id: string }) => ({ params: { id } })) || [];
   return { paths, fallback: true };

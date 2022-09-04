@@ -1,11 +1,10 @@
 import * as Types from "../../../db/graphql/schema";
 
-export type GetRosterQueryVariables = Types.Exact<{
+export type GetRostersQueryVariables = Types.Exact<{
   leagueFilter: Types.LeaguesFilter;
-  userFilter: Types.LeagueParticipantsFilter;
 }>;
 
-export type GetRosterQuery = {
+export type GetRostersQuery = {
   __typename?: "Query";
   leaguesCollection?: {
     __typename?: "leaguesConnection";

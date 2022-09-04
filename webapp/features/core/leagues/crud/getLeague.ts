@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "urql";
+import { Client } from "urql";
 
-import { client } from "@/features/core/db/graphql/client";
 import {
   GetLeagueQuery,
   GetLeagueQueryVariables,
@@ -53,8 +53,9 @@ export const GET_LEAGUE = gql`
   }
 `;
 
-export const getLeague = async (leagueId: string) =>
-  await client.query<GetLeagueQuery, GetLeagueQueryVariables>({
-    query: GET_LEAGUE,
-    variables: { leagueFilter: { id: { eq: leagueId } } },
-  });
+export const getLeague = async (client: Client, leagueId: string) =>
+  client
+    .query<GetLeagueQuery, GetLeagueQueryVariables>(GET_LEAGUE, {
+      leagueFilter: { id: { eq: leagueId } },
+    })
+    .toPromise();

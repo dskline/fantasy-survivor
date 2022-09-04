@@ -1,6 +1,4 @@
-import { gql } from "@apollo/client";
-
-import { client } from "@/features/core/db/graphql/client";
+import { gql } from "urql";
 
 import {
   GetUpcomingShowsQuery,
@@ -44,7 +42,10 @@ export const GET_UPCOMING_SHOWS = gql`
   }
 `;
 
-export const getUpcomingShows = async () =>
-  await client.query<GetUpcomingShowsQuery, GetUpcomingShowsQueryVariables>({
-    query: GET_UPCOMING_SHOWS,
-  });
+export const getUpcomingShows = async (client: Client) =>
+  await client
+    .query<GetUpcomingShowsQuery, GetUpcomingShowsQueryVariables>(
+      GET_UPCOMING_SHOWS,
+      {}
+    )
+    .toPromise();

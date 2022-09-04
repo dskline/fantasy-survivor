@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import classnames from "classnames";
 import { Control, Controller, UseFormWatch } from "react-hook-form";
 import { UseControllerProps } from "react-hook-form/dist/types/controller";
+import { MdEdit } from "react-icons/md";
 
 import { Rules } from "@/features/core/db/graphql/schema";
 import { CreateLeagueFields } from "@/features/core/leagues/CreateLeaguePage";
@@ -54,7 +55,7 @@ export const UpdateRule = ({
               />
               points
             </div>
-            <div className="text-xs">Edit</div>
+            <MdEdit className="h-4 w-4" />
           </button>
         </div>
       )}

@@ -1253,6 +1253,7 @@ export type Leagues = {
   created_by: Scalars["UUID"];
   format?: Maybe<Scalars["String"]>;
   id: Scalars["UUID"];
+  is_private: Scalars["Boolean"];
   league_formats?: Maybe<LeagueFormats>;
   league_participantsCollection?: Maybe<LeagueParticipantsConnection>;
   profiles?: Maybe<Profiles>;
@@ -1297,6 +1298,7 @@ export type LeaguesFilter = {
   created_by?: InputMaybe<UuidFilter>;
   format?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
+  is_private?: InputMaybe<BooleanFilter>;
   ruleset?: InputMaybe<UuidFilter>;
   season?: InputMaybe<UuidFilter>;
   title?: InputMaybe<StringFilter>;
@@ -1307,6 +1309,7 @@ export type LeaguesInsertInput = {
   created_by?: InputMaybe<Scalars["UUID"]>;
   format?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["UUID"]>;
+  is_private?: InputMaybe<Scalars["Boolean"]>;
   ruleset?: InputMaybe<Scalars["UUID"]>;
   season?: InputMaybe<Scalars["UUID"]>;
   title?: InputMaybe<Scalars["String"]>;
@@ -1325,6 +1328,7 @@ export type LeaguesOrderBy = {
   created_by?: InputMaybe<OrderByDirection>;
   format?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
+  is_private?: InputMaybe<OrderByDirection>;
   ruleset?: InputMaybe<OrderByDirection>;
   season?: InputMaybe<OrderByDirection>;
   title?: InputMaybe<OrderByDirection>;
@@ -1335,6 +1339,7 @@ export type LeaguesUpdateInput = {
   created_by?: InputMaybe<Scalars["UUID"]>;
   format?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["UUID"]>;
+  is_private?: InputMaybe<Scalars["Boolean"]>;
   ruleset?: InputMaybe<Scalars["UUID"]>;
   season?: InputMaybe<Scalars["UUID"]>;
   title?: InputMaybe<Scalars["String"]>;

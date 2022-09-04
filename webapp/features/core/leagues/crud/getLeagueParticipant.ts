@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "urql";
 
 export const GET_LEAGUE_PARTICIPANT_FRAGMENT = gql`
   fragment GetLeagueParticipant on league_participants {

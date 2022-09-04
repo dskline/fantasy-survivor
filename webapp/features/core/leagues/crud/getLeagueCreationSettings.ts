@@ -1,9 +1,6 @@
-import { gql } from "@apollo/client";
-import { GetStaticPropsResult } from "next/types";
+import { gql } from "urql";
+import { Client } from "urql";
 
-import { client } from "@/features/core/db/graphql/client";
-import { RsLeagueFormats, Rules } from "@/features/core/db/graphql/schema";
-import { CreateLeagueProps } from "@/features/core/leagues/CreateLeaguePage";
 import {
   GetLeagueCreationSettingsQuery,
   GetLeagueCreationSettingsQueryVariables,
@@ -57,51 +54,13 @@ export const GET_LEAGUE_CREATION_SETTINGS = gql`
   }
 `;
 
-type GetLeagueCreationSettings = (
-  showSlug: string,
-  seasonNumber: number
-) => Promise<GetStaticPropsResult<CreateLeagueProps>>;
-
-export const getLeagueCreationSettings: GetLeagueCreationSettings = async (
-  showSlug,
-  seasonNumber
-) => {
-  const { data } = await client.query<
-    GetLeagueCreationSettingsQuery,
-    GetLeagueCreationSettingsQueryVariables
-  >({
-    query: GET_LEAGUE_CREATION_SETTINGS,
-    variables: { showSlug, seasonNumber },
-  });
-  const show = data.reality_seriesCollection?.edges[0]?.node;
-  const season = show?.seasonsCollection?.edges[0]?.node;
-  const rules = data.rulesCollection?.edges.map((rule) => rule.node as Rules);
-  const leagueFormats = show?.rs_league_formatsCollection?.edges.map(
-    (format) =>
-      ({
-        league_formats: format.node?.league_formats,
-        rulesets: format.node?.rulesets,
-      } as RsLeagueFormats)
-  );
-
-  if (!show || !season || !leagueFormats || !rules) {
-    return {
-      redirect: { statusCode: 303, destination: "/shows" },
-    };
-  }
-  return {
-    props: {
-      show: {
-        title: show.title,
-      },
-      season: {
-        id: season.id,
-        title: season.title,
-        order: seasonNumber,
-        logo_src: season.logo_src,
-      },
-      availableRules: rules,
-      availableFormats: leagueFormats,
-    },
-  };
-};
+export const getLeagueCreationSettings = async (
+  client: Client,
+  variables: GetLeagueCreationSettingsQueryVariables
+) =>
+  await client
+    .query<
+      GetLeagueCreationSettingsQuery,
+      GetLeagueCreationSettingsQueryVariables
+    >(GET_LEAGUE_CREATION_SETTINGS, variables)
+    .toPromise();

@@ -2,15 +2,19 @@ import classnames from "classnames";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 import Image from "@/features/components/Image";
-import { LeaguePageProps } from "@/features/core/leagues/LeaguePage/index";
+import { LeagueProps } from "@/features/core/leagues/LeaguePage/index";
 import { LeaguePills } from "@/features/core/leagues/LeaguePage/LeaguePills";
 
-type LeagueHeaderProps = {
-  isUserInLeague: boolean;
-  onJoin: () => void;
+type Props = {
+  league: LeagueProps;
+  user: {
+    isLoading: boolean;
+    isInLeague: boolean;
+  };
+  onJoinLeague: () => void;
 };
-export const LeagueHeader = (props: LeaguePageProps & LeagueHeaderProps) => {
-  const { title, season, show, isUserInLeague, onJoin } = props;
+export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
+  const { title, season, show } = league;
   return (
     <div className="flex items-center gap-4">
       <div className="w-1/4 max-w-[120px]">
@@ -27,28 +31,29 @@ export const LeagueHeader = (props: LeaguePageProps & LeagueHeaderProps) => {
           {title || `${show.title} League`}
         </h1>
         <div className="hidden md:block">
-          <LeaguePills {...props} />
+          <LeaguePills {...league} />
         </div>
         <div className="mt-2">
           <button
             type="button"
             className={classnames(
               "flex items-center gap-2 rounded shadow-lg",
-              "bg-gradient-to-br py-1 pl-2 pr-3 text-xs font-semibold",
-              isUserInLeague
-                ? "from-green-500 to-green-600 text-green-100"
-                : "from-blue-600 to-blue-700 text-blue-100"
+              "py-1 px-2 text-xs font-semibold",
+              user.isInLeague
+                ? "bg-green-600 pr-3 text-green-100"
+                : "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-100",
+              user.isLoading && "bg-emerald-600/50"
             )}
-            onClick={() => onJoin()}
-            disabled={isUserInLeague}
+            onClick={() => onJoinLeague()}
+            disabled={user.isInLeague || user.isLoading}
           >
-            {isUserInLeague ? (
+            {!user.isInLeague ? (
+              "Join League"
+            ) : (
               <>
                 <BsCheckCircleFill className="h-3 w-3" />
                 Joined
               </>
-            ) : (
-              "Join League"
             )}
           </button>
         </div>
