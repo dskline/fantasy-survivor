@@ -1979,6 +1979,7 @@ export type Seasons = {
   logo_src: Scalars["String"];
   order: Scalars["BigInt"];
   reality_series?: Maybe<RealitySeries>;
+  reality_show: Scalars["String"];
   title: Scalars["String"];
   updated_at: Scalars["Datetime"];
 };
@@ -2034,7 +2035,7 @@ export type SeasonsFilter = {
   id?: InputMaybe<UuidFilter>;
   logo_src?: InputMaybe<StringFilter>;
   order?: InputMaybe<BigIntFilter>;
-  reality_series?: InputMaybe<StringFilter>;
+  reality_show?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DatetimeFilter>;
 };
@@ -2043,7 +2044,7 @@ export type SeasonsInsertInput = {
   id?: InputMaybe<Scalars["UUID"]>;
   logo_src?: InputMaybe<Scalars["String"]>;
   order?: InputMaybe<Scalars["BigInt"]>;
-  reality_series?: InputMaybe<Scalars["String"]>;
+  reality_show?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
   updated_at?: InputMaybe<Scalars["Datetime"]>;
 };
@@ -2060,7 +2061,7 @@ export type SeasonsOrderBy = {
   id?: InputMaybe<OrderByDirection>;
   logo_src?: InputMaybe<OrderByDirection>;
   order?: InputMaybe<OrderByDirection>;
-  reality_series?: InputMaybe<OrderByDirection>;
+  reality_show?: InputMaybe<OrderByDirection>;
   title?: InputMaybe<OrderByDirection>;
   updated_at?: InputMaybe<OrderByDirection>;
 };
@@ -2069,7 +2070,7 @@ export type SeasonsUpdateInput = {
   id?: InputMaybe<Scalars["UUID"]>;
   logo_src?: InputMaybe<Scalars["String"]>;
   order?: InputMaybe<Scalars["BigInt"]>;
-  reality_series?: InputMaybe<Scalars["String"]>;
+  reality_show?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
   updated_at?: InputMaybe<Scalars["Datetime"]>;
 };

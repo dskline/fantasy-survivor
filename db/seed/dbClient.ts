@@ -21,7 +21,7 @@ export function getAdminId() {
 }
 export async function dbClient() {
   if (!supabase) {
-    supabase = await createClient(
+    supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_API_URL!,
       process.env.VITE_SUPABASE_SERVICE_KEY!
     );
@@ -33,6 +33,7 @@ export async function dbClient() {
     if (data && data[0]) {
       adminId = data[0].id;
     } else {
+      // If this fails, the server may need to be restarted
       const { user } = await supabase.auth.api.createUser({
         email: SUPERUSER_EMAIL,
         password: "123123",
