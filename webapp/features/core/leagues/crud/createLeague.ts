@@ -1,9 +1,6 @@
 import { RsLeagueFormats } from "@/features/core/db/graphql/schema";
-import { supabase } from "@/features/core/db/supabase";
-import { InsertValues } from "@/features/core/db/supabase/types";
+import { dbFunction } from "@/features/core/db/supabase";
 import { CreateLeagueFields } from "@/features/core/leagues/CreateLeaguePage";
-import { createLeagueParticipant } from "@/features/core/leagues/crud/createLeagueParticipant";
-import { createRuleset } from "@/features/core/leagues/crud/createRuleset";
 
 function isNewRuleset(
   data: CreateLeagueFields,
@@ -25,37 +22,16 @@ export const createLeague = async (
   selectedFormat?: RsLeagueFormats
 ) => {
   if (!selectedFormat) {
-    return { error: "Invalid league format selected" };
+    return { data: undefined, error: "Invalid league format selected" };
   }
-  // if the ruleset was changed, create a new one
-  if (isNewRuleset(data, selectedFormat)) {
-    const { data: newRuleset } = await createRuleset({
-      created_by: userId,
-      data: JSON.stringify(data.ruleset),
-    });
-    if (!newRuleset) {
-      return { error: "Could not create ruleset" };
-    }
-    data.ruleset.id = newRuleset[0].id;
-  }
-  const { data: newLeague, error } = await supabase
-    .from<InsertValues<"leagues">>("leagues")
-    .insert({
-      created_by: userId,
-      season: seasonId,
-      title: data.title,
-      format: data.leagueFormat,
-      ruleset: data.ruleset.id,
-    });
-  if (error) {
-    return { error: "Could not create league" };
-  }
-  const { data: newParticipant } = await createLeagueParticipant({
-    league: newLeague[0].id,
-    participant: userId,
+  return await dbFunction("create_league", {
+    season_id: seasonId,
+    format_id: data.leagueFormat,
+    ruleset_id: data.ruleset.id,
+    rule_data: isNewRuleset(data, selectedFormat)
+      ? JSON.stringify(data.ruleset.rules)
+      : undefined,
+    title: data.title,
+    owner_id: userId,
   });
-  if (!newParticipant) {
-    return { error: "Could not create league participant" };
-  }
-  return { data: newLeague[0] };
 };

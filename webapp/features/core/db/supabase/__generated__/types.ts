@@ -344,16 +344,45 @@ export interface Database {
           league_participant?: string;
         };
       };
+      api_tokens: {
+        Row: {
+          owner: string;
+          name: string;
+          token: string;
+          id: string;
+        };
+        Insert: {
+          owner: string;
+          name: string;
+          token: string;
+          id?: string;
+        };
+        Update: {
+          owner?: string;
+          name?: string;
+          token?: string;
+          id?: string;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      create_league: {
+        Args: {
+          season_id: string;
+          format_id: string;
+          ruleset_id: string;
+          title: unknown;
+          rule_data: unknown;
+          owner_id: unknown;
+        };
+        Returns: string;
+      };
     };
     Enums: {
       [_ in never]: never;
     };
   };
 }
-

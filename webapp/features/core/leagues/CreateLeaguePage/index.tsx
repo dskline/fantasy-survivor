@@ -65,7 +65,7 @@ export const CreateLeaguePage = ({
     const selectedFormat = availableFormats.find(
       (format) => format.league_formats?.id === data.leagueFormat
     );
-    const { data: newLeague, error } = await createLeague(
+    const { data: createdId, error } = await createLeague(
       data,
       user.id,
       season.id,
@@ -75,7 +75,7 @@ export const CreateLeaguePage = ({
       toast.error(error, { position: "bottom-center" });
       return false;
     }
-    await router.push(`/leagues/${newLeague?.id}/invite`);
+    await router.push(`/leagues/${createdId}`);
   };
 
   return (
