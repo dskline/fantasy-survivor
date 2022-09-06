@@ -18,7 +18,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body className="bg-gradient-radial from-cyan-50 via-blue-50 to-cyan-50 text-slate-800">
+        <body className="bg-gradient-radial from-emerald-100 via-cyan-50 to-emerald-100 text-slate-800">
           <Main />
           <NextScript />
         </body>

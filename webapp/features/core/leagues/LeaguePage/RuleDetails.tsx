@@ -2,17 +2,17 @@ import React from "react";
 
 import classnames from "classnames";
 
-import { LeagueProps } from "@/features/core/leagues/LeaguePage/index";
+import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
 
 export const RuleDetails = ({ format, orderedRules }: LeagueProps) => (
   <div className="flex flex-col gap-2">
-    <h3 className="mb-2 text-lg font-semibold">Rules</h3>
-    <div className="font-semibold">{format.title}</div>
+    <div className="font-semibold">Format: {format.title}</div>
     <div className="text-sm">{format.description}</div>
+    <h2 className="mt-6 font-semibold">Event/Point Allocation</h2>
     <div
       className={classnames(
-        "my-4 -mx-4 grid grid-cols-[1fr_auto_4fr] gap-y-1 md:-mx-2 md:px-2",
-        "[&>*:nth-child(6n-3)]:bg-slate-200 [&>*:nth-child(6n-4)]:bg-slate-200 [&>*:nth-child(6n-5)]:bg-slate-200"
+        "-mx-6 mt-2 grid grid-cols-[1fr_auto_4fr] gap-y-1 md:-mx-2 md:px-2",
+        "[&>*:nth-child(6n-3)]:bg-blue-100 [&>*:nth-child(6n-4)]:bg-blue-100 [&>*:nth-child(6n-5)]:bg-blue-100"
       )}
     >
       {orderedRules.map(({ id, description, points }) => (

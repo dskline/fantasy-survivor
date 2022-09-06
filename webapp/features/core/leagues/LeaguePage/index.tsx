@@ -4,27 +4,15 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { toast } from "react-toastify";
 
 import { LoginModal } from "@/features/core/auth/login/LoginModal";
-import {
-  LeagueFormats,
-  RealitySeries,
-  Seasons,
-} from "@/features/core/db/graphql/schema";
 import { createLeagueParticipant } from "@/features/core/leagues/crud/createLeagueParticipant";
 import { useGetLeagueParticipants } from "@/features/core/leagues/crud/getLeagueParticipants";
 import { LeagueDetails } from "@/features/core/leagues/LeaguePage/LeagueDetails";
+import { LeagueHeader } from "@/features/core/leagues/LeaguePage/LeagueHeader";
+import {
+  LeagueProps,
+  UserContext,
+} from "@/features/core/leagues/LeaguePage/types";
 
-export type LeagueProps = {
-  id: string;
-  title?: string | null;
-  format: Pick<LeagueFormats, "title" | "description">;
-  show: Pick<RealitySeries, "title">;
-  season: Pick<Seasons, "title" | "logo_src">;
-  orderedRules: Array<{
-    id: string;
-    description: string;
-    points: number;
-  }>;
-};
 export const LeaguePage = (props: LeagueProps) => {
   const { user, isLoading } = useUser();
   const [showLoginModal, setShowLoginModal] = React.useState(false);
@@ -37,6 +25,10 @@ export const LeaguePage = (props: LeagueProps) => {
     },
   });
   const { data, fetching } = res;
+  const userContext: UserContext = {
+    isInLeague: !!user && !!data?.league_participantsCollection?.edges.length,
+    isLoading: isLoading || fetching,
+  };
 
   useEffect(() => {
     if (isJoining && !user?.id) {
@@ -58,15 +50,20 @@ export const LeaguePage = (props: LeagueProps) => {
 
   return (
     <>
-      <LeagueDetails
-        league={props}
-        user={{
-          isInLeague:
-            !!user && !!data?.league_participantsCollection?.edges.length,
-          isLoading: isLoading || fetching,
-        }}
-        onJoinLeague={() => setIsJoining(true)}
-      />
+      <div className="mx-auto flex max-w-xl flex-col pt-6">
+        <LeagueHeader
+          league={props}
+          user={userContext}
+          onJoinLeague={() => setIsJoining(true)}
+        />
+        <main className="mt-4 flex flex-col gap-4 rounded-t-xl bg-white px-6 pt-3 pb-24 shadow-2xl">
+          <LeagueDetails
+            league={props}
+            user={userContext}
+            onJoinLeague={() => setIsJoining(true)}
+          />
+        </main>
+      </div>
       <LoginModal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}
