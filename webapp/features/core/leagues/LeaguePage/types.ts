@@ -1,5 +1,8 @@
+import { User } from "@supabase/auth-helpers-nextjs";
+
 import {
   LeagueFormats,
+  Maybe,
   RealitySeries,
   Seasons,
 } from "@/features/core/db/graphql/schema";
@@ -16,7 +19,8 @@ export type LeagueProps = {
     points: number;
   }>;
 };
-export type UserContext = {
+export type LeagueUser = {
+  data: Maybe<User>;
   isInLeague: boolean;
   isLoading: boolean;
 };

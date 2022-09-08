@@ -23,5 +23,5 @@ export const useAuthQuery = <D, V>(
       }),
       [accessToken]
     ),
-  });
+  })[0];
 };

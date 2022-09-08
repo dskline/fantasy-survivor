@@ -26,6 +26,7 @@ specifiers:
   graphql: 16.6.0
   jsdom: 20.0.0
   next: 12.2.5
+  next-query-params: 4.0.0
   next-urql: 4.0.0
   postcss: 8.4.16
   prettier: 2.7.1
@@ -38,6 +39,7 @@ specifiers:
   tailwindcss: 3.1.8
   typescript: 4.7.4
   urql: 3.0.1
+  use-query-params: 2.1.0
   vite: 3.0.9
   vitest: 0.22.1
   yup: 0.32.11
@@ -53,6 +55,7 @@ dependencies:
   framer-motion: 7.2.1_react-dom@18.2.0+react@18.2.0
   graphql: 16.6.0
   next: 12.2.5_8ac08509d25e6d69c30af862f1e489ee
+  next-query-params: 4.0.0_81fa03cfc123cf4a85579806a5c9960f
   next-urql: 4.0.0_react@18.2.0+urql@3.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -61,6 +64,7 @@ dependencies:
   react-is: 18.2.0
   react-toastify: 9.0.8_react-dom@18.2.0+react@18.2.0
   urql: 3.0.1_graphql@16.6.0+react@18.2.0
+  use-query-params: 2.1.0_react-dom@18.2.0+react@18.2.0
   yup: 0.32.11
 
 devDependencies:
@@ -5144,6 +5148,19 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
+  /next-query-params/4.0.0_81fa03cfc123cf4a85579806a5c9960f:
+    resolution: {integrity: sha512-u4PV4fA1Nb6CFZYnW+0s01YbHMJVhCmmnIZ11Dvma4rn8wUdjPPMuMlv2VMWziHD8DWE2+z3Y0475HfjdcT4MQ==}
+    peerDependencies:
+      next: ^10.0.0 || ^11.0.0 || ^12.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      use-query-params: ^2.0.0
+    dependencies:
+      next: 12.2.5_8ac08509d25e6d69c30af862f1e489ee
+      react: 18.2.0
+      tslib: 2.4.0
+      use-query-params: 2.1.0_react-dom@18.2.0+react@18.2.0
+    dev: false
+
   /next-tick/1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: false
@@ -6075,6 +6092,10 @@ packages:
       upper-case-first: 2.0.2
     dev: true
 
+  /serialize-query-params/2.0.1:
+    resolution: {integrity: sha512-MCw3M1sc0N0vTxsXfInqogI7Cygsnlv4Vdy1Sc+QAN50bpteYCIQRRS3FXT/mcCKOLxCR8ohLg29WmeOEXyjmw==}
+    dev: false
+
   /set-blocking/2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
     dev: true
@@ -6654,6 +6675,17 @@ packages:
       graphql: 16.6.0
       react: 18.2.0
       wonka: 6.0.0
+    dev: false
+
+  /use-query-params/2.1.0_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-CMxIQWoPeeQfvXy8FwO6IKBhgOQrtLTgR2oBDdExaayK9RIDEuMgMZmxUOmdi3AatBJb6GJz6NbDT4HJm5mSVw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      serialize-query-params: 2.0.1
     dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:
