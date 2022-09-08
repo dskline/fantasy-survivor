@@ -101,6 +101,8 @@ export type JsonFilter = {
 export type Mutation = {
   __typename?: "Mutation";
   /** Deletes zero or more records from the collection */
+  deleteFromapi_tokensCollection: ApiTokensDeleteResponse;
+  /** Deletes zero or more records from the collection */
   deleteFromcontestant_seasonsCollection: ContestantSeasonsDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromcontestantsCollection: ContestantsDeleteResponse;
@@ -132,6 +134,8 @@ export type Mutation = {
   deleteFromseasonsCollection: SeasonsDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromuser_rolesCollection: UserRolesDeleteResponse;
+  /** Adds one or more `api_tokensInsertResponse` records to the collection */
+  insertIntoapi_tokensCollection?: Maybe<ApiTokensInsertResponse>;
   /** Adds one or more `contestant_seasonsInsertResponse` records to the collection */
   insertIntocontestant_seasonsCollection?: Maybe<ContestantSeasonsInsertResponse>;
   /** Adds one or more `contestantsInsertResponse` records to the collection */
@@ -165,6 +169,8 @@ export type Mutation = {
   /** Adds one or more `user_rolesInsertResponse` records to the collection */
   insertIntouser_rolesCollection?: Maybe<UserRolesInsertResponse>;
   /** Updates zero or more records in the collection */
+  updateapi_tokensCollection: ApiTokensUpdateResponse;
+  /** Updates zero or more records in the collection */
   updatecontestant_seasonsCollection: ContestantSeasonsUpdateResponse;
   /** Updates zero or more records in the collection */
   updatecontestantsCollection: ContestantsUpdateResponse;
@@ -196,6 +202,12 @@ export type Mutation = {
   updateseasonsCollection: SeasonsUpdateResponse;
   /** Updates zero or more records in the collection */
   updateuser_rolesCollection: UserRolesUpdateResponse;
+};
+
+/** The root type for creating and mutating data */
+export type MutationDeleteFromapiTokensCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<ApiTokensFilter>;
 };
 
 /** The root type for creating and mutating data */
@@ -295,6 +307,11 @@ export type MutationDeleteFromuserRolesCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationInsertIntoapiTokensCollectionArgs = {
+  objects: Array<ApiTokensInsertInput>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationInsertIntocontestantSeasonsCollectionArgs = {
   objects: Array<ContestantSeasonsInsertInput>;
 };
@@ -372,6 +389,13 @@ export type MutationInsertIntoseasonsCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntouserRolesCollectionArgs = {
   objects: Array<UserRolesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationUpdateapiTokensCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<ApiTokensFilter>;
+  set: ApiTokensUpdateInput;
 };
 
 /** The root type for creating and mutating data */
@@ -509,6 +533,8 @@ export type PageInfo = {
 /** The root type for querying data */
 export type Query = {
   __typename?: "Query";
+  /** A pagable collection of type `api_tokens` */
+  api_tokensCollection?: Maybe<ApiTokensConnection>;
   /** A pagable collection of type `contestant_seasons` */
   contestant_seasonsCollection?: Maybe<ContestantSeasonsConnection>;
   /** A pagable collection of type `contestants` */
@@ -541,6 +567,16 @@ export type Query = {
   seasonsCollection?: Maybe<SeasonsConnection>;
   /** A pagable collection of type `user_roles` */
   user_rolesCollection?: Maybe<UserRolesConnection>;
+};
+
+/** The root type for querying data */
+export type QueryApiTokensCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<ApiTokensFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<ApiTokensOrderBy>>;
 };
 
 /** The root type for querying data */
@@ -730,6 +766,79 @@ export type UuidFilter = {
   eq?: InputMaybe<Scalars["UUID"]>;
   in?: InputMaybe<Array<Scalars["UUID"]>>;
   neq?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type ApiTokens = {
+  __typename?: "api_tokens";
+  id: Scalars["UUID"];
+  name: Scalars["String"];
+  owner: Scalars["UUID"];
+  profiles?: Maybe<Profiles>;
+  token: Scalars["String"];
+};
+
+export type ApiTokensConnection = {
+  __typename?: "api_tokensConnection";
+  edges: Array<ApiTokensEdge>;
+  pageInfo: PageInfo;
+};
+
+export type ApiTokensDeleteResponse = {
+  __typename?: "api_tokensDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<ApiTokens>;
+};
+
+export type ApiTokensEdge = {
+  __typename?: "api_tokensEdge";
+  cursor: Scalars["String"];
+  node: ApiTokens;
+};
+
+export type ApiTokensFilter = {
+  id?: InputMaybe<UuidFilter>;
+  name?: InputMaybe<StringFilter>;
+  owner?: InputMaybe<UuidFilter>;
+  token?: InputMaybe<StringFilter>;
+};
+
+export type ApiTokensInsertInput = {
+  id?: InputMaybe<Scalars["UUID"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  owner?: InputMaybe<Scalars["UUID"]>;
+  token?: InputMaybe<Scalars["String"]>;
+};
+
+export type ApiTokensInsertResponse = {
+  __typename?: "api_tokensInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<ApiTokens>;
+};
+
+export type ApiTokensOrderBy = {
+  id?: InputMaybe<OrderByDirection>;
+  name?: InputMaybe<OrderByDirection>;
+  owner?: InputMaybe<OrderByDirection>;
+  token?: InputMaybe<OrderByDirection>;
+};
+
+export type ApiTokensUpdateInput = {
+  id?: InputMaybe<Scalars["UUID"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  owner?: InputMaybe<Scalars["UUID"]>;
+  token?: InputMaybe<Scalars["String"]>;
+};
+
+export type ApiTokensUpdateResponse = {
+  __typename?: "api_tokensUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<ApiTokens>;
 };
 
 export type ContestantSeasons = {
@@ -1429,6 +1538,7 @@ export type LpContestantsUpdateResponse = {
 
 export type Profiles = {
   __typename?: "profiles";
+  api_tokensCollection?: Maybe<ApiTokensConnection>;
   display_name?: Maybe<Scalars["String"]>;
   email: Scalars["String"];
   id: Scalars["UUID"];
@@ -1437,6 +1547,15 @@ export type Profiles = {
   rulesetsCollection?: Maybe<RulesetsConnection>;
   thumbnail_src?: Maybe<Scalars["String"]>;
   user_rolesCollection?: Maybe<UserRolesConnection>;
+};
+
+export type ProfilesApiTokensCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<ApiTokensFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<ApiTokensOrderBy>>;
 };
 
 export type ProfilesLeagueParticipantsCollectionArgs = {
