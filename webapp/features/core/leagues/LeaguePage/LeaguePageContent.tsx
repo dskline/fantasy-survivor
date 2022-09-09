@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { toast } from "react-toastify";
 
+import { FadeIn } from "@/features/components/FadeIn/FadeIn";
 import { LoginModal } from "@/features/core/auth/login/LoginModal";
 import { createLeagueParticipant } from "@/features/core/leagues/crud/createLeagueParticipant";
 import { LeagueDetails } from "@/features/core/leagues/LeaguePage/LeagueDetails";
@@ -51,14 +52,17 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
         <div className="mt-4">
           <LeagueTabs user={user} />
         </div>
-        <main className="z-10 min-h-screen rounded-t-xl bg-white p-6 pb-40 shadow-2xl">
-          {tab === "rules" && (
+        <main className="z-10 grid min-h-screen rounded-t-xl bg-white p-6 pb-40 shadow-2xl">
+          <FadeIn show={tab === "rules"}>
             <LeagueDetails
               league={league}
               user={user}
               onJoinLeague={() => setIsJoining(true)}
             />
-          )}
+          </FadeIn>
+          <FadeIn show={tab === "roster"}>
+            <LeagueRoster league={league} user={user} />
+          </FadeIn>
         </main>
       </div>
       <LoginModal
