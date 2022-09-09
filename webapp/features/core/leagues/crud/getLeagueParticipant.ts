@@ -8,14 +8,12 @@ export const GET_LEAGUE_PARTICIPANT_FRAGMENT = gql`
       thumbnail_src
       display_name
     }
-    lp_contestantsCollection {
+    lp_contestantsCollection(orderBy: { rank: AscNullsLast }) {
       edges {
         node {
           id
           rank
-          contestant_seasons {
-            id
-          }
+          contestant_season
         }
       }
     }

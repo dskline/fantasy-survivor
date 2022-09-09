@@ -44,7 +44,12 @@ const Tabs = ({ tabs, currentTab, setTab }: TabProps) => (
             isActive={currentTab === key}
             icon={tab.icon}
             title={tab.title}
-            onClick={() => setTab(key)}
+            onClick={() => {
+              setTab(key);
+              document
+                .querySelector("body")
+                ?.scrollIntoView({ behavior: "auto", block: "start" });
+            }}
           />
         );
       })}

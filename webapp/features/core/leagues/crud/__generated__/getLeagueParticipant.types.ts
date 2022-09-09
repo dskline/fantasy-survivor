@@ -17,10 +17,7 @@ export type GetLeagueParticipantFragment = {
         __typename?: "lp_contestants";
         id: any;
         rank?: string | null;
-        contestant_seasons?: {
-          __typename?: "contestant_seasons";
-          id: any;
-        } | null;
+        contestant_season: any;
       };
     }>;
   } | null;

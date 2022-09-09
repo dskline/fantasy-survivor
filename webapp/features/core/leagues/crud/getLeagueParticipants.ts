@@ -1,7 +1,10 @@
 import { gql } from "urql";
 
 import { useAuthQuery } from "@/features/core/db/graphql/useAuthQuery";
-import { GetLeagueParticipantsQueryVariables } from "@/features/core/leagues/crud/__generated__/getLeagueParticipants.types";
+import {
+  GetLeagueParticipantsQuery,
+  GetLeagueParticipantsQueryVariables,
+} from "@/features/core/leagues/crud/__generated__/getLeagueParticipants.types";
 import { GET_LEAGUE_PARTICIPANT_FRAGMENT } from "@/features/core/leagues/crud/getLeagueParticipant";
 
 export const GET_LEAGUE_PARTICIPANTS = gql`
@@ -19,4 +22,7 @@ export const GET_LEAGUE_PARTICIPANTS = gql`
 
 export const useGetLeagueParticipants = (
   variables: GetLeagueParticipantsQueryVariables
-) => useAuthQuery({ query: GET_LEAGUE_PARTICIPANTS, variables });
+) =>
+  useAuthQuery<GetLeagueParticipantsQuery, GetLeagueParticipantsQueryVariables>(
+    { query: GET_LEAGUE_PARTICIPANTS, variables }
+  );

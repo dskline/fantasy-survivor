@@ -4,16 +4,16 @@ type Props = {
   children: React.ReactNode;
   show: boolean;
   className?: string;
-  render?: boolean;
+  preload?: boolean;
 };
-export const FadeIn = ({ children, show, className, render }: Props) => (
+export const FadeIn = ({ children, show, className, preload }: Props) => (
   <div
     className={classnames(
-      "transition-opacity duration-300",
+      "transition-all duration-300",
       show ? "opacity-100" : "opacity-0",
       className,
     )}
   >
-    {render ? children : show && children}
+    {preload ? children : show && children}
   </div>
 );

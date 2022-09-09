@@ -8,7 +8,6 @@ export const useLeagueUser = (leagueId: string) => {
   const { data, fetching } = useGetLeagueParticipants({
     filter: {
       league: { eq: leagueId },
-      participant: { eq: user?.id },
     },
   });
 
