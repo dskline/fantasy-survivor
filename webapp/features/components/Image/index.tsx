@@ -1,6 +1,6 @@
 import React from "react";
 
-import NextImage, { ImageProps } from "next/image";
+import NextImage, { ImageProps } from "next/future/image";
 
 type Props = ImageProps & {
   options?: string;

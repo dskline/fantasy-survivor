@@ -26,7 +26,7 @@ const ShowsPage = ({ upcomingShows }: Props) => (
           <div key={show.slug}>
             <div className="relative">
               <div className="aspect-video w-full">
-                <Image src={upcomingSeason.logo_src} layout="fill" alt="" />
+                <Image src={upcomingSeason.logo_src} alt="" />
               </div>
             </div>
             <h3 className="text-lg font-semibold">{show.title}</h3>
