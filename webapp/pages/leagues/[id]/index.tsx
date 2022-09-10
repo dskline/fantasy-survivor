@@ -41,6 +41,15 @@ export const getStaticProps: GetStaticProps<LeagueProps, UrlParams> = async ({
   const season = league.seasons;
   const show = season?.reality_series;
   const format = league.league_formats;
+  const contestants = season?.contestant_seasonsCollection?.edges?.map(
+    ({ node }) => ({
+      id: node.id,
+      team_color: node.team_color,
+      portrait_src: node.portrait_src,
+      fullName: node.contestants?.firstname + " " + node.contestants?.surname,
+      ...node.contestants,
+    })
+  );
 
   const ruleMetadata = show?.rulesCollection?.edges.map(({ node }) => node);
   const orderedRules: LeagueProps["orderedRules"] = [];
@@ -56,7 +65,7 @@ export const getStaticProps: GetStaticProps<LeagueProps, UrlParams> = async ({
   }
   orderedRules.sort((a, b) => b.points - a.points);
 
-  if (!season || !show || !format) {
+  if (!season || !show || !format || !contestants) {
     return { notFound: true };
   }
 
@@ -69,6 +78,7 @@ export const getStaticProps: GetStaticProps<LeagueProps, UrlParams> = async ({
       season,
       format,
       orderedRules,
+      contestants,
     },
   };
 };

@@ -39,7 +39,9 @@ export const GET_LEAGUE = gql`
                 }
               }
             }
-            contestant_seasonsCollection {
+            contestant_seasonsCollection(
+              orderBy: { team_color: DescNullsLast }
+            ) {
               edges {
                 node {
                   ...GetContestant
