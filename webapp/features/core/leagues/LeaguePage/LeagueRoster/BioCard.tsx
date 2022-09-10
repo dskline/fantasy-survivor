@@ -6,8 +6,9 @@ import { Contestant } from "@/features/core/leagues/LeaguePage/types";
 
 type Props = {
   contestant: Contestant;
+  preload?: boolean;
 };
-export const BioCard = ({ contestant }: Props) => {
+export const BioCard = ({ contestant, preload }: Props) => {
   const { team_color, portrait_src, fullName } = contestant;
 
   return (
@@ -23,7 +24,13 @@ export const BioCard = ({ contestant }: Props) => {
           "max-w-[clamp(33%,50%,222px)]"
         )}
       >
-        <Image src={portrait_src} alt="" width={222} height={333} />
+        <Image
+          src={portrait_src}
+          alt=""
+          width={222}
+          height={333}
+          priority={preload}
+        />
       </div>
       <div
         className={classnames(

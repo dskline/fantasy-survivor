@@ -17,14 +17,14 @@ export const ContestantPicker = ({
 }: Props) => (
   <div className="flex flex-col-reverse justify-between gap-x-4 gap-y-6 md:flex-row">
     <div className="grid">
-      {contestants.map((contestant) => (
+      {contestants.map((contestant, i) => (
         <FadeIn
           key={contestant.portrait_src}
           show={contestant.id === selectedContestant.id}
           className="col-span-full row-span-full row-start-1"
           preload
         >
-          <BioCard contestant={contestant} />
+          <BioCard contestant={contestant} preload={i === 0} />
         </FadeIn>
       ))}
     </div>

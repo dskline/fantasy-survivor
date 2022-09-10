@@ -28,6 +28,7 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
             width={120}
             height={120}
             alt=""
+            priority
           />
         </div>
         <div className="-mt-2">
