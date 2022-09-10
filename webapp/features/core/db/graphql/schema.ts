@@ -119,8 +119,6 @@ export type Mutation = {
   /** Deletes zero or more records from the collection */
   deleteFromlp_contestantsCollection: LpContestantsDeleteResponse;
   /** Deletes zero or more records from the collection */
-  deleteFromprofilesCollection: ProfilesDeleteResponse;
-  /** Deletes zero or more records from the collection */
   deleteFromreality_seriesCollection: RealitySeriesDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromrolesCollection: RolesDeleteResponse;
@@ -152,8 +150,6 @@ export type Mutation = {
   insertIntoleaguesCollection?: Maybe<LeaguesInsertResponse>;
   /** Adds one or more `lp_contestantsInsertResponse` records to the collection */
   insertIntolp_contestantsCollection?: Maybe<LpContestantsInsertResponse>;
-  /** Adds one or more `profilesInsertResponse` records to the collection */
-  insertIntoprofilesCollection?: Maybe<ProfilesInsertResponse>;
   /** Adds one or more `reality_seriesInsertResponse` records to the collection */
   insertIntoreality_seriesCollection?: Maybe<RealitySeriesInsertResponse>;
   /** Adds one or more `rolesInsertResponse` records to the collection */
@@ -186,8 +182,6 @@ export type Mutation = {
   updateleaguesCollection: LeaguesUpdateResponse;
   /** Updates zero or more records in the collection */
   updatelp_contestantsCollection: LpContestantsUpdateResponse;
-  /** Updates zero or more records in the collection */
-  updateprofilesCollection: ProfilesUpdateResponse;
   /** Updates zero or more records in the collection */
   updatereality_seriesCollection: RealitySeriesUpdateResponse;
   /** Updates zero or more records in the collection */
@@ -256,12 +250,6 @@ export type MutationDeleteFromleaguesCollectionArgs = {
 export type MutationDeleteFromlpContestantsCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<LpContestantsFilter>;
-};
-
-/** The root type for creating and mutating data */
-export type MutationDeleteFromprofilesCollectionArgs = {
-  atMost?: Scalars["Int"];
-  filter?: InputMaybe<ProfilesFilter>;
 };
 
 /** The root type for creating and mutating data */
@@ -349,11 +337,6 @@ export type MutationInsertIntoleaguesCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntolpContestantsCollectionArgs = {
   objects: Array<LpContestantsInsertInput>;
-};
-
-/** The root type for creating and mutating data */
-export type MutationInsertIntoprofilesCollectionArgs = {
-  objects: Array<ProfilesInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -452,13 +435,6 @@ export type MutationUpdatelpContestantsCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<LpContestantsFilter>;
   set: LpContestantsUpdateInput;
-};
-
-/** The root type for creating and mutating data */
-export type MutationUpdateprofilesCollectionArgs = {
-  atMost?: Scalars["Int"];
-  filter?: InputMaybe<ProfilesFilter>;
-  set: ProfilesUpdateInput;
 };
 
 /** The root type for creating and mutating data */
@@ -1540,7 +1516,6 @@ export type Profiles = {
   __typename?: "profiles";
   api_tokensCollection?: Maybe<ApiTokensConnection>;
   display_name?: Maybe<Scalars["String"]>;
-  email: Scalars["String"];
   id: Scalars["UUID"];
   league_participantsCollection?: Maybe<LeagueParticipantsConnection>;
   leaguesCollection?: Maybe<LeaguesConnection>;
@@ -1616,16 +1591,8 @@ export type ProfilesEdge = {
 
 export type ProfilesFilter = {
   display_name?: InputMaybe<StringFilter>;
-  email?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
   thumbnail_src?: InputMaybe<StringFilter>;
-};
-
-export type ProfilesInsertInput = {
-  display_name?: InputMaybe<Scalars["String"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["UUID"]>;
-  thumbnail_src?: InputMaybe<Scalars["String"]>;
 };
 
 export type ProfilesInsertResponse = {
@@ -1638,16 +1605,8 @@ export type ProfilesInsertResponse = {
 
 export type ProfilesOrderBy = {
   display_name?: InputMaybe<OrderByDirection>;
-  email?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
   thumbnail_src?: InputMaybe<OrderByDirection>;
-};
-
-export type ProfilesUpdateInput = {
-  display_name?: InputMaybe<Scalars["String"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  id?: InputMaybe<Scalars["UUID"]>;
-  thumbnail_src?: InputMaybe<Scalars["String"]>;
 };
 
 export type ProfilesUpdateResponse = {
