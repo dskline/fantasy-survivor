@@ -23,7 +23,6 @@ type Props = {
 export const LeaguePageContent = ({ league, user, tab }: Props) => {
   const [showLoginModal, setShowLoginModal] = React.useState(false);
   const [isJoining, setIsJoining] = React.useState(false);
-  user.handleLogin = () => setShowLoginModal(true);
 
   useEffect(() => {
     if (isJoining && !user.data?.id) {
