@@ -9,10 +9,11 @@ import {
   Seasons,
 } from "@/features/core/db/graphql/schema";
 
-export type Contestant = Partial<Contestants> & { fullName: string } & Pick<
-    ContestantSeasons,
-    "id" | "portrait_src" | "team_color"
-  >;
+export type Contestant = Partial<Contestants> & {
+  fullName: string;
+  rosterIndex?: number;
+} & Pick<ContestantSeasons, "id" | "portrait_src" | "team_color">;
+
 export type LeagueProps = {
   id: string;
   title?: string | null;
@@ -31,8 +32,11 @@ export type LeagueUser = {
   isInLeague: boolean;
   isLoading: boolean;
 };
-export type Roster = Array<{
-  id: string;
-  rank: string;
-  contestantId: string;
-}>;
+export type Roster = Record<
+  number,
+  {
+    id?: string;
+    rank: string;
+    data: Contestant;
+  }
+>;
