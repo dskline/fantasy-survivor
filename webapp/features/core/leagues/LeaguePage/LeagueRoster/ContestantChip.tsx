@@ -16,11 +16,13 @@ const BORDER_COLOR: Dict<string> = {
 
 type Props = {
   contestant?: Contestant;
+  className?: string;
   renderPlaceholder?: () => React.ReactNode;
   ranking?: number;
 };
 export const ContestantChip = ({
   contestant,
+  className,
   renderPlaceholder,
   ranking,
 }: Props) => {
@@ -36,7 +38,9 @@ export const ContestantChip = ({
       >
         {renderPlaceholder?.()}
         {portrait_src && (
-          <Thumbnail src={portrait_src} size={100} round name={fullName} />
+          <div className={className}>
+            <Thumbnail src={portrait_src} size={100} round name={fullName} />
+          </div>
         )}
       </div>
       {ranking && (
