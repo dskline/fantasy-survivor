@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 
 import { useUser } from "@supabase/auth-helpers-react";
-import { useQuery } from "urql";
+import { AnyVariables, useQuery } from "urql";
 import { UseQueryArgs } from "urql/dist/types/hooks/useQuery";
 
-export const useAuthQuery = <D, V>(
+export const useAuthQuery = <D, V extends AnyVariables>(
   queryArgs: UseQueryArgs<V, D>,
   force?: boolean
 ) => {

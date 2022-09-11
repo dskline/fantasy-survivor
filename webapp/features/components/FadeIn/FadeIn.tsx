@@ -11,7 +11,7 @@ export const FadeIn = ({ children, show, className, preload }: Props) => (
     className={classnames(
       "transition-all duration-300",
       show ? "opacity-100" : "opacity-0",
-      className,
+      className
     )}
   >
     {preload ? children : show && children}
