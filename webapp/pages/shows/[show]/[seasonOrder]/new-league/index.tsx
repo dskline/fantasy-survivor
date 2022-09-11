@@ -78,9 +78,8 @@ export const getStaticProps: GetStaticProps<Props, UrlParams> = async (
 
 export const getStaticPaths: GetStaticPaths<UrlParams> = async () => {
   const { client } = ssrClient();
-  const { data, error } = await getUpcomingShows(client);
+  const { data } = await getUpcomingShows(client);
   const paths = [];
-  console.log(JSON.stringify(data), error);
   for (const show of data?.reality_seriesCollection?.edges || []) {
     for (const season of show.node?.seasonsCollection?.edges || []) {
       if (show.node && season.node) {

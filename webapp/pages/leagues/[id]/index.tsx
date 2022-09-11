@@ -1,13 +1,12 @@
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { UserProvider } from "@supabase/auth-helpers-react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { NextAdapter } from "next-query-params";
 import { QueryParamProvider } from "use-query-params";
 
 import { ssrClient } from "@/features/core/db/graphql/ssrClient";
 import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
-import { getLeagues } from "@/features/core/leagues/crud/getLeagues";
 import { LeaguePage } from "@/features/core/leagues/LeaguePage";
 import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
 
@@ -17,15 +16,16 @@ type UrlParams = {
 const Page: NextPage<LeagueProps> = (props: LeagueProps) => (
   <UserProvider supabaseClient={supabaseClient}>
     <QueryParamProvider adapter={NextAdapter}>
-      <LeaguePage {...props} />
+      {props.id && <LeaguePage {...props} />}
     </QueryParamProvider>
   </UserProvider>
 );
 export default withUrql(Page);
 
-export const getStaticProps: GetStaticProps<LeagueProps, UrlParams> = async ({
-  params,
-}) => {
+export const getServerSideProps: GetServerSideProps<
+  LeagueProps,
+  UrlParams
+> = async ({ params }) => {
   if (!params?.id) {
     return {
       redirect: { destination: "/", permanent: false },
@@ -81,13 +81,4 @@ export const getStaticProps: GetStaticProps<LeagueProps, UrlParams> = async ({
       contestants,
     },
   };
-};
-
-export const getStaticPaths: GetStaticPaths<UrlParams> = async () => {
-  const { client } = ssrClient();
-  const { data } = await getLeagues(client);
-  const leagues = data?.leaguesCollection?.edges?.map(({ node }) => node);
-  const paths =
-    leagues?.map(({ id }: { id: string }) => ({ params: { id } })) || [];
-  return { paths, fallback: true };
 };
