@@ -3,7 +3,7 @@ import React from "react";
 import classnames from "classnames";
 import { BsCheckCircleFill } from "react-icons/bs";
 
-import Image from "@/features/components/Image";
+import { Image } from "@/features/components/Image";
 import { LeaguePills } from "@/features/core/leagues/LeaguePage/LeaguePills";
 import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
 
@@ -24,7 +24,7 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
           <Image
             className="rounded-lg"
             src={season.logo_src}
-            options="ar_1:1,c_fill,g_auto"
+            options={["ar_1:1","c_fill","g_auto"]}
             width={120}
             height={120}
             alt=""

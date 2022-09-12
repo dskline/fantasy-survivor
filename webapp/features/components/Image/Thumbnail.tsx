@@ -1,4 +1,4 @@
-import Image from "@/features/components/Image";
+import { Image } from "@/features/components/Image";
 
 type Props = {
   src: string;
@@ -13,7 +13,7 @@ export const Thumbnail = ({ src, size, className, name, round }: Props) => (
     className={className}
     height={size}
     width={size}
-    options={`c_thumb,g_face,w_${size},h_${size}${round ? ",r_max" : ""}`}
+    options={["c_thumb", "g_face", ...(round ? ["r_max"] : [])]}
     alt={name || ""}
   />
 );

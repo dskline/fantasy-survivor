@@ -2,13 +2,15 @@ import React from "react";
 
 import NextImage, { ImageProps } from "next/future/image";
 
+import { generateImageUrl } from "@/features/components/Image/generateImageUrl";
+
 type Props = ImageProps & {
-  options?: string;
+  options?: Array<string>;
 };
-const Image = (props: Props) => {
+export const Image = (props: Props) => {
   const { src, alt, width, height, options, ...rest } = props;
 
-  const optionsArray = options ? options.split(",") : [];
+  const optionsArray = options || [];
   if (width) {
     optionsArray.push(`w_${width}`);
   }
@@ -16,13 +18,9 @@ const Image = (props: Props) => {
     optionsArray.push(`h_${height}`);
   }
 
-  const url = `https://res.cloudinary.com/frontendlive/image/upload${
-    optionsArray ? "/" + optionsArray.join(",") : ""
-  }/cloudydesktop/fantasy/${src}.png`;
-
   return (
     <NextImage
-      src={url}
+      src={generateImageUrl(src as string, optionsArray)}
       alt={alt || ""}
       width={width}
       height={height}
@@ -30,4 +28,3 @@ const Image = (props: Props) => {
     />
   );
 };
-export default Image;

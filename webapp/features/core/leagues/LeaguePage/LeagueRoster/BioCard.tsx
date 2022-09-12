@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { MdLocationOn } from "react-icons/md";
 
-import Image from "@/features/components/Image";
+import { Image } from "@/features/components/Image";
 import { Contestant } from "@/features/core/leagues/LeaguePage/types";
 
 type Props = {

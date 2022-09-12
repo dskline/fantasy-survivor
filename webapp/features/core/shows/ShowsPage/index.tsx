@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "next/link";
 
-import Image from "@/features/components/Image";
+import { Image } from "@/features/components/Image";
 import { RealitySeries } from "@/features/core/db/graphql/schema";
 import { formatDate } from "@/features/utils/formatters/formatDate";
 

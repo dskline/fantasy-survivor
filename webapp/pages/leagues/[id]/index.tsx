@@ -2,8 +2,10 @@ import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { UserProvider } from "@supabase/auth-helpers-react";
 import { GetServerSideProps, NextPage } from "next";
 import { NextAdapter } from "next-query-params";
+import Head from "next/head";
 import { QueryParamProvider } from "use-query-params";
 
+import { generateImageUrl } from "@/features/components/Image/generateImageUrl";
 import { ssrClient } from "@/features/core/db/graphql/ssrClient";
 import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
@@ -13,13 +15,37 @@ import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
 type UrlParams = {
   id: string;
 };
-const Page: NextPage<LeagueProps> = (props: LeagueProps) => (
-  <UserProvider supabaseClient={supabaseClient}>
-    <QueryParamProvider adapter={NextAdapter}>
-      {props.id && <LeaguePage {...props} />}
-    </QueryParamProvider>
-  </UserProvider>
-);
+const Page: NextPage<LeagueProps> = (props: LeagueProps) => {
+  const { id, title, show, season, format } = props;
+  if (!id) {
+    return <></>;
+  }
+  const metaTitle = title || `${show.title} League`;
+  const description = `This is a ${format.title} fantasy league for ${show.title} Season ${season.order}.`;
+  return (
+    <UserProvider supabaseClient={supabaseClient}>
+      <QueryParamProvider adapter={NextAdapter}>
+        <Head>
+          <title>{metaTitle}</title>
+          <meta name="description" content={description} />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={metaTitle} />
+          <meta property="og:description" content={description} />
+          <meta
+            property="og:image"
+            content={generateImageUrl(season.logo_src, [
+              "ar_1:1",
+              "c_fill",
+              "g_auto",
+            ])}
+          />
+        </Head>
+        <LeaguePage {...props} />
+      </QueryParamProvider>
+    </UserProvider>
+  );
+};
 export default withUrql(Page);
 
 export const getServerSideProps: GetServerSideProps<
