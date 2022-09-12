@@ -5,8 +5,9 @@
     "start": "doppler run -- next dev",
     "build": "next build",
     "build:dev": "doppler run -- next build",
-    "eslint:fix": "eslint {features,pages} --fix",
-    "lint": "npx tsc --noEmit && npx next lint",
+    "eslint": "eslint {pages,features}",
+    "eslint:fix": "npm run eslint -- --fix",
+    "lint": "npx tsc --noEmit && npm run eslint",
     "lint:fix": "npm run eslint:fix && prettier --write '{features,pages}/**/*' && npm run eslint:fix",
     "test": "vitest",
     "test:coverage": "vitest --coverage && coveralls < coverage/lcov.info",
@@ -58,27 +59,5 @@
     "typescript": "4.8.3",
     "vite": "3.1.0",
     "vitest": "0.23.2"
-  },
-  "eslintConfig": {
-    "ignorePatterns": [
-      "**/*.js",
-      "**/__generated__",
-      "schema.ts"
-    ],
-    "extends": [
-      "@frontendlive",
-      "next"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      },
-      "polyfills": [
-        "fetch"
-      ]
-    }
   }
 }

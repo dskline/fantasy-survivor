@@ -36,13 +36,13 @@ export const MyTeamCard = ({
         if (matchesSelected) {
           return (
             <button
+              key={i}
               onClick={() => {
                 delete roster[i];
                 onRosterChange(roster);
               }}
             >
               <ContestantChip
-                key={i}
                 contestant={rosterContestant?.data}
                 ranking={i + 1}
               />
