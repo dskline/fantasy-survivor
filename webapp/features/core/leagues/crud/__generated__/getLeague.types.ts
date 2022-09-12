@@ -28,6 +28,7 @@ export type GetLeagueQuery = {
           __typename?: "seasons";
           title: string;
           logo_src: string;
+          order: any;
           reality_series?: {
             __typename?: "reality_series";
             title: string;

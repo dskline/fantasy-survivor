@@ -28,6 +28,7 @@ export const GET_LEAGUE = gql`
           seasons {
             title
             logo_src
+            order
             reality_series {
               title
               rulesCollection {

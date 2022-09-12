@@ -19,7 +19,7 @@ export type LeagueProps = {
   title?: string | null;
   format: Pick<LeagueFormats, "title" | "description">;
   show: Pick<RealitySeries, "title">;
-  season: Pick<Seasons, "title" | "logo_src">;
+  season: Pick<Seasons, "title" | "logo_src" | "order">;
   contestants: Array<Contestant>;
   orderedRules: Array<{
     id: string;
