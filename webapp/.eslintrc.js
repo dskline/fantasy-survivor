@@ -1,7 +1,9 @@
+const generatedFiles = ["**/__generated__", "schema.ts"];
+
 module.exports = {
   root: true,
   extends: ["@frontendlive", "next"],
-  ignorePatterns: ["**/__generated__", "schema.ts"],
+  ignorePatterns: ["*.js", ...generatedFiles],
   parserOptions: {
     project: "./tsconfig.json",
   },

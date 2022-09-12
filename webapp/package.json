@@ -2,16 +2,16 @@
   "name": "@frontendlive/fantasy-survivor",
   "version": "1.0.0",
   "scripts": {
-    "start": "doppler run -- next dev",
+    "dev": "next dev",
     "build": "next build",
-    "build:dev": "doppler run -- next build",
+    "start": "next start",
     "eslint": "eslint {pages,features}",
     "eslint:fix": "npm run eslint -- --fix",
     "lint": "npx tsc --noEmit && npm run eslint",
     "lint:fix": "npm run eslint:fix && prettier --write '{features,pages}/**/*' && npm run eslint:fix",
     "test": "vitest",
     "test:coverage": "vitest --coverage && coveralls < coverage/lcov.info",
-    "codegen": "doppler run -- graphql-codegen --require dotenv/config"
+    "codegen": "graphql-codegen --require dotenv/config"
   },
   "dependencies": {
     "@headlessui/react": "1.7.0",

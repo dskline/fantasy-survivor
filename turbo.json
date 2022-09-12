@@ -8,7 +8,11 @@
       "cache": false
     },
     "build": {
-      "outputs": [".next/**"]
+      "outputs": [".next/**", "dist/**"]
+    },
+    "start": {
+      "dependsOn": ["build"],
+      "outputs": []
     }
   }
 }

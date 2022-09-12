@@ -2,9 +2,9 @@
   "name": "fantasy-survivor",
   "version": "0.1.0",
   "scripts": {
+    "help": "echo \"For env setup, execute: doppler run -- npm run script-name\"",
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "build:dev": "doppler run -- turbo run build",
     "start": "turbo run start",
     "lint": "turbo run lint",
     "prepare": "husky install"
