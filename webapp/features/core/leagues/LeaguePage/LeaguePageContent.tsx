@@ -7,13 +7,13 @@ import { LoginModal } from "@/features/core/auth/login/LoginModal";
 import { createLeagueParticipant } from "@/features/core/leagues/crud/createLeagueParticipant";
 import { LeagueDetails } from "@/features/core/leagues/LeaguePage/LeagueDetails";
 import { LeagueHeader } from "@/features/core/leagues/LeaguePage/LeagueHeader";
-import { LeagueRoster } from "@/features/core/leagues/LeaguePage/LeagueRoster";
 import { LeagueTabs } from "@/features/core/leagues/LeaguePage/LeagueTabs";
 import { LeaguePageTab } from "@/features/core/leagues/LeaguePage/LeagueTabs/leagueTabs";
 import {
   LeagueProps,
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
+import { LeagueRoster } from "@/features/core/leagues/LeagueRoster";
 
 type Props = {
   league: LeagueProps;

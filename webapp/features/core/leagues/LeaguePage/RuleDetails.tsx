@@ -42,7 +42,7 @@ export const RuleDetails = ({ format, orderedRules }: LeagueProps) => (
               {points > 0 ? `+${points}` : points}
             </div>
           </React.Fragment>
-        )
+        );
       })}
     </div>
   </div>

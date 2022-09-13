@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import { ContestantPicker } from "@/features/core/leagues/LeaguePage/LeagueRoster/ContestantPicker";
-import { MyTeamCard } from "@/features/core/leagues/LeaguePage/LeagueRoster/MyTeamCard";
-import { RosterHeader } from "@/features/core/leagues/LeaguePage/LeagueRoster/RosterHeader";
-import { useRosterByUser } from "@/features/core/leagues/LeaguePage/LeagueRoster/useRosterByUser";
 import {
   LeagueProps,
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
+import { ContestantPicker } from "@/features/core/leagues/LeagueRoster/ContestantPicker";
+import { RosterCard } from "@/features/core/leagues/LeagueRoster/RosterCard";
+import { RosterHeader } from "@/features/core/leagues/LeagueRoster/RosterHeader";
+import { useRosterByUser } from "@/features/core/leagues/LeagueRoster/useRosterByUser";
 
 type Props = {
   league: LeagueProps;
@@ -22,7 +22,7 @@ export const LeagueRoster = ({ league, user }: Props) => {
   return (
     <div className="flex flex-col gap-6">
       <RosterHeader />
-      <MyTeamCard
+      <RosterCard
         roster={(user.data ? rosterByUser[user.data.id] : undefined) || []}
         onRosterChange={(roster) => {
           if (user.data?.id) {
@@ -30,6 +30,7 @@ export const LeagueRoster = ({ league, user }: Props) => {
           }
         }}
         selectedContestant={selectedContestant}
+        setSelectedContestant={setSelectedContestant}
       />
       <ContestantPicker
         contestants={league.contestants}

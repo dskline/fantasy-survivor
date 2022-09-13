@@ -20,11 +20,11 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
   return (
     <div className="px-4 md:px-0">
       <div className="flex items-center gap-4">
-        <div className="w-1/4 max-w-[120px]">
+        <div className="w-1/4 max-w-[120px] rounded-lg border border-slate-800 bg-slate-800">
           <Image
             className="rounded-lg"
             src={season.logo_src}
-            options={["ar_1:1","c_fill","g_auto"]}
+            options={["ar_1:1", "c_fill", "g_auto"]}
             width={120}
             height={120}
             alt=""

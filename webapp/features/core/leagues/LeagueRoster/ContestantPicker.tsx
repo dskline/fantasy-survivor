@@ -1,9 +1,9 @@
 import classnames from "classnames";
 
 import { FadeIn } from "@/features/components/FadeIn/FadeIn";
-import { BioCard } from "@/features/core/leagues/LeaguePage/LeagueRoster/BioCard";
-import { ContestantChip } from "@/features/core/leagues/LeaguePage/LeagueRoster/ContestantChip";
 import { Contestant } from "@/features/core/leagues/LeaguePage/types";
+import { BioCard } from "@/features/core/leagues/LeagueRoster/BioCard";
+import { ContestantChip } from "@/features/core/leagues/LeagueRoster/ContestantChip";
 
 type Props = {
   contestants: Contestant[];
