@@ -56,12 +56,15 @@ export const RosterCard = ({
                 rosterContestant &&
                   !matchesSelected &&
                   rosterIndexForSelected === -1 &&
-                  i > lastOpenIndex &&
-                  "[&+div]:hover:block [&~button_.text-xl]:hover:opacity-30 [&~.static]:hover:hidden",
+                  i < lastOpenIndex &&
+                  "[&+div]:hover:block [&~button_.text-xl]:hover:opacity-20 [&~.static]:hover:hidden",
+                !rosterContestant && i === rosterSize - 1 && "static",
               )}
               onClick={() => {
                 if (matchesSelected) {
                   delete roster[i];
+                  onRosterChange(roster);
+                  return;
                 }
                 let isSwapping = false;
                 // move the contestant from its previous location, if necessary
