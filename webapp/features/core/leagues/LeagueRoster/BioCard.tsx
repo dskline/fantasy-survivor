@@ -27,8 +27,9 @@ export const BioCard = ({ contestant, preload }: Props) => {
         <Image
           src={portrait_src}
           alt=""
-          width={222}
-          height={333}
+          className="h-full w-full object-cover"
+          width={444}
+          height={666}
           priority={preload}
         />
       </div>
@@ -56,6 +57,9 @@ export const BioCard = ({ contestant, preload }: Props) => {
           <div className="flex justify-between text-xs">
             <span>Age ?</span>
             <span>Job ?</span>
+          </div>
+          <div>
+            <span className="text-xs md:hidden">Lorem ipsum</span>
           </div>
         </div>
       </div>
