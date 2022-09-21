@@ -8,16 +8,18 @@ export const RuleDetails = ({ format, orderedRules }: LeagueProps) => (
   <div className="flex flex-col gap-6">
     <div>
       <div className="font-semibold">Format: {format.title}</div>
-      <div className="text-sm">{format.description}</div>
+      <div className="mt-2 text-sm">{format.description}</div>
     </div>
     <table>
       <thead>
-        <tr className="text-left">
+        <tr className="text-left [&_th]:pb-1">
           <th className="font-semibold">
-            <span className="text-base">Event</span>
+            <span className="text-sm md:text-base">Event</span>
           </th>
           <th className="font-semibold">
-            <span className="whitespace-nowrap text-base">Point Value</span>
+            <span className="whitespace-nowrap text-sm md:text-base">
+              Point Value
+            </span>
           </th>
         </tr>
       </thead>
