@@ -16,21 +16,25 @@ export type GetLeagueQuery = {
         title?: string | null;
         profiles?: {
           __typename?: "profiles";
+          id: any;
           display_name?: string | null;
         } | null;
         league_formats?: {
           __typename?: "league_formats";
+          id: string;
           title: string;
           description: string;
         } | null;
-        rulesets?: { __typename?: "rulesets"; data: any } | null;
+        rulesets?: { __typename?: "rulesets"; id: any; data: any } | null;
         seasons?: {
           __typename?: "seasons";
+          id: any;
           title: string;
           logo_src: string;
           order: any;
           reality_series?: {
             __typename?: "reality_series";
+            slug: string;
             title: string;
             rulesCollection?: {
               __typename?: "rulesConnection";

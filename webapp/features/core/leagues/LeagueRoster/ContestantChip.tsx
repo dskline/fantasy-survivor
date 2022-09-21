@@ -11,6 +11,8 @@ const BORDER_COLOR: Dict<string> = {
   blue: "border-blue-500",
   green: "border-green-500",
   orange: "border-orange-500",
+  red: "border-red-500",
+  yellow: "border-yellow-500",
   gray: "border-slate-400",
 };
 

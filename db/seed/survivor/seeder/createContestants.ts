@@ -25,7 +25,7 @@ export const createContestants = async (
       nickname: contestant.nickname,
     }))
   );
-  const { data,error } = await supabase.from("contestant_seasons").upsert(
+  const { data } = await supabase.from("contestant_seasons").upsert(
     contestants.map((contestant) => ({
       season: season.id,
       contestant: contestant.slug,

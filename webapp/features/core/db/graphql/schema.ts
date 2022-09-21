@@ -4418,7 +4418,7 @@ export type GraphCacheOptimisticUpdaters = {
 };
 
 export type GraphCacheUpdaters = {
-  Mutation: {
+  Mutation?: {
     deleteFromapi_tokensCollection?: GraphCacheUpdateResolver<
       { deleteFromapi_tokensCollection: WithTypename<ApiTokensDeleteResponse> },
       MutationDeleteFromapiTokensCollectionArgs

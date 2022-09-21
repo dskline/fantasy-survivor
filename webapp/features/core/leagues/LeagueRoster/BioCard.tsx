@@ -40,6 +40,8 @@ export const BioCard = ({ contestant, preload }: Props) => {
           team_color === "blue" && "bg-blue-100",
           team_color === "green" && "bg-emerald-50",
           team_color === "orange" && "bg-orange-100",
+          team_color === "red" && "bg-red-100",
+          team_color === "yellow" && "bg-yellow-100",
           "bg-none md:bg-inherit md:bg-gradient-to-t md:from-black/60 md:to-black/0"
         )}
       >

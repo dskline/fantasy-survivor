@@ -9,13 +9,13 @@ export const createSeason = async (
 
   const { data } = await supabase.from("seasons").upsert(
     {
-      reality_series: seriesId,
+      reality_show: seriesId,
       logo_src: `${seriesId}_${seasonNumber}`,
       order: seasonNumber,
       title: seasonTitle || `Season ${seasonNumber}`,
     },
     {
-      onConflict: "reality_series,order",
+      onConflict: "reality_show,order",
     }
   );
   return data?.[0];
