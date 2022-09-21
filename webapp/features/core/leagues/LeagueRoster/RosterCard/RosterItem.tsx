@@ -4,7 +4,7 @@ import { Contestant } from "@/features/core/leagues/LeaguePage/types";
 import { ContestantChip } from "@/features/core/leagues/LeagueRoster/ContestantChip";
 
 type Props = {
-  ranking: number;
+  ranking?: number;
   currentContestant?: Contestant;
   hoverContestant?: Contestant;
 };
@@ -27,14 +27,14 @@ export const RosterItem = ({
       </div>
     )}
     {/* Only shown on hover */}
-    {!currentContestant && hoverContestant && (
+    {hoverContestant && (
       <div className="col-span-full row-span-full row-start-1 mx-auto opacity-0 group-hover:opacity-60">
         <ContestantChip contestant={hoverContestant} ranking={ranking} />
       </div>
     )}
     {/* Always show the current contestant if exists */}
     {currentContestant && (
-      <div className="col-span-full row-span-full row-start-1 mx-auto">
+      <div className="col-span-full row-span-full row-start-1 mx-auto hover:opacity-0">
         <ContestantChip contestant={currentContestant} ranking={ranking} />
       </div>
     )}

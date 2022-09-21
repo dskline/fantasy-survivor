@@ -24,9 +24,7 @@ export const RosterCard = ({
   <div className="flex flex-col gap-3 rounded-lg border-2 border-blue-500 bg-blue-50 p-4 pt-2">
     <div className="flex h-5 items-center justify-between text-xs">
       <span className="font-semibold text-blue-800">My Team</span>
-      <span className="flex items-center gap-2">
-        {renderActionBar?.()}
-      </span>
+      <span className="flex items-center gap-2">{renderActionBar?.()}</span>
     </div>
     <div
       className={classnames(
@@ -38,42 +36,84 @@ export const RosterCard = ({
         const rosterContestant = roster[i];
         const matchesSelected =
           rosterContestant?.data.id === selectedContestant.id;
+        const rosterIndexForSelected = roster.findIndex(
+          (rosterItem) => rosterItem?.data.id === selectedContestant.id
+        );
+        let lastOpenIndex = rosterSize - 1;
+        for (let j = lastOpenIndex; j >= 0; j--) {
+          if (!roster[j]) {
+            lastOpenIndex = j;
+            break;
+          }
+        }
         return (
-          <button
-            key={i}
-            type="button"
-            className={classnames(
-              matchesSelected && "cursor-no-drop",
-              !rosterContestant && "cursor-copy"
-            )}
-            onClick={() => {
-              if (matchesSelected) {
-                delete roster[i];
-              }
-              if (rosterContestant) {
-                setSelectedContestant(rosterContestant.data);
-              } else {
+          <React.Fragment key={rosterContestant?.id || i}>
+            <button
+              type="button"
+              className={classnames(
+                matchesSelected && "cursor-no-drop",
+                !rosterContestant && "cursor-copy",
+                rosterContestant &&
+                  !matchesSelected &&
+                  rosterIndexForSelected === -1 &&
+                  i > lastOpenIndex &&
+                  "[&+div]:hover:block [&~button_.text-xl]:hover:opacity-30 [&~.static]:hover:hidden",
+              )}
+              onClick={() => {
+                if (matchesSelected) {
+                  delete roster[i];
+                }
+                let isSwapping = false;
                 // move the contestant from its previous location, if necessary
                 for (const [key, value] of Object.entries(roster)) {
                   if (value?.data.id === selectedContestant.id) {
-                    delete roster[Number.parseInt(key)];
+                    if (rosterContestant) {
+                      isSwapping = true;
+                      roster[Number.parseInt(key)] = rosterContestant;
+                    } else {
+                      delete roster[Number.parseInt(key)];
+                    }
                     break;
                   }
                 }
-                roster[i] = {
+                const toInsert = {
                   rank: "abc",
                   data: selectedContestant,
                 };
-              }
-              onRosterChange(roster);
-            }}
-          >
-            <RosterItem
-              ranking={i + 1}
-              currentContestant={rosterContestant?.data}
-              hoverContestant={selectedContestant}
-            />
-          </button>
+                if (rosterContestant && !isSwapping) {
+                  roster.splice(i, 0, toInsert);
+                  let shouldDeleteLastIndex = true;
+                  for (let j = i; j < rosterSize; j++) {
+                    if (!roster[j]) {
+                      roster.splice(j, 1);
+                      shouldDeleteLastIndex = false;
+                      break;
+                    }
+                  }
+                  if (shouldDeleteLastIndex) {
+                    roster.pop();
+                  }
+                } else {
+                  roster[i] = toInsert;
+                }
+                onRosterChange(roster);
+              }}
+            >
+              <RosterItem
+                ranking={i + 1}
+                currentContestant={rosterContestant?.data}
+                hoverContestant={selectedContestant}
+              />
+            </button>
+            <div
+              className={classnames(
+                "hidden",
+                i === rosterSize - 1 && "static",
+              )}
+            >
+              <RosterItem currentContestant={rosterContestant?.data} />
+            </div>
+          </React.Fragment>
         );
       })}
     </div>

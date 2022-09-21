@@ -14,7 +14,7 @@ export const toRosterByUser = (
     const profileId = participant.node.profiles?.id;
 
     if (profileId) {
-      const roster = (rosterByUser[profileId] = {} as Roster);
+      const roster = (rosterByUser[profileId] = [] as Roster);
       const edges = participant.node.lp_contestantsCollection?.edges || [];
 
       for (const [i, element] of edges.entries()) {
@@ -37,7 +37,7 @@ export const toRosterByUser = (
 };
 
 export const toLpContestants = (participantId: string, roster: Roster) =>
-  Object.values(roster || []).map((contestant, i) => ({
+  (roster || []).map((contestant, i) => ({
     contestant_season: contestant.data.id,
     rank: `${i}`,
     league_participant: participantId,

@@ -61,7 +61,7 @@ export const UpdateRoster = ({
             setValue("roster", roster, { shouldDirty: true });
           }}
           selectedContestant={selectedContestant}
-          setSelectedContestant={setSelectedContestant}
+        setSelectedContestant={setSelectedContestant}
           renderActionBar={() => (
             <>
               {isDirty && (

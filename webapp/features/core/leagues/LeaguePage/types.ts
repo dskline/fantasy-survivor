@@ -37,11 +37,8 @@ export type LeagueUser = {
   participantId?: string;
   roster?: Roster;
 };
-export type Roster = Record<
-  number,
-  {
-    id?: string;
-    rank: string;
-    data: Contestant;
-  }
->;
+export type Roster = Array<{
+  id?: string;
+  rank: string;
+  data: Contestant;
+}>;

@@ -50,7 +50,7 @@ export const useUpdateRoster = () => {
   const { execute: deleteRoster } = useAuthMutation(DELETE_ROSTER);
 
   return (participantId: string, roster: Roster) =>
-    Object.values(roster).length > 0
+    roster.length > 0
       ? update({
           participantId,
           inserted: toLpContestants(participantId, roster),
