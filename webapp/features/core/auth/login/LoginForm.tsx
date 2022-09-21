@@ -20,8 +20,6 @@ export const LoginForm = ({ onLogin }: Props) => {
   return (
     <div>
       <Auth
-        view="magic_link"
-        magicLink
         supabaseClient={supabaseClient}
         // providers={["google", "twitter", "twitch"]}
         socialColors
