@@ -5,25 +5,28 @@ import classnames from "classnames";
 import { Contestant, Roster } from "@/features/core/leagues/LeaguePage/types";
 import { RosterItem } from "@/features/core/leagues/LeagueRoster/RosterCard/RosterItem";
 
-// TODO: This should depend on the league type/settings
-const ROSTER_SIZE = 9;
-
 type Props = {
   roster: Roster;
+  rosterSize: number;
   onRosterChange: (roster: Roster) => void;
   selectedContestant: Contestant;
   setSelectedContestant: (contestant: Contestant) => void;
+  renderActionBar?: () => React.ReactNode;
 };
 export const RosterCard = ({
   roster,
+  rosterSize,
   onRosterChange,
   selectedContestant,
   setSelectedContestant,
+  renderActionBar,
 }: Props) => (
-  <div className="flex flex-col gap-2 rounded-lg border-2 border-blue-500 bg-blue-50 p-4 pt-2">
-    <div className="flex justify-between text-xs">
+  <div className="flex flex-col gap-3 rounded-lg border-2 border-blue-500 bg-blue-50 p-4 pt-2">
+    <div className="flex h-5 items-center justify-between text-xs">
       <span className="font-semibold text-blue-800">My Team</span>
-      <span className="italic text-gray-500">Unsaved</span>
+      <span className="flex items-center gap-2">
+        {renderActionBar?.()}
+      </span>
     </div>
     <div
       className={classnames(
@@ -31,13 +34,14 @@ export const RosterCard = ({
         "grid-cols-[repeat(auto-fill,12vw)] md:grid-cols-[repeat(auto-fill,12%)]"
       )}
     >
-      {[...Array.from({ length: ROSTER_SIZE })].map((_, i) => {
+      {[...Array.from({ length: rosterSize })].map((_, i) => {
         const rosterContestant = roster[i];
         const matchesSelected =
           rosterContestant?.data.id === selectedContestant.id;
         return (
           <button
             key={i}
+            type="button"
             className={classnames(
               matchesSelected && "cursor-no-drop",
               !rosterContestant && "cursor-copy"

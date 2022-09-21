@@ -10,7 +10,7 @@ export const getAvailableTabs = (user: LeagueUser) => {
   if (user.isLoading) {
     return [];
   }
-  return user.isInLeague
+  return user.participantId
     ? (Object.keys(leagueTabs) as LeaguePageTab[])
     : PUBLIC_TABS;
 };

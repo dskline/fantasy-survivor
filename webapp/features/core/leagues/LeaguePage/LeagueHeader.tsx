@@ -5,14 +5,14 @@ import { BsCheckCircleFill } from "react-icons/bs";
 
 import { Image } from "@/features/components/Image";
 import { LeaguePills } from "@/features/core/leagues/LeaguePage/LeaguePills";
-import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
+import {
+  LeagueProps,
+  LeagueUser,
+} from "@/features/core/leagues/LeaguePage/types";
 
 type Props = {
   league: LeagueProps;
-  user: {
-    isLoading: boolean;
-    isInLeague: boolean;
-  };
+  user: LeagueUser;
   onJoinLeague: () => void;
 };
 export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
@@ -44,15 +44,15 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
               className={classnames(
                 "flex items-center gap-2 rounded shadow-lg",
                 "py-1 px-2 text-xs font-semibold",
-                user.isInLeague
+                user.participantId
                   ? "bg-green-600 pr-3 text-green-100"
                   : "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-100",
                 user.isLoading && "bg-emerald-600/50"
               )}
               onClick={() => onJoinLeague()}
-              disabled={user.isInLeague || user.isLoading}
+              disabled={!!user.participantId || user.isLoading}
             >
-              {!user.isInLeague ? (
+              {!user.participantId ? (
                 "Join League"
               ) : (
                 <>

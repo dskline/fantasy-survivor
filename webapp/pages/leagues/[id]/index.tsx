@@ -10,7 +10,10 @@ import { ssrClient } from "@/features/core/db/graphql/ssrClient";
 import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
 import { LeaguePage } from "@/features/core/leagues/LeaguePage";
-import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
+import {
+  Contestant,
+  LeagueProps,
+} from "@/features/core/leagues/LeaguePage/types";
 
 type UrlParams = {
   id: string;
@@ -68,13 +71,22 @@ export const getServerSideProps: GetServerSideProps<
   const show = season?.reality_series;
   const format = league.league_formats;
   const contestants = season?.contestant_seasonsCollection?.edges?.map(
-    ({ node }) => ({
-      id: node.id,
-      team_color: node.team_color,
-      portrait_src: node.portrait_src,
-      fullName: node.contestants?.firstname + " " + node.contestants?.surname,
-      ...node.contestants,
-    })
+    ({ node }) => {
+      const { id, team_color, portrait_src, contestants } = node;
+      if (!contestants) {
+        throw new Error("Contestant not found");
+      }
+      return {
+        id,
+        team_color,
+        portrait_src,
+        fullName: contestants.firstname + " " + contestants.surname,
+        slug: contestants.slug,
+        firstname: contestants.firstname,
+        surname: contestants.surname,
+        nickname: contestants.nickname,
+      } as Contestant;
+    }
   );
 
   const ruleMetadata = show?.rulesCollection?.edges.map(({ node }) => node);

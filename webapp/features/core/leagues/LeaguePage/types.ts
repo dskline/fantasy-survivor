@@ -1,18 +1,22 @@
 import { User } from "@supabase/auth-helpers-nextjs";
 
 import {
-  Contestants,
-  ContestantSeasons,
   LeagueFormats,
   Maybe,
   RealitySeries,
   Seasons,
 } from "@/features/core/db/graphql/schema";
 
-export type Contestant = Partial<Contestants> & {
+export type Contestant = {
+  id: string;
+  slug: string;
+  nickname: string;
+  firstname: string;
+  surname: string;
   fullName: string;
-  rosterIndex?: number;
-} & Pick<ContestantSeasons, "id" | "portrait_src" | "team_color">;
+  portrait_src: string;
+  team_color: string;
+};
 
 export type LeagueProps = {
   id: string;
@@ -29,8 +33,9 @@ export type LeagueProps = {
 };
 export type LeagueUser = {
   data: Maybe<User>;
-  isInLeague: boolean;
   isLoading: boolean;
+  participantId?: string;
+  roster?: Roster;
 };
 export type Roster = Record<
   number,
