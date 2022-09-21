@@ -1,3 +1,10 @@
+import {
+  Resolver as GraphCacheResolver,
+  UpdateResolver as GraphCacheUpdateResolver,
+  OptimisticMutationResolver as GraphCacheOptimisticMutationResolver,
+  StorageAdapter as GraphCacheStorageAdapter,
+} from "@urql/exchange-graphcache";
+import { IntrospectionData } from "@urql/exchange-graphcache/dist/types/ast";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -2223,4 +2230,2470 @@ export type UserRolesUpdateResponse = {
   affectedCount: Scalars["Int"];
   /** Array of records impacted by the mutation */
   records: Array<UserRoles>;
+};
+
+export type WithTypename<T extends { __typename?: any }> = Partial<T> & {
+  __typename: NonNullable<T["__typename"]>;
+};
+
+export type GraphCacheKeysConfig = {
+  PageInfo?: (data: WithTypename<PageInfo>) => null | string;
+  api_tokens?: (data: WithTypename<ApiTokens>) => null | string;
+  api_tokensConnection?: (
+    data: WithTypename<ApiTokensConnection>
+  ) => null | string;
+  api_tokensDeleteResponse?: (
+    data: WithTypename<ApiTokensDeleteResponse>
+  ) => null | string;
+  api_tokensEdge?: (data: WithTypename<ApiTokensEdge>) => null | string;
+  api_tokensInsertResponse?: (
+    data: WithTypename<ApiTokensInsertResponse>
+  ) => null | string;
+  api_tokensUpdateResponse?: (
+    data: WithTypename<ApiTokensUpdateResponse>
+  ) => null | string;
+  contestant_seasons?: (data: WithTypename<ContestantSeasons>) => null | string;
+  contestant_seasonsConnection?: (
+    data: WithTypename<ContestantSeasonsConnection>
+  ) => null | string;
+  contestant_seasonsDeleteResponse?: (
+    data: WithTypename<ContestantSeasonsDeleteResponse>
+  ) => null | string;
+  contestant_seasonsEdge?: (
+    data: WithTypename<ContestantSeasonsEdge>
+  ) => null | string;
+  contestant_seasonsInsertResponse?: (
+    data: WithTypename<ContestantSeasonsInsertResponse>
+  ) => null | string;
+  contestant_seasonsUpdateResponse?: (
+    data: WithTypename<ContestantSeasonsUpdateResponse>
+  ) => null | string;
+  contestants?: (data: WithTypename<Contestants>) => null | string;
+  contestantsConnection?: (
+    data: WithTypename<ContestantsConnection>
+  ) => null | string;
+  contestantsDeleteResponse?: (
+    data: WithTypename<ContestantsDeleteResponse>
+  ) => null | string;
+  contestantsEdge?: (data: WithTypename<ContestantsEdge>) => null | string;
+  contestantsInsertResponse?: (
+    data: WithTypename<ContestantsInsertResponse>
+  ) => null | string;
+  contestantsUpdateResponse?: (
+    data: WithTypename<ContestantsUpdateResponse>
+  ) => null | string;
+  episodes?: (data: WithTypename<Episodes>) => null | string;
+  episodesConnection?: (
+    data: WithTypename<EpisodesConnection>
+  ) => null | string;
+  episodesDeleteResponse?: (
+    data: WithTypename<EpisodesDeleteResponse>
+  ) => null | string;
+  episodesEdge?: (data: WithTypename<EpisodesEdge>) => null | string;
+  episodesInsertResponse?: (
+    data: WithTypename<EpisodesInsertResponse>
+  ) => null | string;
+  episodesUpdateResponse?: (
+    data: WithTypename<EpisodesUpdateResponse>
+  ) => null | string;
+  events?: (data: WithTypename<Events>) => null | string;
+  eventsConnection?: (data: WithTypename<EventsConnection>) => null | string;
+  eventsDeleteResponse?: (
+    data: WithTypename<EventsDeleteResponse>
+  ) => null | string;
+  eventsEdge?: (data: WithTypename<EventsEdge>) => null | string;
+  eventsInsertResponse?: (
+    data: WithTypename<EventsInsertResponse>
+  ) => null | string;
+  eventsUpdateResponse?: (
+    data: WithTypename<EventsUpdateResponse>
+  ) => null | string;
+  league_formats?: (data: WithTypename<LeagueFormats>) => null | string;
+  league_formatsConnection?: (
+    data: WithTypename<LeagueFormatsConnection>
+  ) => null | string;
+  league_formatsDeleteResponse?: (
+    data: WithTypename<LeagueFormatsDeleteResponse>
+  ) => null | string;
+  league_formatsEdge?: (data: WithTypename<LeagueFormatsEdge>) => null | string;
+  league_formatsInsertResponse?: (
+    data: WithTypename<LeagueFormatsInsertResponse>
+  ) => null | string;
+  league_formatsUpdateResponse?: (
+    data: WithTypename<LeagueFormatsUpdateResponse>
+  ) => null | string;
+  league_participants?: (
+    data: WithTypename<LeagueParticipants>
+  ) => null | string;
+  league_participantsConnection?: (
+    data: WithTypename<LeagueParticipantsConnection>
+  ) => null | string;
+  league_participantsDeleteResponse?: (
+    data: WithTypename<LeagueParticipantsDeleteResponse>
+  ) => null | string;
+  league_participantsEdge?: (
+    data: WithTypename<LeagueParticipantsEdge>
+  ) => null | string;
+  league_participantsInsertResponse?: (
+    data: WithTypename<LeagueParticipantsInsertResponse>
+  ) => null | string;
+  league_participantsUpdateResponse?: (
+    data: WithTypename<LeagueParticipantsUpdateResponse>
+  ) => null | string;
+  leagues?: (data: WithTypename<Leagues>) => null | string;
+  leaguesConnection?: (data: WithTypename<LeaguesConnection>) => null | string;
+  leaguesDeleteResponse?: (
+    data: WithTypename<LeaguesDeleteResponse>
+  ) => null | string;
+  leaguesEdge?: (data: WithTypename<LeaguesEdge>) => null | string;
+  leaguesInsertResponse?: (
+    data: WithTypename<LeaguesInsertResponse>
+  ) => null | string;
+  leaguesUpdateResponse?: (
+    data: WithTypename<LeaguesUpdateResponse>
+  ) => null | string;
+  lp_contestants?: (data: WithTypename<LpContestants>) => null | string;
+  lp_contestantsConnection?: (
+    data: WithTypename<LpContestantsConnection>
+  ) => null | string;
+  lp_contestantsDeleteResponse?: (
+    data: WithTypename<LpContestantsDeleteResponse>
+  ) => null | string;
+  lp_contestantsEdge?: (data: WithTypename<LpContestantsEdge>) => null | string;
+  lp_contestantsInsertResponse?: (
+    data: WithTypename<LpContestantsInsertResponse>
+  ) => null | string;
+  lp_contestantsUpdateResponse?: (
+    data: WithTypename<LpContestantsUpdateResponse>
+  ) => null | string;
+  profiles?: (data: WithTypename<Profiles>) => null | string;
+  profilesConnection?: (
+    data: WithTypename<ProfilesConnection>
+  ) => null | string;
+  profilesDeleteResponse?: (
+    data: WithTypename<ProfilesDeleteResponse>
+  ) => null | string;
+  profilesEdge?: (data: WithTypename<ProfilesEdge>) => null | string;
+  profilesInsertResponse?: (
+    data: WithTypename<ProfilesInsertResponse>
+  ) => null | string;
+  profilesUpdateResponse?: (
+    data: WithTypename<ProfilesUpdateResponse>
+  ) => null | string;
+  reality_series?: (data: WithTypename<RealitySeries>) => null | string;
+  reality_seriesConnection?: (
+    data: WithTypename<RealitySeriesConnection>
+  ) => null | string;
+  reality_seriesDeleteResponse?: (
+    data: WithTypename<RealitySeriesDeleteResponse>
+  ) => null | string;
+  reality_seriesEdge?: (data: WithTypename<RealitySeriesEdge>) => null | string;
+  reality_seriesInsertResponse?: (
+    data: WithTypename<RealitySeriesInsertResponse>
+  ) => null | string;
+  reality_seriesUpdateResponse?: (
+    data: WithTypename<RealitySeriesUpdateResponse>
+  ) => null | string;
+  roles?: (data: WithTypename<Roles>) => null | string;
+  rolesConnection?: (data: WithTypename<RolesConnection>) => null | string;
+  rolesDeleteResponse?: (
+    data: WithTypename<RolesDeleteResponse>
+  ) => null | string;
+  rolesEdge?: (data: WithTypename<RolesEdge>) => null | string;
+  rolesInsertResponse?: (
+    data: WithTypename<RolesInsertResponse>
+  ) => null | string;
+  rolesUpdateResponse?: (
+    data: WithTypename<RolesUpdateResponse>
+  ) => null | string;
+  rs_league_formats?: (data: WithTypename<RsLeagueFormats>) => null | string;
+  rs_league_formatsConnection?: (
+    data: WithTypename<RsLeagueFormatsConnection>
+  ) => null | string;
+  rs_league_formatsDeleteResponse?: (
+    data: WithTypename<RsLeagueFormatsDeleteResponse>
+  ) => null | string;
+  rs_league_formatsEdge?: (
+    data: WithTypename<RsLeagueFormatsEdge>
+  ) => null | string;
+  rs_league_formatsInsertResponse?: (
+    data: WithTypename<RsLeagueFormatsInsertResponse>
+  ) => null | string;
+  rs_league_formatsUpdateResponse?: (
+    data: WithTypename<RsLeagueFormatsUpdateResponse>
+  ) => null | string;
+  rules?: (data: WithTypename<Rules>) => null | string;
+  rulesConnection?: (data: WithTypename<RulesConnection>) => null | string;
+  rulesDeleteResponse?: (
+    data: WithTypename<RulesDeleteResponse>
+  ) => null | string;
+  rulesEdge?: (data: WithTypename<RulesEdge>) => null | string;
+  rulesInsertResponse?: (
+    data: WithTypename<RulesInsertResponse>
+  ) => null | string;
+  rulesUpdateResponse?: (
+    data: WithTypename<RulesUpdateResponse>
+  ) => null | string;
+  rulesets?: (data: WithTypename<Rulesets>) => null | string;
+  rulesetsConnection?: (
+    data: WithTypename<RulesetsConnection>
+  ) => null | string;
+  rulesetsDeleteResponse?: (
+    data: WithTypename<RulesetsDeleteResponse>
+  ) => null | string;
+  rulesetsEdge?: (data: WithTypename<RulesetsEdge>) => null | string;
+  rulesetsInsertResponse?: (
+    data: WithTypename<RulesetsInsertResponse>
+  ) => null | string;
+  rulesetsUpdateResponse?: (
+    data: WithTypename<RulesetsUpdateResponse>
+  ) => null | string;
+  seasons?: (data: WithTypename<Seasons>) => null | string;
+  seasonsConnection?: (data: WithTypename<SeasonsConnection>) => null | string;
+  seasonsDeleteResponse?: (
+    data: WithTypename<SeasonsDeleteResponse>
+  ) => null | string;
+  seasonsEdge?: (data: WithTypename<SeasonsEdge>) => null | string;
+  seasonsInsertResponse?: (
+    data: WithTypename<SeasonsInsertResponse>
+  ) => null | string;
+  seasonsUpdateResponse?: (
+    data: WithTypename<SeasonsUpdateResponse>
+  ) => null | string;
+  user_roles?: (data: WithTypename<UserRoles>) => null | string;
+  user_rolesConnection?: (
+    data: WithTypename<UserRolesConnection>
+  ) => null | string;
+  user_rolesDeleteResponse?: (
+    data: WithTypename<UserRolesDeleteResponse>
+  ) => null | string;
+  user_rolesEdge?: (data: WithTypename<UserRolesEdge>) => null | string;
+  user_rolesInsertResponse?: (
+    data: WithTypename<UserRolesInsertResponse>
+  ) => null | string;
+  user_rolesUpdateResponse?: (
+    data: WithTypename<UserRolesUpdateResponse>
+  ) => null | string;
+};
+
+export type GraphCacheResolvers = {
+  Query?: {
+    api_tokensCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryApiTokensCollectionArgs,
+      WithTypename<ApiTokensConnection> | string
+    >;
+    contestant_seasonsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryContestantSeasonsCollectionArgs,
+      WithTypename<ContestantSeasonsConnection> | string
+    >;
+    contestantsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryContestantsCollectionArgs,
+      WithTypename<ContestantsConnection> | string
+    >;
+    episodesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryEpisodesCollectionArgs,
+      WithTypename<EpisodesConnection> | string
+    >;
+    eventsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryEventsCollectionArgs,
+      WithTypename<EventsConnection> | string
+    >;
+    league_formatsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryLeagueFormatsCollectionArgs,
+      WithTypename<LeagueFormatsConnection> | string
+    >;
+    league_participantsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryLeagueParticipantsCollectionArgs,
+      WithTypename<LeagueParticipantsConnection> | string
+    >;
+    leaguesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryLeaguesCollectionArgs,
+      WithTypename<LeaguesConnection> | string
+    >;
+    lp_contestantsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryLpContestantsCollectionArgs,
+      WithTypename<LpContestantsConnection> | string
+    >;
+    profilesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryProfilesCollectionArgs,
+      WithTypename<ProfilesConnection> | string
+    >;
+    reality_seriesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryRealitySeriesCollectionArgs,
+      WithTypename<RealitySeriesConnection> | string
+    >;
+    rolesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryRolesCollectionArgs,
+      WithTypename<RolesConnection> | string
+    >;
+    rs_league_formatsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryRsLeagueFormatsCollectionArgs,
+      WithTypename<RsLeagueFormatsConnection> | string
+    >;
+    rulesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryRulesCollectionArgs,
+      WithTypename<RulesConnection> | string
+    >;
+    rulesetsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryRulesetsCollectionArgs,
+      WithTypename<RulesetsConnection> | string
+    >;
+    seasonsCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QuerySeasonsCollectionArgs,
+      WithTypename<SeasonsConnection> | string
+    >;
+    user_rolesCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryUserRolesCollectionArgs,
+      WithTypename<UserRolesConnection> | string
+    >;
+  };
+  PageInfo?: {
+    endCursor?: GraphCacheResolver<
+      WithTypename<PageInfo>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    hasNextPage?: GraphCacheResolver<
+      WithTypename<PageInfo>,
+      Record<string, never>,
+      Scalars["Boolean"] | string
+    >;
+    hasPreviousPage?: GraphCacheResolver<
+      WithTypename<PageInfo>,
+      Record<string, never>,
+      Scalars["Boolean"] | string
+    >;
+    startCursor?: GraphCacheResolver<
+      WithTypename<PageInfo>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  api_tokens?: {
+    id?: GraphCacheResolver<
+      WithTypename<ApiTokens>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    name?: GraphCacheResolver<
+      WithTypename<ApiTokens>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    owner?: GraphCacheResolver<
+      WithTypename<ApiTokens>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<ApiTokens>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    token?: GraphCacheResolver<
+      WithTypename<ApiTokens>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  api_tokensConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<ApiTokensConnection>,
+      Record<string, never>,
+      Array<WithTypename<ApiTokensEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<ApiTokensConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  api_tokensDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ApiTokensDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ApiTokensDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<ApiTokens> | string>
+    >;
+  };
+  api_tokensEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<ApiTokensEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<ApiTokensEdge>,
+      Record<string, never>,
+      WithTypename<ApiTokens> | string
+    >;
+  };
+  api_tokensInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ApiTokensInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ApiTokensInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<ApiTokens> | string>
+    >;
+  };
+  api_tokensUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ApiTokensUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ApiTokensUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<ApiTokens> | string>
+    >;
+  };
+  contestant_seasons?: {
+    avatar_src?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    contestant?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    contestants?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      WithTypename<Contestants> | string
+    >;
+    eventsCollection?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      ContestantSeasonsEventsCollectionArgs,
+      WithTypename<EventsConnection> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    lp_contestantsCollection?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      ContestantSeasonsLpContestantsCollectionArgs,
+      WithTypename<LpContestantsConnection> | string
+    >;
+    portrait_src?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    season?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    seasons?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      WithTypename<Seasons> | string
+    >;
+    team_color?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  contestant_seasonsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsConnection>,
+      Record<string, never>,
+      Array<WithTypename<ContestantSeasonsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  contestant_seasonsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<ContestantSeasons> | string>
+    >;
+  };
+  contestant_seasonsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsEdge>,
+      Record<string, never>,
+      WithTypename<ContestantSeasons> | string
+    >;
+  };
+  contestant_seasonsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<ContestantSeasons> | string>
+    >;
+  };
+  contestant_seasonsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ContestantSeasonsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<ContestantSeasons> | string>
+    >;
+  };
+  contestants?: {
+    contestant_seasonsCollection?: GraphCacheResolver<
+      WithTypename<Contestants>,
+      ContestantsContestantSeasonsCollectionArgs,
+      WithTypename<ContestantSeasonsConnection> | string
+    >;
+    firstname?: GraphCacheResolver<
+      WithTypename<Contestants>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    nickname?: GraphCacheResolver<
+      WithTypename<Contestants>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    slug?: GraphCacheResolver<
+      WithTypename<Contestants>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    surname?: GraphCacheResolver<
+      WithTypename<Contestants>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  contestantsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<ContestantsConnection>,
+      Record<string, never>,
+      Array<WithTypename<ContestantsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<ContestantsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  contestantsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ContestantsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ContestantsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Contestants> | string>
+    >;
+  };
+  contestantsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<ContestantsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<ContestantsEdge>,
+      Record<string, never>,
+      WithTypename<Contestants> | string
+    >;
+  };
+  contestantsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ContestantsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ContestantsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Contestants> | string>
+    >;
+  };
+  contestantsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ContestantsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ContestantsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Contestants> | string>
+    >;
+  };
+  episodes?: {
+    eventsCollection?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      EpisodesEventsCollectionArgs,
+      WithTypename<EventsConnection> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    season?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    seasons?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      Record<string, never>,
+      WithTypename<Seasons> | string
+    >;
+    start_time?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+  };
+  episodesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<EpisodesConnection>,
+      Record<string, never>,
+      Array<WithTypename<EpisodesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<EpisodesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  episodesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<EpisodesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<EpisodesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Episodes> | string>
+    >;
+  };
+  episodesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<EpisodesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<EpisodesEdge>,
+      Record<string, never>,
+      WithTypename<Episodes> | string
+    >;
+  };
+  episodesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<EpisodesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<EpisodesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Episodes> | string>
+    >;
+  };
+  episodesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<EpisodesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<EpisodesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Episodes> | string>
+    >;
+  };
+  events?: {
+    comment?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    contestant_season?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    contestant_seasons?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      WithTypename<ContestantSeasons> | string
+    >;
+    episode?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    episodes?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      WithTypename<Episodes> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    rule?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    rules?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      WithTypename<Rules> | string
+    >;
+  };
+  eventsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<EventsConnection>,
+      Record<string, never>,
+      Array<WithTypename<EventsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<EventsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  eventsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<EventsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<EventsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Events> | string>
+    >;
+  };
+  eventsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<EventsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<EventsEdge>,
+      Record<string, never>,
+      WithTypename<Events> | string
+    >;
+  };
+  eventsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<EventsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<EventsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Events> | string>
+    >;
+  };
+  eventsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<EventsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<EventsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Events> | string>
+    >;
+  };
+  league_formats?: {
+    description?: GraphCacheResolver<
+      WithTypename<LeagueFormats>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<LeagueFormats>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    leaguesCollection?: GraphCacheResolver<
+      WithTypename<LeagueFormats>,
+      LeagueFormatsLeaguesCollectionArgs,
+      WithTypename<LeaguesConnection> | string
+    >;
+    rs_league_formatsCollection?: GraphCacheResolver<
+      WithTypename<LeagueFormats>,
+      LeagueFormatsRsLeagueFormatsCollectionArgs,
+      WithTypename<RsLeagueFormatsConnection> | string
+    >;
+    title?: GraphCacheResolver<
+      WithTypename<LeagueFormats>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  league_formatsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<LeagueFormatsConnection>,
+      Record<string, never>,
+      Array<WithTypename<LeagueFormatsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<LeagueFormatsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  league_formatsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeagueFormatsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeagueFormatsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<LeagueFormats> | string>
+    >;
+  };
+  league_formatsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<LeagueFormatsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<LeagueFormatsEdge>,
+      Record<string, never>,
+      WithTypename<LeagueFormats> | string
+    >;
+  };
+  league_formatsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeagueFormatsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeagueFormatsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<LeagueFormats> | string>
+    >;
+  };
+  league_formatsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeagueFormatsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeagueFormatsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<LeagueFormats> | string>
+    >;
+  };
+  league_participants?: {
+    created_at?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    league?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    leagues?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      WithTypename<Leagues> | string
+    >;
+    lp_contestantsCollection?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      LeagueParticipantsLpContestantsCollectionArgs,
+      WithTypename<LpContestantsConnection> | string
+    >;
+    participant?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+  };
+  league_participantsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsConnection>,
+      Record<string, never>,
+      Array<WithTypename<LeagueParticipantsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  league_participantsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<LeagueParticipants> | string>
+    >;
+  };
+  league_participantsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsEdge>,
+      Record<string, never>,
+      WithTypename<LeagueParticipants> | string
+    >;
+  };
+  league_participantsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<LeagueParticipants> | string>
+    >;
+  };
+  league_participantsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeagueParticipantsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<LeagueParticipants> | string>
+    >;
+  };
+  leagues?: {
+    created_at?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+    created_by?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    format?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    is_private?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["Boolean"] | string
+    >;
+    league_formats?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      WithTypename<LeagueFormats> | string
+    >;
+    league_participantsCollection?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      LeaguesLeagueParticipantsCollectionArgs,
+      WithTypename<LeagueParticipantsConnection> | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    ruleset?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    rulesets?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      WithTypename<Rulesets> | string
+    >;
+    season?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    seasons?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      WithTypename<Seasons> | string
+    >;
+    title?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  leaguesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<LeaguesConnection>,
+      Record<string, never>,
+      Array<WithTypename<LeaguesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<LeaguesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  leaguesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeaguesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeaguesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Leagues> | string>
+    >;
+  };
+  leaguesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<LeaguesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<LeaguesEdge>,
+      Record<string, never>,
+      WithTypename<Leagues> | string
+    >;
+  };
+  leaguesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeaguesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeaguesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Leagues> | string>
+    >;
+  };
+  leaguesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LeaguesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LeaguesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Leagues> | string>
+    >;
+  };
+  lp_contestants?: {
+    contestant_season?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    contestant_seasons?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      WithTypename<ContestantSeasons> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    league_participant?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    league_participants?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      WithTypename<LeagueParticipants> | string
+    >;
+    rank?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+  };
+  lp_contestantsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<LpContestantsConnection>,
+      Record<string, never>,
+      Array<WithTypename<LpContestantsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<LpContestantsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  lp_contestantsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LpContestantsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LpContestantsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<LpContestants> | string>
+    >;
+  };
+  lp_contestantsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<LpContestantsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<LpContestantsEdge>,
+      Record<string, never>,
+      WithTypename<LpContestants> | string
+    >;
+  };
+  lp_contestantsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LpContestantsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LpContestantsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<LpContestants> | string>
+    >;
+  };
+  lp_contestantsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<LpContestantsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<LpContestantsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<LpContestants> | string>
+    >;
+  };
+  profiles?: {
+    api_tokensCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesApiTokensCollectionArgs,
+      WithTypename<ApiTokensConnection> | string
+    >;
+    display_name?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    league_participantsCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesLeagueParticipantsCollectionArgs,
+      WithTypename<LeagueParticipantsConnection> | string
+    >;
+    leaguesCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesLeaguesCollectionArgs,
+      WithTypename<LeaguesConnection> | string
+    >;
+    rulesetsCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesRulesetsCollectionArgs,
+      WithTypename<RulesetsConnection> | string
+    >;
+    thumbnail_src?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    user_rolesCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesUserRolesCollectionArgs,
+      WithTypename<UserRolesConnection> | string
+    >;
+  };
+  profilesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<ProfilesConnection>,
+      Record<string, never>,
+      Array<WithTypename<ProfilesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<ProfilesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  profilesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ProfilesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ProfilesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Profiles> | string>
+    >;
+  };
+  profilesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<ProfilesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<ProfilesEdge>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+  };
+  profilesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ProfilesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ProfilesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Profiles> | string>
+    >;
+  };
+  profilesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<ProfilesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<ProfilesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Profiles> | string>
+    >;
+  };
+  reality_series?: {
+    created_at?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+    in_progress?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["Boolean"] | string
+    >;
+    logo_src?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    premiere_time?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+    rs_league_formatsCollection?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      RealitySeriesRsLeagueFormatsCollectionArgs,
+      WithTypename<RsLeagueFormatsConnection> | string
+    >;
+    rulesCollection?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      RealitySeriesRulesCollectionArgs,
+      WithTypename<RulesConnection> | string
+    >;
+    seasonsCollection?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      RealitySeriesSeasonsCollectionArgs,
+      WithTypename<SeasonsConnection> | string
+    >;
+    slug?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    title?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    updated_at?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+  };
+  reality_seriesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<RealitySeriesConnection>,
+      Record<string, never>,
+      Array<WithTypename<RealitySeriesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<RealitySeriesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  reality_seriesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RealitySeriesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RealitySeriesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<RealitySeries> | string>
+    >;
+  };
+  reality_seriesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<RealitySeriesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<RealitySeriesEdge>,
+      Record<string, never>,
+      WithTypename<RealitySeries> | string
+    >;
+  };
+  reality_seriesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RealitySeriesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RealitySeriesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<RealitySeries> | string>
+    >;
+  };
+  reality_seriesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RealitySeriesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RealitySeriesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<RealitySeries> | string>
+    >;
+  };
+  roles?: {
+    display_name?: GraphCacheResolver<
+      WithTypename<Roles>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Roles>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    user_rolesCollection?: GraphCacheResolver<
+      WithTypename<Roles>,
+      RolesUserRolesCollectionArgs,
+      WithTypename<UserRolesConnection> | string
+    >;
+  };
+  rolesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<RolesConnection>,
+      Record<string, never>,
+      Array<WithTypename<RolesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<RolesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  rolesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RolesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RolesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Roles> | string>
+    >;
+  };
+  rolesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<RolesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<RolesEdge>,
+      Record<string, never>,
+      WithTypename<Roles> | string
+    >;
+  };
+  rolesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RolesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RolesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Roles> | string>
+    >;
+  };
+  rolesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RolesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RolesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Roles> | string>
+    >;
+  };
+  rs_league_formats?: {
+    default_ruleset?: GraphCacheResolver<
+      WithTypename<RsLeagueFormats>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    league_format?: GraphCacheResolver<
+      WithTypename<RsLeagueFormats>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    league_formats?: GraphCacheResolver<
+      WithTypename<RsLeagueFormats>,
+      Record<string, never>,
+      WithTypename<LeagueFormats> | string
+    >;
+    reality_series?: GraphCacheResolver<
+      WithTypename<RsLeagueFormats>,
+      Record<string, never>,
+      WithTypename<RealitySeries> | string
+    >;
+    rulesets?: GraphCacheResolver<
+      WithTypename<RsLeagueFormats>,
+      Record<string, never>,
+      WithTypename<Rulesets> | string
+    >;
+  };
+  rs_league_formatsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsConnection>,
+      Record<string, never>,
+      Array<WithTypename<RsLeagueFormatsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  rs_league_formatsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<RsLeagueFormats> | string>
+    >;
+  };
+  rs_league_formatsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsEdge>,
+      Record<string, never>,
+      WithTypename<RsLeagueFormats> | string
+    >;
+  };
+  rs_league_formatsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<RsLeagueFormats> | string>
+    >;
+  };
+  rs_league_formatsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RsLeagueFormatsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<RsLeagueFormats> | string>
+    >;
+  };
+  rules?: {
+    description?: GraphCacheResolver<
+      WithTypename<Rules>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    eventsCollection?: GraphCacheResolver<
+      WithTypename<Rules>,
+      RulesEventsCollectionArgs,
+      WithTypename<EventsConnection> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Rules>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    is_negative?: GraphCacheResolver<
+      WithTypename<Rules>,
+      Record<string, never>,
+      Scalars["Boolean"] | string
+    >;
+    reality_series?: GraphCacheResolver<
+      WithTypename<Rules>,
+      Record<string, never>,
+      WithTypename<RealitySeries> | string
+    >;
+  };
+  rulesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<RulesConnection>,
+      Record<string, never>,
+      Array<WithTypename<RulesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<RulesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  rulesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RulesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RulesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Rules> | string>
+    >;
+  };
+  rulesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<RulesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<RulesEdge>,
+      Record<string, never>,
+      WithTypename<Rules> | string
+    >;
+  };
+  rulesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RulesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RulesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Rules> | string>
+    >;
+  };
+  rulesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RulesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RulesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Rules> | string>
+    >;
+  };
+  rulesets?: {
+    created_by?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    data?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      Record<string, never>,
+      Scalars["JSON"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    leaguesCollection?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      RulesetsLeaguesCollectionArgs,
+      WithTypename<LeaguesConnection> | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    rs_league_formatsCollection?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      RulesetsRsLeagueFormatsCollectionArgs,
+      WithTypename<RsLeagueFormatsConnection> | string
+    >;
+    updated_at?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+  };
+  rulesetsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<RulesetsConnection>,
+      Record<string, never>,
+      Array<WithTypename<RulesetsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<RulesetsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  rulesetsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RulesetsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RulesetsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Rulesets> | string>
+    >;
+  };
+  rulesetsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<RulesetsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<RulesetsEdge>,
+      Record<string, never>,
+      WithTypename<Rulesets> | string
+    >;
+  };
+  rulesetsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RulesetsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RulesetsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Rulesets> | string>
+    >;
+  };
+  rulesetsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<RulesetsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<RulesetsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Rulesets> | string>
+    >;
+  };
+  seasons?: {
+    contestant_seasonsCollection?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      SeasonsContestantSeasonsCollectionArgs,
+      WithTypename<ContestantSeasonsConnection> | string
+    >;
+    episodesCollection?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      SeasonsEpisodesCollectionArgs,
+      WithTypename<EpisodesConnection> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    leaguesCollection?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      SeasonsLeaguesCollectionArgs,
+      WithTypename<LeaguesConnection> | string
+    >;
+    logo_src?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    order?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["BigInt"] | string
+    >;
+    reality_series?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      WithTypename<RealitySeries> | string
+    >;
+    reality_show?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    title?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    updated_at?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
+    >;
+  };
+  seasonsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<SeasonsConnection>,
+      Record<string, never>,
+      Array<WithTypename<SeasonsEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<SeasonsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  seasonsDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<SeasonsDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<SeasonsDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<Seasons> | string>
+    >;
+  };
+  seasonsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<SeasonsEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<SeasonsEdge>,
+      Record<string, never>,
+      WithTypename<Seasons> | string
+    >;
+  };
+  seasonsInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<SeasonsInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<SeasonsInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<Seasons> | string>
+    >;
+  };
+  seasonsUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<SeasonsUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<SeasonsUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<Seasons> | string>
+    >;
+  };
+  user_roles?: {
+    profiles?: GraphCacheResolver<
+      WithTypename<UserRoles>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    role?: GraphCacheResolver<
+      WithTypename<UserRoles>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    roles?: GraphCacheResolver<
+      WithTypename<UserRoles>,
+      Record<string, never>,
+      WithTypename<Roles> | string
+    >;
+    user?: GraphCacheResolver<
+      WithTypename<UserRoles>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+  };
+  user_rolesConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<UserRolesConnection>,
+      Record<string, never>,
+      Array<WithTypename<UserRolesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<UserRolesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  user_rolesDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserRolesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserRolesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserRoles> | string>
+    >;
+  };
+  user_rolesEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<UserRolesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<UserRolesEdge>,
+      Record<string, never>,
+      WithTypename<UserRoles> | string
+    >;
+  };
+  user_rolesInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserRolesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserRolesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserRoles> | string>
+    >;
+  };
+  user_rolesUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserRolesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserRolesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserRoles> | string>
+    >;
+  };
+};
+
+export type GraphCacheOptimisticUpdaters = {
+  deleteFromapi_tokensCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromapiTokensCollectionArgs,
+    WithTypename<ApiTokensDeleteResponse>
+  >;
+  deleteFromcontestant_seasonsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromcontestantSeasonsCollectionArgs,
+    WithTypename<ContestantSeasonsDeleteResponse>
+  >;
+  deleteFromcontestantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromcontestantsCollectionArgs,
+    WithTypename<ContestantsDeleteResponse>
+  >;
+  deleteFromepisodesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromepisodesCollectionArgs,
+    WithTypename<EpisodesDeleteResponse>
+  >;
+  deleteFromeventsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromeventsCollectionArgs,
+    WithTypename<EventsDeleteResponse>
+  >;
+  deleteFromleague_formatsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromleagueFormatsCollectionArgs,
+    WithTypename<LeagueFormatsDeleteResponse>
+  >;
+  deleteFromleague_participantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromleagueParticipantsCollectionArgs,
+    WithTypename<LeagueParticipantsDeleteResponse>
+  >;
+  deleteFromleaguesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromleaguesCollectionArgs,
+    WithTypename<LeaguesDeleteResponse>
+  >;
+  deleteFromlp_contestantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromlpContestantsCollectionArgs,
+    WithTypename<LpContestantsDeleteResponse>
+  >;
+  deleteFromreality_seriesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromrealitySeriesCollectionArgs,
+    WithTypename<RealitySeriesDeleteResponse>
+  >;
+  deleteFromrolesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromrolesCollectionArgs,
+    WithTypename<RolesDeleteResponse>
+  >;
+  deleteFromrs_league_formatsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromrsLeagueFormatsCollectionArgs,
+    WithTypename<RsLeagueFormatsDeleteResponse>
+  >;
+  deleteFromrulesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromrulesCollectionArgs,
+    WithTypename<RulesDeleteResponse>
+  >;
+  deleteFromrulesetsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromrulesetsCollectionArgs,
+    WithTypename<RulesetsDeleteResponse>
+  >;
+  deleteFromseasonsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromseasonsCollectionArgs,
+    WithTypename<SeasonsDeleteResponse>
+  >;
+  deleteFromuser_rolesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromuserRolesCollectionArgs,
+    WithTypename<UserRolesDeleteResponse>
+  >;
+  insertIntoapi_tokensCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoapiTokensCollectionArgs,
+    Maybe<WithTypename<ApiTokensInsertResponse>>
+  >;
+  insertIntocontestant_seasonsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntocontestantSeasonsCollectionArgs,
+    Maybe<WithTypename<ContestantSeasonsInsertResponse>>
+  >;
+  insertIntocontestantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntocontestantsCollectionArgs,
+    Maybe<WithTypename<ContestantsInsertResponse>>
+  >;
+  insertIntoepisodesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoepisodesCollectionArgs,
+    Maybe<WithTypename<EpisodesInsertResponse>>
+  >;
+  insertIntoeventsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoeventsCollectionArgs,
+    Maybe<WithTypename<EventsInsertResponse>>
+  >;
+  insertIntoleague_formatsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoleagueFormatsCollectionArgs,
+    Maybe<WithTypename<LeagueFormatsInsertResponse>>
+  >;
+  insertIntoleague_participantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoleagueParticipantsCollectionArgs,
+    Maybe<WithTypename<LeagueParticipantsInsertResponse>>
+  >;
+  insertIntoleaguesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoleaguesCollectionArgs,
+    Maybe<WithTypename<LeaguesInsertResponse>>
+  >;
+  insertIntolp_contestantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntolpContestantsCollectionArgs,
+    Maybe<WithTypename<LpContestantsInsertResponse>>
+  >;
+  insertIntoreality_seriesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntorealitySeriesCollectionArgs,
+    Maybe<WithTypename<RealitySeriesInsertResponse>>
+  >;
+  insertIntorolesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntorolesCollectionArgs,
+    Maybe<WithTypename<RolesInsertResponse>>
+  >;
+  insertIntors_league_formatsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntorsLeagueFormatsCollectionArgs,
+    Maybe<WithTypename<RsLeagueFormatsInsertResponse>>
+  >;
+  insertIntorulesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntorulesCollectionArgs,
+    Maybe<WithTypename<RulesInsertResponse>>
+  >;
+  insertIntorulesetsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntorulesetsCollectionArgs,
+    Maybe<WithTypename<RulesetsInsertResponse>>
+  >;
+  insertIntoseasonsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntoseasonsCollectionArgs,
+    Maybe<WithTypename<SeasonsInsertResponse>>
+  >;
+  insertIntouser_rolesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntouserRolesCollectionArgs,
+    Maybe<WithTypename<UserRolesInsertResponse>>
+  >;
+  updateapi_tokensCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateapiTokensCollectionArgs,
+    WithTypename<ApiTokensUpdateResponse>
+  >;
+  updatecontestant_seasonsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdatecontestantSeasonsCollectionArgs,
+    WithTypename<ContestantSeasonsUpdateResponse>
+  >;
+  updatecontestantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdatecontestantsCollectionArgs,
+    WithTypename<ContestantsUpdateResponse>
+  >;
+  updateepisodesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateepisodesCollectionArgs,
+    WithTypename<EpisodesUpdateResponse>
+  >;
+  updateeventsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateeventsCollectionArgs,
+    WithTypename<EventsUpdateResponse>
+  >;
+  updateleague_formatsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateleagueFormatsCollectionArgs,
+    WithTypename<LeagueFormatsUpdateResponse>
+  >;
+  updateleague_participantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateleagueParticipantsCollectionArgs,
+    WithTypename<LeagueParticipantsUpdateResponse>
+  >;
+  updateleaguesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateleaguesCollectionArgs,
+    WithTypename<LeaguesUpdateResponse>
+  >;
+  updatelp_contestantsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdatelpContestantsCollectionArgs,
+    WithTypename<LpContestantsUpdateResponse>
+  >;
+  updatereality_seriesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdaterealitySeriesCollectionArgs,
+    WithTypename<RealitySeriesUpdateResponse>
+  >;
+  updaterolesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdaterolesCollectionArgs,
+    WithTypename<RolesUpdateResponse>
+  >;
+  updaters_league_formatsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdatersLeagueFormatsCollectionArgs,
+    WithTypename<RsLeagueFormatsUpdateResponse>
+  >;
+  updaterulesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdaterulesCollectionArgs,
+    WithTypename<RulesUpdateResponse>
+  >;
+  updaterulesetsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdaterulesetsCollectionArgs,
+    WithTypename<RulesetsUpdateResponse>
+  >;
+  updateseasonsCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateseasonsCollectionArgs,
+    WithTypename<SeasonsUpdateResponse>
+  >;
+  updateuser_rolesCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateuserRolesCollectionArgs,
+    WithTypename<UserRolesUpdateResponse>
+  >;
+};
+
+export type GraphCacheUpdaters = {
+  Mutation: {
+    deleteFromapi_tokensCollection?: GraphCacheUpdateResolver<
+      { deleteFromapi_tokensCollection: WithTypename<ApiTokensDeleteResponse> },
+      MutationDeleteFromapiTokensCollectionArgs
+    >;
+    deleteFromcontestant_seasonsCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromcontestant_seasonsCollection: WithTypename<ContestantSeasonsDeleteResponse>;
+      },
+      MutationDeleteFromcontestantSeasonsCollectionArgs
+    >;
+    deleteFromcontestantsCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromcontestantsCollection: WithTypename<ContestantsDeleteResponse>;
+      },
+      MutationDeleteFromcontestantsCollectionArgs
+    >;
+    deleteFromepisodesCollection?: GraphCacheUpdateResolver<
+      { deleteFromepisodesCollection: WithTypename<EpisodesDeleteResponse> },
+      MutationDeleteFromepisodesCollectionArgs
+    >;
+    deleteFromeventsCollection?: GraphCacheUpdateResolver<
+      { deleteFromeventsCollection: WithTypename<EventsDeleteResponse> },
+      MutationDeleteFromeventsCollectionArgs
+    >;
+    deleteFromleague_formatsCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromleague_formatsCollection: WithTypename<LeagueFormatsDeleteResponse>;
+      },
+      MutationDeleteFromleagueFormatsCollectionArgs
+    >;
+    deleteFromleague_participantsCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromleague_participantsCollection: WithTypename<LeagueParticipantsDeleteResponse>;
+      },
+      MutationDeleteFromleagueParticipantsCollectionArgs
+    >;
+    deleteFromleaguesCollection?: GraphCacheUpdateResolver<
+      { deleteFromleaguesCollection: WithTypename<LeaguesDeleteResponse> },
+      MutationDeleteFromleaguesCollectionArgs
+    >;
+    deleteFromlp_contestantsCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromlp_contestantsCollection: WithTypename<LpContestantsDeleteResponse>;
+      },
+      MutationDeleteFromlpContestantsCollectionArgs
+    >;
+    deleteFromreality_seriesCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromreality_seriesCollection: WithTypename<RealitySeriesDeleteResponse>;
+      },
+      MutationDeleteFromrealitySeriesCollectionArgs
+    >;
+    deleteFromrolesCollection?: GraphCacheUpdateResolver<
+      { deleteFromrolesCollection: WithTypename<RolesDeleteResponse> },
+      MutationDeleteFromrolesCollectionArgs
+    >;
+    deleteFromrs_league_formatsCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromrs_league_formatsCollection: WithTypename<RsLeagueFormatsDeleteResponse>;
+      },
+      MutationDeleteFromrsLeagueFormatsCollectionArgs
+    >;
+    deleteFromrulesCollection?: GraphCacheUpdateResolver<
+      { deleteFromrulesCollection: WithTypename<RulesDeleteResponse> },
+      MutationDeleteFromrulesCollectionArgs
+    >;
+    deleteFromrulesetsCollection?: GraphCacheUpdateResolver<
+      { deleteFromrulesetsCollection: WithTypename<RulesetsDeleteResponse> },
+      MutationDeleteFromrulesetsCollectionArgs
+    >;
+    deleteFromseasonsCollection?: GraphCacheUpdateResolver<
+      { deleteFromseasonsCollection: WithTypename<SeasonsDeleteResponse> },
+      MutationDeleteFromseasonsCollectionArgs
+    >;
+    deleteFromuser_rolesCollection?: GraphCacheUpdateResolver<
+      { deleteFromuser_rolesCollection: WithTypename<UserRolesDeleteResponse> },
+      MutationDeleteFromuserRolesCollectionArgs
+    >;
+    insertIntoapi_tokensCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoapi_tokensCollection: Maybe<
+          WithTypename<ApiTokensInsertResponse>
+        >;
+      },
+      MutationInsertIntoapiTokensCollectionArgs
+    >;
+    insertIntocontestant_seasonsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntocontestant_seasonsCollection: Maybe<
+          WithTypename<ContestantSeasonsInsertResponse>
+        >;
+      },
+      MutationInsertIntocontestantSeasonsCollectionArgs
+    >;
+    insertIntocontestantsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntocontestantsCollection: Maybe<
+          WithTypename<ContestantsInsertResponse>
+        >;
+      },
+      MutationInsertIntocontestantsCollectionArgs
+    >;
+    insertIntoepisodesCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoepisodesCollection: Maybe<
+          WithTypename<EpisodesInsertResponse>
+        >;
+      },
+      MutationInsertIntoepisodesCollectionArgs
+    >;
+    insertIntoeventsCollection?: GraphCacheUpdateResolver<
+      { insertIntoeventsCollection: Maybe<WithTypename<EventsInsertResponse>> },
+      MutationInsertIntoeventsCollectionArgs
+    >;
+    insertIntoleague_formatsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoleague_formatsCollection: Maybe<
+          WithTypename<LeagueFormatsInsertResponse>
+        >;
+      },
+      MutationInsertIntoleagueFormatsCollectionArgs
+    >;
+    insertIntoleague_participantsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoleague_participantsCollection: Maybe<
+          WithTypename<LeagueParticipantsInsertResponse>
+        >;
+      },
+      MutationInsertIntoleagueParticipantsCollectionArgs
+    >;
+    insertIntoleaguesCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoleaguesCollection: Maybe<WithTypename<LeaguesInsertResponse>>;
+      },
+      MutationInsertIntoleaguesCollectionArgs
+    >;
+    insertIntolp_contestantsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntolp_contestantsCollection: Maybe<
+          WithTypename<LpContestantsInsertResponse>
+        >;
+      },
+      MutationInsertIntolpContestantsCollectionArgs
+    >;
+    insertIntoreality_seriesCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoreality_seriesCollection: Maybe<
+          WithTypename<RealitySeriesInsertResponse>
+        >;
+      },
+      MutationInsertIntorealitySeriesCollectionArgs
+    >;
+    insertIntorolesCollection?: GraphCacheUpdateResolver<
+      { insertIntorolesCollection: Maybe<WithTypename<RolesInsertResponse>> },
+      MutationInsertIntorolesCollectionArgs
+    >;
+    insertIntors_league_formatsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntors_league_formatsCollection: Maybe<
+          WithTypename<RsLeagueFormatsInsertResponse>
+        >;
+      },
+      MutationInsertIntorsLeagueFormatsCollectionArgs
+    >;
+    insertIntorulesCollection?: GraphCacheUpdateResolver<
+      { insertIntorulesCollection: Maybe<WithTypename<RulesInsertResponse>> },
+      MutationInsertIntorulesCollectionArgs
+    >;
+    insertIntorulesetsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntorulesetsCollection: Maybe<
+          WithTypename<RulesetsInsertResponse>
+        >;
+      },
+      MutationInsertIntorulesetsCollectionArgs
+    >;
+    insertIntoseasonsCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntoseasonsCollection: Maybe<WithTypename<SeasonsInsertResponse>>;
+      },
+      MutationInsertIntoseasonsCollectionArgs
+    >;
+    insertIntouser_rolesCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntouser_rolesCollection: Maybe<
+          WithTypename<UserRolesInsertResponse>
+        >;
+      },
+      MutationInsertIntouserRolesCollectionArgs
+    >;
+    updateapi_tokensCollection?: GraphCacheUpdateResolver<
+      { updateapi_tokensCollection: WithTypename<ApiTokensUpdateResponse> },
+      MutationUpdateapiTokensCollectionArgs
+    >;
+    updatecontestant_seasonsCollection?: GraphCacheUpdateResolver<
+      {
+        updatecontestant_seasonsCollection: WithTypename<ContestantSeasonsUpdateResponse>;
+      },
+      MutationUpdatecontestantSeasonsCollectionArgs
+    >;
+    updatecontestantsCollection?: GraphCacheUpdateResolver<
+      { updatecontestantsCollection: WithTypename<ContestantsUpdateResponse> },
+      MutationUpdatecontestantsCollectionArgs
+    >;
+    updateepisodesCollection?: GraphCacheUpdateResolver<
+      { updateepisodesCollection: WithTypename<EpisodesUpdateResponse> },
+      MutationUpdateepisodesCollectionArgs
+    >;
+    updateeventsCollection?: GraphCacheUpdateResolver<
+      { updateeventsCollection: WithTypename<EventsUpdateResponse> },
+      MutationUpdateeventsCollectionArgs
+    >;
+    updateleague_formatsCollection?: GraphCacheUpdateResolver<
+      {
+        updateleague_formatsCollection: WithTypename<LeagueFormatsUpdateResponse>;
+      },
+      MutationUpdateleagueFormatsCollectionArgs
+    >;
+    updateleague_participantsCollection?: GraphCacheUpdateResolver<
+      {
+        updateleague_participantsCollection: WithTypename<LeagueParticipantsUpdateResponse>;
+      },
+      MutationUpdateleagueParticipantsCollectionArgs
+    >;
+    updateleaguesCollection?: GraphCacheUpdateResolver<
+      { updateleaguesCollection: WithTypename<LeaguesUpdateResponse> },
+      MutationUpdateleaguesCollectionArgs
+    >;
+    updatelp_contestantsCollection?: GraphCacheUpdateResolver<
+      {
+        updatelp_contestantsCollection: WithTypename<LpContestantsUpdateResponse>;
+      },
+      MutationUpdatelpContestantsCollectionArgs
+    >;
+    updatereality_seriesCollection?: GraphCacheUpdateResolver<
+      {
+        updatereality_seriesCollection: WithTypename<RealitySeriesUpdateResponse>;
+      },
+      MutationUpdaterealitySeriesCollectionArgs
+    >;
+    updaterolesCollection?: GraphCacheUpdateResolver<
+      { updaterolesCollection: WithTypename<RolesUpdateResponse> },
+      MutationUpdaterolesCollectionArgs
+    >;
+    updaters_league_formatsCollection?: GraphCacheUpdateResolver<
+      {
+        updaters_league_formatsCollection: WithTypename<RsLeagueFormatsUpdateResponse>;
+      },
+      MutationUpdatersLeagueFormatsCollectionArgs
+    >;
+    updaterulesCollection?: GraphCacheUpdateResolver<
+      { updaterulesCollection: WithTypename<RulesUpdateResponse> },
+      MutationUpdaterulesCollectionArgs
+    >;
+    updaterulesetsCollection?: GraphCacheUpdateResolver<
+      { updaterulesetsCollection: WithTypename<RulesetsUpdateResponse> },
+      MutationUpdaterulesetsCollectionArgs
+    >;
+    updateseasonsCollection?: GraphCacheUpdateResolver<
+      { updateseasonsCollection: WithTypename<SeasonsUpdateResponse> },
+      MutationUpdateseasonsCollectionArgs
+    >;
+    updateuser_rolesCollection?: GraphCacheUpdateResolver<
+      { updateuser_rolesCollection: WithTypename<UserRolesUpdateResponse> },
+      MutationUpdateuserRolesCollectionArgs
+    >;
+  };
+  Subscription?: {};
+};
+
+export type GraphCacheConfig = {
+  schema?: IntrospectionData;
+  updates?: GraphCacheUpdaters;
+  keys?: GraphCacheKeysConfig;
+  optimistic?: GraphCacheOptimisticUpdaters;
+  resolvers?: GraphCacheResolvers;
+  storage?: GraphCacheStorageAdapter;
 };

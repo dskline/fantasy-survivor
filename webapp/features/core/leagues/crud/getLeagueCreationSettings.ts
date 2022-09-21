@@ -6,7 +6,10 @@ import {
   GetLeagueCreationSettingsQueryVariables,
 } from "@/features/core/leagues/crud/__generated__/getLeagueCreationSettings.types";
 
-export const GET_LEAGUE_CREATION_SETTINGS = gql`
+export const GET_LEAGUE_CREATION_SETTINGS = gql<
+  GetLeagueCreationSettingsQuery,
+  GetLeagueCreationSettingsQueryVariables
+>`
   query GetLeagueCreationSettings($showSlug: String!, $seasonNumber: BigInt!) {
     rulesCollection(
       filter: { reality_series: { eq: $showSlug } }
@@ -57,10 +60,4 @@ export const GET_LEAGUE_CREATION_SETTINGS = gql`
 export const getLeagueCreationSettings = async (
   client: Client,
   variables: GetLeagueCreationSettingsQueryVariables
-) =>
-  await client
-    .query<
-      GetLeagueCreationSettingsQuery,
-      GetLeagueCreationSettingsQueryVariables
-    >(GET_LEAGUE_CREATION_SETTINGS, variables)
-    .toPromise();
+) => await client.query(GET_LEAGUE_CREATION_SETTINGS, variables).toPromise();

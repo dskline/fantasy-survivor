@@ -36,6 +36,7 @@ importers:
       '@graphql-codegen/cli': 2.12.0
       '@graphql-codegen/near-operation-file-preset': 2.4.1
       '@graphql-codegen/typescript-operations': 2.5.3
+      '@graphql-codegen/typescript-urql-graphcache': 2.4.0
       '@headlessui/react': 1.7.0
       '@supabase/auth-helpers-nextjs': 0.2.7
       '@supabase/auth-helpers-react': 0.2.3
@@ -44,6 +45,8 @@ importers:
       '@testing-library/react': 13.4.0
       '@types/node': 18.7.16
       '@types/react': 18.0.19
+      '@urql/devtools': 2.0.3
+      '@urql/exchange-graphcache': 5.0.1
       '@welldone-software/why-did-you-render': 7.0.1
       autoprefixer: 10.4.8
       c8: 7.12.0
@@ -80,6 +83,8 @@ importers:
       '@supabase/auth-helpers-react': 0.2.3
       '@supabase/supabase-js': 1.35.6
       '@supabase/ui': 0.36.5_react-dom@18.2.0+react@18.2.0
+      '@urql/devtools': 2.0.3_graphql@16.6.0
+      '@urql/exchange-graphcache': 5.0.1_graphql@16.6.0
       '@welldone-software/why-did-you-render': 7.0.1_react@18.2.0
       classnames: 2.3.1
       framer-motion: 7.3.2_react-dom@18.2.0+react@18.2.0
@@ -102,6 +107,7 @@ importers:
       '@graphql-codegen/cli': 2.12.0_acd8ce3b46052b147123c9c67dc2262f
       '@graphql-codegen/near-operation-file-preset': 2.4.1_graphql@16.6.0
       '@graphql-codegen/typescript-operations': 2.5.3_graphql@16.6.0
+      '@graphql-codegen/typescript-urql-graphcache': 2.4.0_7f635ad33f4de4f2917facd9eb44baf7
       '@testing-library/react': 13.4.0_react-dom@18.2.0+react@18.2.0
       '@types/node': 18.7.16
       '@types/react': 18.0.19
@@ -952,6 +958,25 @@ packages:
       '@graphql-codegen/typescript': 2.7.3_graphql@16.6.0
       '@graphql-codegen/visitor-plugin-common': 2.12.1_graphql@16.6.0
       auto-bind: 4.0.0
+      graphql: 16.6.0
+      tslib: 2.4.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
+
+  /@graphql-codegen/typescript-urql-graphcache/2.4.0_7f635ad33f4de4f2917facd9eb44baf7:
+    resolution: {integrity: sha512-4z2M4fbKFyjlOx2uAztERpzOOdZuxpXhQ413Qkw6u+QGaylbefHH04UNlL/zMh9ovVbLZnEMmdnBRy/nqCMwsw==}
+    peerDependencies:
+      '@urql/exchange-graphcache': ^4.1.1 || ^5.0.0
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql-tag: ^2.0.0
+    dependencies:
+      '@graphql-codegen/plugin-helpers': 2.7.0_graphql@16.6.0
+      '@graphql-codegen/visitor-plugin-common': 2.12.1_graphql@16.6.0
+      '@urql/exchange-graphcache': 5.0.1_graphql@16.6.0
+      auto-bind: 4.0.0
+      change-case-all: 1.0.14
       graphql: 16.6.0
       tslib: 2.4.0
     transitivePeerDependencies:
@@ -1975,6 +2000,26 @@ packages:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
+      graphql: 16.6.0
+      wonka: 6.0.0
+    dev: false
+
+  /@urql/devtools/2.0.3_graphql@16.6.0:
+    resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
+    peerDependencies:
+      '@urql/core': '>= 1.14.0'
+      graphql: '>= 0.11.0'
+    dependencies:
+      graphql: 16.6.0
+      wonka: 6.0.0
+    dev: false
+
+  /@urql/exchange-graphcache/5.0.1_graphql@16.6.0:
+    resolution: {integrity: sha512-sbornx6SaAADycfEex0+npdJwhImSKa+76DAnOjF48wls5bYlG+ewDe0ipWdmV+gQ+t9SDFPLAHBzFURTlQacQ==}
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@urql/core': 3.0.3_graphql@16.6.0
       graphql: 16.6.0
       wonka: 6.0.0
     dev: false

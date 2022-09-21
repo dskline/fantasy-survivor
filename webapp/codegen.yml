@@ -6,6 +6,7 @@ documents: './features/**/*.ts'
 generates:
   features/core/db/graphql/schema.ts:
     - typescript
+    - "typescript-urql-graphcache"
   features/:
     preset: near-operation-file
     presetConfig:

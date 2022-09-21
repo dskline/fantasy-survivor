@@ -1,8 +1,11 @@
 import { gql } from "urql";
 
-export const GET_LEAGUE_PARTICIPANT_FRAGMENT = gql`
+import { GetLeagueParticipantFragment } from "@/features/core/leagues/crud/__generated__/getLeagueParticipant.types";
+
+export const GET_LEAGUE_PARTICIPANT_FRAGMENT = gql<GetLeagueParticipantFragment>`
   fragment GetLeagueParticipant on league_participants {
     id
+    participant
     profiles {
       id
       thumbnail_src

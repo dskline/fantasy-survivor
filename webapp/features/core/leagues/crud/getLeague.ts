@@ -7,7 +7,7 @@ import {
 } from "@/features/core/leagues/crud/__generated__/getLeague.types";
 import { GET_CONTESTANT_FRAGMENT } from "@/features/core/leagues/crud/getContestant";
 
-export const GET_LEAGUE = gql`
+export const GET_LEAGUE = gql<GetLeagueQuery, GetLeagueQueryVariables>`
   ${GET_CONTESTANT_FRAGMENT}
   query GetLeague($leagueFilter: leaguesFilter!) {
     leaguesCollection(filter: $leagueFilter, first: 1) {
@@ -16,20 +16,25 @@ export const GET_LEAGUE = gql`
           id
           title
           profiles {
+            id
             display_name
           }
           league_formats {
+            id
             title
             description
           }
           rulesets {
+            id
             data
           }
           seasons {
+            id
             title
             logo_src
             order
             reality_series {
+              slug
               title
               rulesCollection {
                 edges {
@@ -58,7 +63,7 @@ export const GET_LEAGUE = gql`
 
 export const getLeague = async (client: Client, leagueId: string) =>
   client
-    .query<GetLeagueQuery, GetLeagueQueryVariables>(GET_LEAGUE, {
+    .query(GET_LEAGUE, {
       leagueFilter: { id: { eq: leagueId } },
     })
     .toPromise();

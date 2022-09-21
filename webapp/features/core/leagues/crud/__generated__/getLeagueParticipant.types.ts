@@ -3,6 +3,7 @@ import * as Types from "../../../db/graphql/schema";
 export type GetLeagueParticipantFragment = {
   __typename?: "league_participants";
   id: any;
+  participant: any;
   profiles?: {
     __typename?: "profiles";
     id: any;

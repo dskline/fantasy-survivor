@@ -13,6 +13,7 @@ export type GetLeagueParticipantsQuery = {
       node: {
         __typename?: "league_participants";
         id: any;
+        participant: any;
         profiles?: {
           __typename?: "profiles";
           id: any;

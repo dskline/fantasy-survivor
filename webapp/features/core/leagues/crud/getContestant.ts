@@ -1,6 +1,8 @@
 import { gql } from "urql";
 
-export const GET_CONTESTANT_FRAGMENT = gql`
+import { GetContestantFragment } from "@/features/core/leagues/crud/__generated__/getContestant.types";
+
+export const GET_CONTESTANT_FRAGMENT = gql<GetContestantFragment>`
   fragment GetContestant on contestant_seasons {
     id
     portrait_src
