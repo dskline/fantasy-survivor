@@ -1,9 +1,10 @@
 import { FaInfoCircle } from "react-icons/fa";
+import { IoPeopleSharp } from 'react-icons/io5';
 
 export const leagueTabs = {
   roster: {
     title: "Roster",
-    icon: FaInfoCircle,
+    icon: IoPeopleSharp,
   },
   rules: {
     title: "Rules",
