@@ -20,6 +20,8 @@ export const LoginForm = ({ onLogin }: Props) => {
   return (
     <div>
       <Auth
+        view="magic_link"
+        magicLink
         supabaseClient={supabaseClient}
         // providers={["google", "twitter", "twitch"]}
         socialColors
@@ -29,7 +31,6 @@ export const LoginForm = ({ onLogin }: Props) => {
           <button onClick={() => supabaseClient.auth.signOut()}>
             Sign out
           </button>
-          <div>{JSON.stringify(user)}</div>
         </div>
       )}
     </div>

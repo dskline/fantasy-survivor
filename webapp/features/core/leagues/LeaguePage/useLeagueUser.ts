@@ -17,7 +17,6 @@ export const useLeagueUser = (league: LeagueProps) => {
     },
     !userId
   );
-  console.log('new data', data);
 
   const participants = data?.league_participantsCollection?.edges || [];
   const participant = participants.find(

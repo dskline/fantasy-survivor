@@ -14,7 +14,7 @@ export const LeagueDetails = ({ league, user, onJoinLeague }: Props) => (
     {!user.participantId && (
       <button
         type="button"
-        className="m-4 block text-center font-semibold text-blue-600 underline"
+        className="m-6 block w-full text-center font-semibold text-blue-600 underline"
         onClick={onJoinLeague}
       >
         Join this league and begin filling out your roster
