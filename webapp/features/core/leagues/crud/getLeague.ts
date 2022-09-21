@@ -61,9 +61,13 @@ export const GET_LEAGUE = gql<GetLeagueQuery, GetLeagueQueryVariables>`
   }
 `;
 
+const UUID_LENGTH = 36;
 export const getLeague = async (client: Client, leagueId: string) =>
   client
     .query(GET_LEAGUE, {
-      leagueFilter: { id: { eq: leagueId } },
+      leagueFilter:
+        leagueId.length < UUID_LENGTH
+          ? { slug: { eq: leagueId } }
+          : { id: { eq: leagueId } },
     })
     .toPromise();

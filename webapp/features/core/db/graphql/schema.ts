@@ -1353,6 +1353,7 @@ export type Leagues = {
   rulesets?: Maybe<Rulesets>;
   season: Scalars["UUID"];
   seasons?: Maybe<Seasons>;
+  slug?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
 };
 
@@ -1393,6 +1394,7 @@ export type LeaguesFilter = {
   is_private?: InputMaybe<BooleanFilter>;
   ruleset?: InputMaybe<UuidFilter>;
   season?: InputMaybe<UuidFilter>;
+  slug?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -1404,6 +1406,7 @@ export type LeaguesInsertInput = {
   is_private?: InputMaybe<Scalars["Boolean"]>;
   ruleset?: InputMaybe<Scalars["UUID"]>;
   season?: InputMaybe<Scalars["UUID"]>;
+  slug?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -1423,6 +1426,7 @@ export type LeaguesOrderBy = {
   is_private?: InputMaybe<OrderByDirection>;
   ruleset?: InputMaybe<OrderByDirection>;
   season?: InputMaybe<OrderByDirection>;
+  slug?: InputMaybe<OrderByDirection>;
   title?: InputMaybe<OrderByDirection>;
 };
 
@@ -1434,6 +1438,7 @@ export type LeaguesUpdateInput = {
   is_private?: InputMaybe<Scalars["Boolean"]>;
   ruleset?: InputMaybe<Scalars["UUID"]>;
   season?: InputMaybe<Scalars["UUID"]>;
+  slug?: InputMaybe<Scalars["String"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -3305,6 +3310,11 @@ export type GraphCacheResolvers = {
       WithTypename<Leagues>,
       Record<string, never>,
       WithTypename<Seasons> | string
+    >;
+    slug?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["String"] | string
     >;
     title?: GraphCacheResolver<
       WithTypename<Leagues>,
