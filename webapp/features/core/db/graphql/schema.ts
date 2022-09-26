@@ -1458,6 +1458,7 @@ export type LpContestants = {
   league_participant: Scalars["UUID"];
   league_participants?: Maybe<LeagueParticipants>;
   rank?: Maybe<Scalars["String"]>;
+  updated_at: Scalars["Datetime"];
 };
 
 export type LpContestantsConnection = {
@@ -1485,6 +1486,7 @@ export type LpContestantsFilter = {
   id?: InputMaybe<UuidFilter>;
   league_participant?: InputMaybe<UuidFilter>;
   rank?: InputMaybe<StringFilter>;
+  updated_at?: InputMaybe<DatetimeFilter>;
 };
 
 export type LpContestantsInsertInput = {
@@ -1492,6 +1494,7 @@ export type LpContestantsInsertInput = {
   id?: InputMaybe<Scalars["UUID"]>;
   league_participant?: InputMaybe<Scalars["UUID"]>;
   rank?: InputMaybe<Scalars["String"]>;
+  updated_at?: InputMaybe<Scalars["Datetime"]>;
 };
 
 export type LpContestantsInsertResponse = {
@@ -1507,6 +1510,7 @@ export type LpContestantsOrderBy = {
   id?: InputMaybe<OrderByDirection>;
   league_participant?: InputMaybe<OrderByDirection>;
   rank?: InputMaybe<OrderByDirection>;
+  updated_at?: InputMaybe<OrderByDirection>;
 };
 
 export type LpContestantsUpdateInput = {
@@ -1514,6 +1518,7 @@ export type LpContestantsUpdateInput = {
   id?: InputMaybe<Scalars["UUID"]>;
   league_participant?: InputMaybe<Scalars["UUID"]>;
   rank?: InputMaybe<Scalars["String"]>;
+  updated_at?: InputMaybe<Scalars["Datetime"]>;
 };
 
 export type LpContestantsUpdateResponse = {
@@ -3412,6 +3417,11 @@ export type GraphCacheResolvers = {
       WithTypename<LpContestants>,
       Record<string, never>,
       Scalars["String"] | string
+    >;
+    updated_at?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      Scalars["Datetime"] | string
     >;
   };
   lp_contestantsConnection?: {

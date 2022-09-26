@@ -1,7 +1,7 @@
 import * as Types from "../../../db/graphql/schema";
 
 export type DeleteRosterMutationVariables = Types.Exact<{
-  participantId: Types.Scalars["UUID"];
+  deleteFilter?: Types.InputMaybe<Types.LpContestantsFilter>;
 }>;
 
 export type DeleteRosterMutation = {
@@ -13,7 +13,7 @@ export type DeleteRosterMutation = {
 };
 
 export type UpdateRosterMutationVariables = Types.Exact<{
-  participantId: Types.Scalars["UUID"];
+  deleteFilter?: Types.InputMaybe<Types.LpContestantsFilter>;
   inserted:
     | Array<Types.LpContestantsInsertInput>
     | Types.LpContestantsInsertInput;
