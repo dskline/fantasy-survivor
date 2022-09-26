@@ -1,5 +1,10 @@
 import { useUser } from "@supabase/auth-helpers-react";
-import { AnyVariables, OperationContext, TypedDocumentNode, useMutation } from 'urql'
+import {
+  AnyVariables,
+  OperationContext,
+  TypedDocumentNode,
+  useMutation,
+} from "urql";
 
 export const useAuthMutation = <D, V extends AnyVariables>(
   query: TypedDocumentNode<D, V>
@@ -16,7 +21,7 @@ export const useAuthMutation = <D, V extends AnyVariables>(
             Authorization: `Bearer ${accessToken}`,
           },
         },
-        ...context
+        ...context,
       }),
   };
 };

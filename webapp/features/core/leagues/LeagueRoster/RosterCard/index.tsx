@@ -58,7 +58,7 @@ export const RosterCard = ({
                   rosterIndexForSelected === -1 &&
                   i < lastOpenIndex &&
                   "[&+div]:hover:block [&~button_.text-xl]:hover:opacity-20 [&~.static]:hover:hidden",
-                !rosterContestant && i === rosterSize - 1 && "static",
+                !rosterContestant && i === rosterSize - 1 && "static"
               )}
               onClick={() => {
                 if (matchesSelected) {
@@ -109,10 +109,7 @@ export const RosterCard = ({
               />
             </button>
             <div
-              className={classnames(
-                "hidden",
-                i === rosterSize - 1 && "static",
-              )}
+              className={classnames("hidden", i === rosterSize - 1 && "static")}
             >
               <RosterItem currentContestant={rosterContestant?.data} />
             </div>

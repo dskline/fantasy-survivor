@@ -1,7 +1,10 @@
 import React from "react";
 
 import { RuleDetails } from "@/features/core/leagues/LeaguePage/RuleDetails";
-import { LeagueProps, LeagueUser } from '@/features/core/leagues/LeaguePage/types'
+import {
+  LeagueProps,
+  LeagueUser,
+} from "@/features/core/leagues/LeaguePage/types";
 
 type Props = {
   league: LeagueProps;

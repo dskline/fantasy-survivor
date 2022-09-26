@@ -75,7 +75,7 @@ export const UpdateRoster = ({
                   </button>
                 </span>
               )}
-              {(!isDirty && isSubmitSuccessful) && (
+              {!isDirty && isSubmitSuccessful && (
                 <span className="italic text-green-600">Saved!</span>
               )}
             </>
