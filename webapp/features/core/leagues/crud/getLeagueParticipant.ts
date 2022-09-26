@@ -10,6 +10,13 @@ export const GET_LEAGUE_PARTICIPANT_FRAGMENT = gql<GetLeagueParticipantFragment>
       id
       thumbnail_src
       display_name
+      user_featuresCollection {
+        edges {
+          node {
+            feature
+          }
+        }
+      }
     }
     lp_contestantsCollection(orderBy: { rank: AscNullsLast }) {
       edges {

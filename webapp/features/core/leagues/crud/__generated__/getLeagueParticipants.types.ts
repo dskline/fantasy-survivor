@@ -19,6 +19,13 @@ export type GetLeagueParticipantsQuery = {
           id: any;
           thumbnail_src?: string | null;
           display_name?: string | null;
+          user_featuresCollection?: {
+            __typename?: "user_featuresConnection";
+            edges: Array<{
+              __typename?: "user_featuresEdge";
+              node: { __typename?: "user_features"; feature: string };
+            }>;
+          } | null;
         } | null;
         lp_contestantsCollection?: {
           __typename?: "lp_contestantsConnection";

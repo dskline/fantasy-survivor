@@ -36,6 +36,7 @@ export type LeagueUser = {
   isLoading: boolean;
   participantId?: string;
   roster?: Roster;
+  features: Array<string>;
 };
 export type Roster = Array<{
   id?: string;

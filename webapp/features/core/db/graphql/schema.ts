@@ -138,6 +138,8 @@ export type Mutation = {
   /** Deletes zero or more records from the collection */
   deleteFromseasonsCollection: SeasonsDeleteResponse;
   /** Deletes zero or more records from the collection */
+  deleteFromuser_featuresCollection: UserFeaturesDeleteResponse;
+  /** Deletes zero or more records from the collection */
   deleteFromuser_rolesCollection: UserRolesDeleteResponse;
   /** Adds one or more `api_tokensInsertResponse` records to the collection */
   insertIntoapi_tokensCollection?: Maybe<ApiTokensInsertResponse>;
@@ -169,6 +171,8 @@ export type Mutation = {
   insertIntorulesetsCollection?: Maybe<RulesetsInsertResponse>;
   /** Adds one or more `seasonsInsertResponse` records to the collection */
   insertIntoseasonsCollection?: Maybe<SeasonsInsertResponse>;
+  /** Adds one or more `user_featuresInsertResponse` records to the collection */
+  insertIntouser_featuresCollection?: Maybe<UserFeaturesInsertResponse>;
   /** Adds one or more `user_rolesInsertResponse` records to the collection */
   insertIntouser_rolesCollection?: Maybe<UserRolesInsertResponse>;
   /** Updates zero or more records in the collection */
@@ -201,6 +205,8 @@ export type Mutation = {
   updaterulesetsCollection: RulesetsUpdateResponse;
   /** Updates zero or more records in the collection */
   updateseasonsCollection: SeasonsUpdateResponse;
+  /** Updates zero or more records in the collection */
+  updateuser_featuresCollection: UserFeaturesUpdateResponse;
   /** Updates zero or more records in the collection */
   updateuser_rolesCollection: UserRolesUpdateResponse;
 };
@@ -296,6 +302,12 @@ export type MutationDeleteFromseasonsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromuserFeaturesCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<UserFeaturesFilter>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationDeleteFromuserRolesCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<UserRolesFilter>;
@@ -374,6 +386,11 @@ export type MutationInsertIntorulesetsCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntoseasonsCollectionArgs = {
   objects: Array<SeasonsInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntouserFeaturesCollectionArgs = {
+  objects: Array<UserFeaturesInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -487,6 +504,13 @@ export type MutationUpdateseasonsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationUpdateuserFeaturesCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<UserFeaturesFilter>;
+  set: UserFeaturesUpdateInput;
+};
+
+/** The root type for creating and mutating data */
 export type MutationUpdateuserRolesCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<UserRolesFilter>;
@@ -548,6 +572,8 @@ export type Query = {
   rulesetsCollection?: Maybe<RulesetsConnection>;
   /** A pagable collection of type `seasons` */
   seasonsCollection?: Maybe<SeasonsConnection>;
+  /** A pagable collection of type `user_features` */
+  user_featuresCollection?: Maybe<UserFeaturesConnection>;
   /** A pagable collection of type `user_roles` */
   user_rolesCollection?: Maybe<UserRolesConnection>;
 };
@@ -710,6 +736,16 @@ export type QuerySeasonsCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SeasonsOrderBy>>;
+};
+
+/** The root type for querying data */
+export type QueryUserFeaturesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserFeaturesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserFeaturesOrderBy>>;
 };
 
 /** The root type for querying data */
@@ -1538,6 +1574,7 @@ export type Profiles = {
   leaguesCollection?: Maybe<LeaguesConnection>;
   rulesetsCollection?: Maybe<RulesetsConnection>;
   thumbnail_src?: Maybe<Scalars["String"]>;
+  user_featuresCollection?: Maybe<UserFeaturesConnection>;
   user_rolesCollection?: Maybe<UserRolesConnection>;
 };
 
@@ -1575,6 +1612,15 @@ export type ProfilesRulesetsCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<RulesetsOrderBy>>;
+};
+
+export type ProfilesUserFeaturesCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserFeaturesFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserFeaturesOrderBy>>;
 };
 
 export type ProfilesUserRolesCollectionArgs = {
@@ -2178,6 +2224,74 @@ export type SeasonsUpdateResponse = {
   records: Array<Seasons>;
 };
 
+export type UserFeatures = {
+  __typename?: "user_features";
+  feature: Scalars["String"];
+  id: Scalars["UUID"];
+  profiles?: Maybe<Profiles>;
+  user: Scalars["UUID"];
+};
+
+export type UserFeaturesConnection = {
+  __typename?: "user_featuresConnection";
+  edges: Array<UserFeaturesEdge>;
+  pageInfo: PageInfo;
+};
+
+export type UserFeaturesDeleteResponse = {
+  __typename?: "user_featuresDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserFeatures>;
+};
+
+export type UserFeaturesEdge = {
+  __typename?: "user_featuresEdge";
+  cursor: Scalars["String"];
+  node: UserFeatures;
+};
+
+export type UserFeaturesFilter = {
+  feature?: InputMaybe<StringFilter>;
+  id?: InputMaybe<UuidFilter>;
+  user?: InputMaybe<UuidFilter>;
+};
+
+export type UserFeaturesInsertInput = {
+  feature?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  user?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type UserFeaturesInsertResponse = {
+  __typename?: "user_featuresInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserFeatures>;
+};
+
+export type UserFeaturesOrderBy = {
+  feature?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  user?: InputMaybe<OrderByDirection>;
+};
+
+export type UserFeaturesUpdateInput = {
+  feature?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  user?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type UserFeaturesUpdateResponse = {
+  __typename?: "user_featuresUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserFeatures>;
+};
+
 export type UserRoles = {
   __typename?: "user_roles";
   profiles?: Maybe<Profiles>;
@@ -2470,6 +2584,20 @@ export type GraphCacheKeysConfig = {
   seasonsUpdateResponse?: (
     data: WithTypename<SeasonsUpdateResponse>
   ) => null | string;
+  user_features?: (data: WithTypename<UserFeatures>) => null | string;
+  user_featuresConnection?: (
+    data: WithTypename<UserFeaturesConnection>
+  ) => null | string;
+  user_featuresDeleteResponse?: (
+    data: WithTypename<UserFeaturesDeleteResponse>
+  ) => null | string;
+  user_featuresEdge?: (data: WithTypename<UserFeaturesEdge>) => null | string;
+  user_featuresInsertResponse?: (
+    data: WithTypename<UserFeaturesInsertResponse>
+  ) => null | string;
+  user_featuresUpdateResponse?: (
+    data: WithTypename<UserFeaturesUpdateResponse>
+  ) => null | string;
   user_roles?: (data: WithTypename<UserRoles>) => null | string;
   user_rolesConnection?: (
     data: WithTypename<UserRolesConnection>
@@ -2567,6 +2695,11 @@ export type GraphCacheResolvers = {
       WithTypename<Query>,
       QuerySeasonsCollectionArgs,
       WithTypename<SeasonsConnection> | string
+    >;
+    user_featuresCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryUserFeaturesCollectionArgs,
+      WithTypename<UserFeaturesConnection> | string
     >;
     user_rolesCollection?: GraphCacheResolver<
       WithTypename<Query>,
@@ -3520,6 +3653,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars["String"] | string
     >;
+    user_featuresCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesUserFeaturesCollectionArgs,
+      WithTypename<UserFeaturesConnection> | string
+    >;
     user_rolesCollection?: GraphCacheResolver<
       WithTypename<Profiles>,
       ProfilesUserRolesCollectionArgs,
@@ -4158,6 +4296,88 @@ export type GraphCacheResolvers = {
       Array<WithTypename<Seasons> | string>
     >;
   };
+  user_features?: {
+    feature?: GraphCacheResolver<
+      WithTypename<UserFeatures>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<UserFeatures>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<UserFeatures>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    user?: GraphCacheResolver<
+      WithTypename<UserFeatures>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+  };
+  user_featuresConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<UserFeaturesConnection>,
+      Record<string, never>,
+      Array<WithTypename<UserFeaturesEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<UserFeaturesConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  user_featuresDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserFeaturesDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserFeaturesDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserFeatures> | string>
+    >;
+  };
+  user_featuresEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<UserFeaturesEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<UserFeaturesEdge>,
+      Record<string, never>,
+      WithTypename<UserFeatures> | string
+    >;
+  };
+  user_featuresInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserFeaturesInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserFeaturesInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserFeatures> | string>
+    >;
+  };
+  user_featuresUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserFeaturesUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserFeaturesUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserFeatures> | string>
+    >;
+  };
   user_roles?: {
     profiles?: GraphCacheResolver<
       WithTypename<UserRoles>,
@@ -4303,6 +4523,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationDeleteFromseasonsCollectionArgs,
     WithTypename<SeasonsDeleteResponse>
   >;
+  deleteFromuser_featuresCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromuserFeaturesCollectionArgs,
+    WithTypename<UserFeaturesDeleteResponse>
+  >;
   deleteFromuser_rolesCollection?: GraphCacheOptimisticMutationResolver<
     MutationDeleteFromuserRolesCollectionArgs,
     WithTypename<UserRolesDeleteResponse>
@@ -4367,6 +4591,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationInsertIntoseasonsCollectionArgs,
     Maybe<WithTypename<SeasonsInsertResponse>>
   >;
+  insertIntouser_featuresCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntouserFeaturesCollectionArgs,
+    Maybe<WithTypename<UserFeaturesInsertResponse>>
+  >;
   insertIntouser_rolesCollection?: GraphCacheOptimisticMutationResolver<
     MutationInsertIntouserRolesCollectionArgs,
     Maybe<WithTypename<UserRolesInsertResponse>>
@@ -4430,6 +4658,10 @@ export type GraphCacheOptimisticUpdaters = {
   updateseasonsCollection?: GraphCacheOptimisticMutationResolver<
     MutationUpdateseasonsCollectionArgs,
     WithTypename<SeasonsUpdateResponse>
+  >;
+  updateuser_featuresCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateuserFeaturesCollectionArgs,
+    WithTypename<UserFeaturesUpdateResponse>
   >;
   updateuser_rolesCollection?: GraphCacheOptimisticMutationResolver<
     MutationUpdateuserRolesCollectionArgs,
@@ -4512,6 +4744,12 @@ export type GraphCacheUpdaters = {
     deleteFromseasonsCollection?: GraphCacheUpdateResolver<
       { deleteFromseasonsCollection: WithTypename<SeasonsDeleteResponse> },
       MutationDeleteFromseasonsCollectionArgs
+    >;
+    deleteFromuser_featuresCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromuser_featuresCollection: WithTypename<UserFeaturesDeleteResponse>;
+      },
+      MutationDeleteFromuserFeaturesCollectionArgs
     >;
     deleteFromuser_rolesCollection?: GraphCacheUpdateResolver<
       { deleteFromuser_rolesCollection: WithTypename<UserRolesDeleteResponse> },
@@ -4621,6 +4859,14 @@ export type GraphCacheUpdaters = {
       },
       MutationInsertIntoseasonsCollectionArgs
     >;
+    insertIntouser_featuresCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntouser_featuresCollection: Maybe<
+          WithTypename<UserFeaturesInsertResponse>
+        >;
+      },
+      MutationInsertIntouserFeaturesCollectionArgs
+    >;
     insertIntouser_rolesCollection?: GraphCacheUpdateResolver<
       {
         insertIntouser_rolesCollection: Maybe<
@@ -4700,6 +4946,12 @@ export type GraphCacheUpdaters = {
     updateseasonsCollection?: GraphCacheUpdateResolver<
       { updateseasonsCollection: WithTypename<SeasonsUpdateResponse> },
       MutationUpdateseasonsCollectionArgs
+    >;
+    updateuser_featuresCollection?: GraphCacheUpdateResolver<
+      {
+        updateuser_featuresCollection: WithTypename<UserFeaturesUpdateResponse>;
+      },
+      MutationUpdateuserFeaturesCollectionArgs
     >;
     updateuser_rolesCollection?: GraphCacheUpdateResolver<
       { updateuser_rolesCollection: WithTypename<UserRolesUpdateResponse> },

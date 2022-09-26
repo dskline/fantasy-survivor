@@ -1,7 +1,12 @@
 import { FaInfoCircle } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
+import { MdOutlineLeaderboard } from "react-icons/md";
 
 export const leagueTabs = {
+  ranking: {
+    title: "Ranking",
+    icon: MdOutlineLeaderboard,
+  },
   roster: {
     title: "Roster",
     icon: IoPeopleSharp,
