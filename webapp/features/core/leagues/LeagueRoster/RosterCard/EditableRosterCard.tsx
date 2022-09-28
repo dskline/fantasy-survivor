@@ -1,6 +1,7 @@
 import React from "react";
 
 import classnames from "classnames";
+import { toast } from "react-toastify";
 
 import { Contestant, Roster } from "@/features/core/leagues/LeaguePage/types";
 import { RosterCard } from "@/features/core/leagues/LeagueRoster/RosterCard/index";
@@ -22,7 +23,15 @@ export const EditableRosterCard = ({
   setSelectedContestant,
   renderActionBar,
 }: Props) => (
-  <RosterCard teamName="My Team" renderActionBar={renderActionBar}>
+  <RosterCard
+    teamName="My Team"
+    onTeamNameChange={() => {
+      toast.info("Editing your team name will be implemented soon!", {
+        toastId: "edit-team-name",
+      });
+    }}
+    renderActionBar={renderActionBar}
+  >
     {[...Array.from({ length: rosterSize })].map((_, i) => {
       const rosterContestant = roster[i];
       const matchesSelected =

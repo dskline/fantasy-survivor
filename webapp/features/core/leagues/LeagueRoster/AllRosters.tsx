@@ -27,7 +27,12 @@ export const AllRosters = ({ league, user }: Props) => {
   return (
     <div className="flex flex-col gap-6">
       {userRoster && (
-        <RosterCard teamName={userRoster.teamName}>
+        <RosterCard
+          teamName={userRoster.teamName}
+          onTeamNameChange={() => {
+            // TODO
+          }}
+        >
           <RosterItems roster={userRoster.roster} />
         </RosterCard>
       )}
