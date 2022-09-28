@@ -1,8 +1,5 @@
-import { User } from "@supabase/auth-helpers-nextjs";
-
 import {
   LeagueFormats,
-  Maybe,
   RealitySeries,
   Seasons,
 } from "@/features/core/db/graphql/schema";
@@ -32,7 +29,7 @@ export type LeagueProps = {
   }>;
 };
 export type LeagueUser = {
-  data: Maybe<User>;
+  id?: string;
   isLoading: boolean;
   participantId?: string;
   userRoster?: UserRoster;

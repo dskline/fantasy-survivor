@@ -26,12 +26,12 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
   const [isJoining, setIsJoining] = React.useState(false);
 
   useEffect(() => {
-    if (isJoining && !user.data?.id) {
+    if (isJoining && !user.id) {
       setShowLoginModal(true);
-    } else if (isJoining && user.data?.id) {
+    } else if (isJoining && user.id) {
       createLeagueParticipant({
         league: league.id,
-        participant: user.data.id,
+        participant: user.id,
       })
         .then(() => {
           setIsJoining(false);
@@ -41,7 +41,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
           toast.error("There was an error joining the league.");
         });
     }
-  }, [isJoining, user.data?.id, league.id]);
+  }, [isJoining, user.id, league.id]);
 
   return (
     <>

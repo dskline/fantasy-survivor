@@ -1,11 +1,11 @@
 import { useGetLeagueParticipants } from "@/features/core/leagues/crud/getLeagueParticipants";
+import { toLeagueUsers } from "@/features/core/leagues/LeaguePage/toLeagueUsers";
 import {
   LeagueProps,
   LeagueUser,
   Roster,
 } from "@/features/core/leagues/LeaguePage/types";
 import { ContestantChip } from "@/features/core/leagues/LeagueRoster/ContestantChip";
-import { toRosterByUser } from "@/features/core/leagues/LeagueRoster/RosterAdapter";
 import { RosterCard } from "@/features/core/leagues/LeagueRoster/RosterCard";
 
 type Props = {
@@ -21,8 +21,8 @@ export const AllRosters = ({ league, user }: Props) => {
   if (!data) {
     return <div>Loading...</div>;
   }
-  const rosters = toRosterByUser(league, data);
-  const userRoster = user.data?.id ? rosters[user.data?.id] : undefined;
+  const leagueUsers = toLeagueUsers(league, data);
+  const userRoster = user.id ? leagueUsers[user.id]?.userRoster : undefined;
 
   return (
     <div className="flex flex-col gap-6">
@@ -36,13 +36,13 @@ export const AllRosters = ({ league, user }: Props) => {
           <RosterItems roster={userRoster.roster} />
         </RosterCard>
       )}
-      {Object.keys(rosters)
-        .filter((key) => key !== user.data?.id)
+      {Object.keys(leagueUsers)
+        .filter((key) => key !== user.id)
         .map((key) => {
-          const roster = rosters[key]?.roster || [];
+          const userRoster = leagueUsers[key]?.userRoster;
           return (
-            <RosterCard key={key} teamName={rosters[key]?.teamName || ""}>
-              <RosterItems roster={roster} />
+            <RosterCard key={key} teamName={userRoster?.teamName || ""}>
+              <RosterItems roster={userRoster?.roster || []} />
             </RosterCard>
           );
         })}

@@ -1,11 +1,12 @@
 import { useUser } from "@supabase/auth-helpers-react";
 
 import { useGetLeagueParticipants } from "@/features/core/leagues/crud/getLeagueParticipants";
+import { toLeagueUsers } from "@/features/core/leagues/LeaguePage/toLeagueUsers";
 import {
   LeagueProps,
   LeagueUser,
+  UserRoster,
 } from "@/features/core/leagues/LeaguePage/types";
-import { toRosterByUser } from "@/features/core/leagues/LeagueRoster/RosterAdapter";
 
 export const useLeagueUser = (league: LeagueProps): LeagueUser => {
   const { user, isLoading } = useUser();
@@ -25,16 +26,21 @@ export const useLeagueUser = (league: LeagueProps): LeagueUser => {
   const participant = participants.find(
     (edge) => edge.node.participant === userId
   )?.node;
+  const features =
+    participant?.profiles?.user_featuresCollection?.edges.map(
+      (edge) => edge.node.feature
+    ) || [];
 
-  return {
-    data: user,
-    participantId: participant?.id,
-    isLoading: isLoading || fetching,
-    userRoster:
-      data && userId ? toRosterByUser(league, data)[userId] : undefined,
-    features:
-      participant?.profiles?.user_featuresCollection?.edges.map(
-        (edge) => edge.node.feature
-      ) || [],
-  };
+  return data && userId
+    ? {
+        ...(toLeagueUsers(league, data)[userId] as LeagueUser),
+        isLoading: isLoading || fetching,
+        features,
+      }
+    : {
+        isLoading: isLoading || fetching,
+        userRoster: {} as UserRoster,
+        features: [],
+        watched: [],
+      };
 };

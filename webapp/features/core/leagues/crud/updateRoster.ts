@@ -8,7 +8,6 @@ import {
   UpdateRosterMutationVariables,
 } from "@/features/core/leagues/crud/__generated__/updateRoster.types";
 import { Roster } from "@/features/core/leagues/LeaguePage/types";
-import { toLpContestants } from "@/features/core/leagues/LeagueRoster/RosterAdapter";
 
 const DELETE_ROSTER = gql<DeleteRosterMutation, DeleteRosterMutationVariables>`
   mutation DeleteRoster($deleteFilter: lp_contestantsFilter) {
@@ -60,3 +59,10 @@ export const useUpdateRoster = () => {
       : deleteRoster({ deleteFilter });
   };
 };
+
+const toLpContestants = (participantId: string, roster: Roster) =>
+  (roster || []).map((contestant, i) => ({
+    contestant_season: contestant.data.id,
+    rank: `${i}`,
+    league_participant: participantId,
+  }));
