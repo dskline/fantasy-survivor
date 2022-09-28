@@ -10,10 +10,8 @@ import { ssrClient } from "@/features/core/db/graphql/ssrClient";
 import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
 import { LeaguePage } from "@/features/core/leagues/LeaguePage";
-import {
-  Contestant,
-  LeagueProps,
-} from "@/features/core/leagues/LeaguePage/types";
+import { toLeagueProps } from "@/features/core/leagues/LeaguePage/toLeagueProps";
+import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
 
 type UrlParams = {
   id: string;
@@ -67,56 +65,11 @@ export const getServerSideProps: GetServerSideProps<
   if (!league) {
     return { notFound: true };
   }
-  const season = league.seasons;
-  const show = season?.reality_series;
-  const format = league.league_formats;
-  const contestants = season?.contestant_seasonsCollection?.edges?.map(
-    ({ node }) => {
-      const { id, team_color, portrait_src, contestants } = node;
-      if (!contestants) {
-        throw new Error("Contestant not found");
-      }
-      return {
-        id,
-        team_color,
-        portrait_src,
-        fullName: contestants.firstname + " " + contestants.surname,
-        slug: contestants.slug,
-        firstname: contestants.firstname,
-        surname: contestants.surname,
-        nickname: contestants.nickname,
-      } as Contestant;
-    }
-  );
-
-  const ruleMetadata = show?.rulesCollection?.edges.map(({ node }) => node);
-  const orderedRules: LeagueProps["orderedRules"] = [];
-  const leagueRules = JSON.parse(league.rulesets?.data).rules;
-  for (const rule of ruleMetadata || []) {
-    if (leagueRules[rule.id]) {
-      orderedRules.push({
-        id: rule.id,
-        description: rule.description,
-        points: leagueRules[rule.id].points,
-      });
-    }
-  }
-  orderedRules.sort((a, b) => b.points - a.points);
-
-  if (!season || !show || !format || !contestants) {
-    return { notFound: true };
-  }
 
   return {
     props: {
       urqlState: ssrCache.extractData(),
-      id: league.id,
-      title: league.title,
-      show,
-      season,
-      format,
-      orderedRules,
-      contestants,
+      ...toLeagueProps(data),
     },
   };
 };
