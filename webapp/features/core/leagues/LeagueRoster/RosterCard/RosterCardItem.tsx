@@ -5,17 +5,17 @@ import { ContestantChip } from "@/features/core/leagues/LeagueRoster/ContestantC
 
 type Props = {
   ranking?: number;
-  currentContestant?: Contestant;
+  contestant?: Contestant;
   hoverContestant?: Contestant;
 };
-export const RosterItem = ({
+export const RosterCardItem = ({
   ranking,
-  currentContestant,
+  contestant,
   hoverContestant,
 }: Props) => (
   <div className="group z-10 grid">
     {/* Placeholder */}
-    {!currentContestant && (
+    {!contestant && (
       <div className="col-span-full row-span-full row-start-1 mx-auto opacity-60 lg:group-hover:opacity-0">
         <ContestantChip
           renderPlaceholder={() => (
@@ -33,9 +33,9 @@ export const RosterItem = ({
       </div>
     )}
     {/* Always show the current contestant if exists */}
-    {currentContestant && (
+    {contestant && (
       <div className="col-span-full row-span-full row-start-1 mx-auto lg:hover:opacity-0">
-        <ContestantChip contestant={currentContestant} ranking={ranking} />
+        <ContestantChip contestant={contestant} ranking={ranking} />
       </div>
     )}
   </div>

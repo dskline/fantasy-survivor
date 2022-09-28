@@ -30,7 +30,8 @@ export const useLeagueUser = (league: LeagueProps): LeagueUser => {
     data: user,
     participantId: participant?.id,
     isLoading: isLoading || fetching,
-    roster: data && userId ? toRosterByUser(league, data)[userId] : undefined,
+    userRoster:
+      data && userId ? toRosterByUser(league, data)[userId] : undefined,
     features:
       participant?.profiles?.user_featuresCollection?.edges.map(
         (edge) => edge.node.feature

@@ -35,11 +35,16 @@ export type LeagueUser = {
   data: Maybe<User>;
   isLoading: boolean;
   participantId?: string;
-  roster?: Roster;
+  userRoster?: UserRoster;
   features: Array<string>;
 };
-export type Roster = Array<{
+export type RosterItem = {
   id?: string;
   rank: string;
   data: Contestant;
-}>;
+};
+export type Roster = Array<RosterItem>;
+export type UserRoster = {
+  teamName: string;
+  roster: Roster;
+};

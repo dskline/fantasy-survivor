@@ -9,7 +9,7 @@ import {
   LeagueUser,
   Roster,
 } from "@/features/core/leagues/LeaguePage/types";
-import { RosterCard } from "@/features/core/leagues/LeagueRoster/RosterCard";
+import { EditableRosterCard } from "@/features/core/leagues/LeagueRoster/RosterCard/EditableRosterCard";
 import { RosterHeader } from "@/features/core/leagues/LeagueRoster/RosterHeader";
 
 type UpdateRosterFields = {
@@ -29,7 +29,7 @@ export const UpdateRoster = ({
 
   const form = useForm<UpdateRosterFields>({
     defaultValues: {
-      roster: user.roster,
+      roster: user.userRoster?.roster || [],
     },
   });
   const { handleSubmit, reset, getValues, watch, setValue, formState } = form;
@@ -51,10 +51,10 @@ export const UpdateRoster = ({
       <div className="flex flex-col gap-5">
         <RosterHeader
           isRosterComplete={
-            Object.keys(isDirty ? user.roster || {} : roster).length === 9
+            Object.keys(isDirty ? user.userRoster || {} : roster).length === 9
           }
         />
-        <RosterCard
+        <EditableRosterCard
           roster={getValues("roster")}
           rosterSize={9}
           onRosterChange={(roster) => {
