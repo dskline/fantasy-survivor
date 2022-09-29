@@ -36,11 +36,17 @@ export const toLeagueUsers = (
           };
         }
       }
+      const watched =
+        participant.node.profiles?.user_watchedCollection?.edges.map(
+          (edge) => edge.node.episode
+        ) || [];
+
       leagueUsers[profileId] = {
         id: profileId,
         participantId: participant.node.id,
         features: [],
         isLoading: false,
+        watched,
         userRoster: {
           teamName: `Team ${
             participant.node.profiles?.display_name || "[name unassigned]"

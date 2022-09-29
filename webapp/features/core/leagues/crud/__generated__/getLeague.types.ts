@@ -44,6 +44,30 @@ export type GetLeagueQuery = {
               }>;
             } | null;
           } | null;
+          episodesCollection?: {
+            __typename?: "episodesConnection";
+            edges: Array<{
+              __typename?: "episodesEdge";
+              node: {
+                __typename?: "episodes";
+                id: any;
+                start_time: any;
+                eventsCollection?: {
+                  __typename?: "eventsConnection";
+                  edges: Array<{
+                    __typename?: "eventsEdge";
+                    node: {
+                      __typename?: "events";
+                      id: any;
+                      contestant_season: any;
+                      rule: string;
+                      comment?: string | null;
+                    };
+                  }>;
+                } | null;
+              };
+            }>;
+          } | null;
           contestant_seasonsCollection?: {
             __typename?: "contestant_seasonsConnection";
             edges: Array<{

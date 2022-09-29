@@ -45,6 +45,24 @@ export const GET_LEAGUE = gql<GetLeagueQuery, GetLeagueQueryVariables>`
                 }
               }
             }
+            episodesCollection(orderBy: { start_time: AscNullsLast }) {
+              edges {
+                node {
+                  id
+                  start_time
+                  eventsCollection {
+                    edges {
+                      node {
+                        id
+                        contestant_season
+                        rule
+                        comment
+                      }
+                    }
+                  }
+                }
+              }
+            }
             contestant_seasonsCollection(
               orderBy: { team_color: DescNullsLast }
             ) {

@@ -17,6 +17,15 @@ export const GET_LEAGUE_PARTICIPANT_FRAGMENT = gql<GetLeagueParticipantFragment>
           }
         }
       }
+      user_watchedCollection {
+        edges {
+          node {
+            id
+            user
+            episode
+          }
+        }
+      }
     }
     lp_contestantsCollection(orderBy: { rank: AscNullsLast }) {
       edges {

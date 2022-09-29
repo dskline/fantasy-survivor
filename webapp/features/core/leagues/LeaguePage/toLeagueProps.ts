@@ -45,6 +45,28 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
   }
   orderedRules.sort((a, b) => b.points - a.points);
 
+  const orderedEpisodes: LeagueProps["orderedEpisodes"] = [];
+  for (const episode of season?.episodesCollection?.edges || []) {
+    const events = episode.node?.eventsCollection?.edges?.map(({ node }) => {
+      const contestant = contestants?.find(
+        (c) => c.id === node.contestant_season?.id
+      );
+      if (!contestant) {
+        throw new Error("Contestant not found");
+      }
+      return {
+        contestant,
+        rule: node.rule,
+        comment: node.comment,
+      };
+    });
+    orderedEpisodes.push({
+      id: episode.node?.id,
+      startTime: episode.node?.start_time,
+      events: events || [],
+    });
+  }
+
   if (!season || !show || !format || !contestants) {
     throw new Error("Error: Missing data");
   }
@@ -54,7 +76,8 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
     show,
     season,
     format,
-    orderedRules,
     contestants,
+    orderedRules,
+    orderedEpisodes,
   };
 };

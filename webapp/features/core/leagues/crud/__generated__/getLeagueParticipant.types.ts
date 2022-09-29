@@ -16,6 +16,13 @@ export type GetLeagueParticipantFragment = {
         node: { __typename?: "user_features"; feature: string };
       }>;
     } | null;
+    user_watchedCollection?: {
+      __typename?: "user_watchedConnection";
+      edges: Array<{
+        __typename?: "user_watchedEdge";
+        node: { __typename?: "user_watched"; id: any; user: any; episode: any };
+      }>;
+    } | null;
   } | null;
   lp_contestantsCollection?: {
     __typename?: "lp_contestantsConnection";

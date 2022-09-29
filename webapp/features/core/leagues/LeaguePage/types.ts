@@ -14,6 +14,16 @@ export type Contestant = {
   portrait_src: string;
   team_color: string;
 };
+export type Episode = {
+  id: string;
+  startTime: string;
+  watched?: boolean;
+  events: Array<{
+    contestant: Contestant;
+    rule: string;
+    comment?: string | null;
+  }>;
+};
 
 export type LeagueProps = {
   id: string;
@@ -27,6 +37,7 @@ export type LeagueProps = {
     description: string;
     points: number;
   }>;
+  orderedEpisodes: Array<Episode>;
 };
 export type LeagueUser = {
   id?: string;
@@ -34,6 +45,8 @@ export type LeagueUser = {
   participantId?: string;
   userRoster?: UserRoster;
   features: Array<string>;
+  watched: Array<string>;
+  // scoreByEpisode: Array<number>;
 };
 export type RosterItem = {
   id?: string;
