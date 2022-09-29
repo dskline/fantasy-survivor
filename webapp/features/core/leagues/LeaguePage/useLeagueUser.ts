@@ -41,6 +41,5 @@ export const useLeagueUser = (league: LeagueProps): LeagueUser => {
         isLoading: isLoading || fetching,
         userRoster: {} as UserRoster,
         features: [],
-        watched: [],
       };
 };

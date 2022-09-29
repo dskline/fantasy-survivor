@@ -13,7 +13,6 @@ import {
   LeagueProps,
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
-import { LeagueRoster } from "@/features/core/leagues/LeagueRoster";
 import { AllRosters } from "@/features/core/leagues/LeagueRoster/AllRosters";
 
 type Props = {
@@ -55,9 +54,6 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
           <LeagueTabs user={user} />
         </div>
         <main className="z-10 grid min-h-screen rounded-t-xl bg-white p-6 pb-40 shadow-2xl">
-          <FadeIn show={tab === "ranking"}>
-            <AllRosters league={league} user={user} />
-          </FadeIn>
           <FadeIn show={tab === "rules"}>
             <LeagueDetails
               league={league}
@@ -66,7 +62,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
             />
           </FadeIn>
           <FadeIn show={tab === "roster"}>
-            <LeagueRoster league={league} user={user} />
+            <AllRosters league={league} user={user} />
           </FadeIn>
         </main>
       </div>

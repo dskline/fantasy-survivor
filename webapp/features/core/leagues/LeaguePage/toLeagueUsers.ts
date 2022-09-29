@@ -41,7 +41,6 @@ export const toLeagueUsers = (
         participantId: participant.node.id,
         features: [],
         isLoading: false,
-        watched: [],
         userRoster: {
           teamName: `Team ${
             participant.node.profiles?.display_name || "[name unassigned]"

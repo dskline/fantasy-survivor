@@ -1,10 +1,13 @@
-import { GetLeagueQuery } from '@/features/core/leagues/crud/__generated__/getLeague.types'
-import { Contestant, LeagueProps } from '@/features/core/leagues/LeaguePage/types'
+import { GetLeagueQuery } from "@/features/core/leagues/crud/__generated__/getLeague.types";
+import {
+  Contestant,
+  LeagueProps,
+} from "@/features/core/leagues/LeaguePage/types";
 
 export const toLeagueProps = (data: GetLeagueQuery) => {
   const league = data?.leaguesCollection?.edges?.[0]?.node;
   if (!league) {
-    throw new Error('League not found');
+    throw new Error("League not found");
   }
   const season = league.seasons;
   const show = season?.reality_series;
@@ -53,5 +56,5 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
     format,
     orderedRules,
     contestants,
-  }
-}
+  };
+};

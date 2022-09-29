@@ -141,6 +141,8 @@ export type Mutation = {
   deleteFromuser_featuresCollection: UserFeaturesDeleteResponse;
   /** Deletes zero or more records from the collection */
   deleteFromuser_rolesCollection: UserRolesDeleteResponse;
+  /** Deletes zero or more records from the collection */
+  deleteFromuser_watchedCollection: UserWatchedDeleteResponse;
   /** Adds one or more `api_tokensInsertResponse` records to the collection */
   insertIntoapi_tokensCollection?: Maybe<ApiTokensInsertResponse>;
   /** Adds one or more `contestant_seasonsInsertResponse` records to the collection */
@@ -175,6 +177,8 @@ export type Mutation = {
   insertIntouser_featuresCollection?: Maybe<UserFeaturesInsertResponse>;
   /** Adds one or more `user_rolesInsertResponse` records to the collection */
   insertIntouser_rolesCollection?: Maybe<UserRolesInsertResponse>;
+  /** Adds one or more `user_watchedInsertResponse` records to the collection */
+  insertIntouser_watchedCollection?: Maybe<UserWatchedInsertResponse>;
   /** Updates zero or more records in the collection */
   updateapi_tokensCollection: ApiTokensUpdateResponse;
   /** Updates zero or more records in the collection */
@@ -209,6 +213,8 @@ export type Mutation = {
   updateuser_featuresCollection: UserFeaturesUpdateResponse;
   /** Updates zero or more records in the collection */
   updateuser_rolesCollection: UserRolesUpdateResponse;
+  /** Updates zero or more records in the collection */
+  updateuser_watchedCollection: UserWatchedUpdateResponse;
 };
 
 /** The root type for creating and mutating data */
@@ -314,6 +320,12 @@ export type MutationDeleteFromuserRolesCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromuserWatchedCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<UserWatchedFilter>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationInsertIntoapiTokensCollectionArgs = {
   objects: Array<ApiTokensInsertInput>;
 };
@@ -396,6 +408,11 @@ export type MutationInsertIntouserFeaturesCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntouserRolesCollectionArgs = {
   objects: Array<UserRolesInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntouserWatchedCollectionArgs = {
+  objects: Array<UserWatchedInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -517,6 +534,13 @@ export type MutationUpdateuserRolesCollectionArgs = {
   set: UserRolesUpdateInput;
 };
 
+/** The root type for creating and mutating data */
+export type MutationUpdateuserWatchedCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<UserWatchedFilter>;
+  set: UserWatchedUpdateInput;
+};
+
 /** Defines a per-field sorting order */
 export enum OrderByDirection {
   /** Ascending order, nulls first */
@@ -576,6 +600,8 @@ export type Query = {
   user_featuresCollection?: Maybe<UserFeaturesConnection>;
   /** A pagable collection of type `user_roles` */
   user_rolesCollection?: Maybe<UserRolesConnection>;
+  /** A pagable collection of type `user_watched` */
+  user_watchedCollection?: Maybe<UserWatchedConnection>;
 };
 
 /** The root type for querying data */
@@ -756,6 +782,16 @@ export type QueryUserRolesCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<UserRolesOrderBy>>;
+};
+
+/** The root type for querying data */
+export type QueryUserWatchedCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserWatchedFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserWatchedOrderBy>>;
 };
 
 /** Boolean expression comparing fields on type "String" */
@@ -1053,6 +1089,7 @@ export type Episodes = {
   season: Scalars["UUID"];
   seasons?: Maybe<Seasons>;
   start_time: Scalars["Datetime"];
+  user_watchedCollection?: Maybe<UserWatchedConnection>;
 };
 
 export type EpisodesEventsCollectionArgs = {
@@ -1062,6 +1099,15 @@ export type EpisodesEventsCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<EventsOrderBy>>;
+};
+
+export type EpisodesUserWatchedCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserWatchedFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserWatchedOrderBy>>;
 };
 
 export type EpisodesConnection = {
@@ -1576,6 +1622,7 @@ export type Profiles = {
   thumbnail_src?: Maybe<Scalars["String"]>;
   user_featuresCollection?: Maybe<UserFeaturesConnection>;
   user_rolesCollection?: Maybe<UserRolesConnection>;
+  user_watchedCollection?: Maybe<UserWatchedConnection>;
 };
 
 export type ProfilesApiTokensCollectionArgs = {
@@ -1630,6 +1677,15 @@ export type ProfilesUserRolesCollectionArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<UserRolesOrderBy>>;
+};
+
+export type ProfilesUserWatchedCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserWatchedFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserWatchedOrderBy>>;
 };
 
 export type ProfilesConnection = {
@@ -2356,6 +2412,75 @@ export type UserRolesUpdateResponse = {
   records: Array<UserRoles>;
 };
 
+export type UserWatched = {
+  __typename?: "user_watched";
+  episode: Scalars["UUID"];
+  episodes?: Maybe<Episodes>;
+  id: Scalars["UUID"];
+  profiles?: Maybe<Profiles>;
+  user: Scalars["UUID"];
+};
+
+export type UserWatchedConnection = {
+  __typename?: "user_watchedConnection";
+  edges: Array<UserWatchedEdge>;
+  pageInfo: PageInfo;
+};
+
+export type UserWatchedDeleteResponse = {
+  __typename?: "user_watchedDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserWatched>;
+};
+
+export type UserWatchedEdge = {
+  __typename?: "user_watchedEdge";
+  cursor: Scalars["String"];
+  node: UserWatched;
+};
+
+export type UserWatchedFilter = {
+  episode?: InputMaybe<UuidFilter>;
+  id?: InputMaybe<UuidFilter>;
+  user?: InputMaybe<UuidFilter>;
+};
+
+export type UserWatchedInsertInput = {
+  episode?: InputMaybe<Scalars["UUID"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  user?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type UserWatchedInsertResponse = {
+  __typename?: "user_watchedInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserWatched>;
+};
+
+export type UserWatchedOrderBy = {
+  episode?: InputMaybe<OrderByDirection>;
+  id?: InputMaybe<OrderByDirection>;
+  user?: InputMaybe<OrderByDirection>;
+};
+
+export type UserWatchedUpdateInput = {
+  episode?: InputMaybe<Scalars["UUID"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  user?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type UserWatchedUpdateResponse = {
+  __typename?: "user_watchedUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserWatched>;
+};
+
 export type WithTypename<T extends { __typename?: any }> = Partial<T> & {
   __typename: NonNullable<T["__typename"]>;
 };
@@ -2612,6 +2737,20 @@ export type GraphCacheKeysConfig = {
   user_rolesUpdateResponse?: (
     data: WithTypename<UserRolesUpdateResponse>
   ) => null | string;
+  user_watched?: (data: WithTypename<UserWatched>) => null | string;
+  user_watchedConnection?: (
+    data: WithTypename<UserWatchedConnection>
+  ) => null | string;
+  user_watchedDeleteResponse?: (
+    data: WithTypename<UserWatchedDeleteResponse>
+  ) => null | string;
+  user_watchedEdge?: (data: WithTypename<UserWatchedEdge>) => null | string;
+  user_watchedInsertResponse?: (
+    data: WithTypename<UserWatchedInsertResponse>
+  ) => null | string;
+  user_watchedUpdateResponse?: (
+    data: WithTypename<UserWatchedUpdateResponse>
+  ) => null | string;
 };
 
 export type GraphCacheResolvers = {
@@ -2705,6 +2844,11 @@ export type GraphCacheResolvers = {
       WithTypename<Query>,
       QueryUserRolesCollectionArgs,
       WithTypename<UserRolesConnection> | string
+    >;
+    user_watchedCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryUserWatchedCollectionArgs,
+      WithTypename<UserWatchedConnection> | string
     >;
   };
   PageInfo?: {
@@ -3040,6 +3184,11 @@ export type GraphCacheResolvers = {
       WithTypename<Episodes>,
       Record<string, never>,
       Scalars["Datetime"] | string
+    >;
+    user_watchedCollection?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      EpisodesUserWatchedCollectionArgs,
+      WithTypename<UserWatchedConnection> | string
     >;
   };
   episodesConnection?: {
@@ -3662,6 +3811,11 @@ export type GraphCacheResolvers = {
       WithTypename<Profiles>,
       ProfilesUserRolesCollectionArgs,
       WithTypename<UserRolesConnection> | string
+    >;
+    user_watchedCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesUserWatchedCollectionArgs,
+      WithTypename<UserWatchedConnection> | string
     >;
   };
   profilesConnection?: {
@@ -4460,6 +4614,93 @@ export type GraphCacheResolvers = {
       Array<WithTypename<UserRoles> | string>
     >;
   };
+  user_watched?: {
+    episode?: GraphCacheResolver<
+      WithTypename<UserWatched>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    episodes?: GraphCacheResolver<
+      WithTypename<UserWatched>,
+      Record<string, never>,
+      WithTypename<Episodes> | string
+    >;
+    id?: GraphCacheResolver<
+      WithTypename<UserWatched>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<UserWatched>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    user?: GraphCacheResolver<
+      WithTypename<UserWatched>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+  };
+  user_watchedConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<UserWatchedConnection>,
+      Record<string, never>,
+      Array<WithTypename<UserWatchedEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<UserWatchedConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  user_watchedDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserWatchedDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserWatchedDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserWatched> | string>
+    >;
+  };
+  user_watchedEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<UserWatchedEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<UserWatchedEdge>,
+      Record<string, never>,
+      WithTypename<UserWatched> | string
+    >;
+  };
+  user_watchedInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserWatchedInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserWatchedInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserWatched> | string>
+    >;
+  };
+  user_watchedUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserWatchedUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserWatchedUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserWatched> | string>
+    >;
+  };
 };
 
 export type GraphCacheOptimisticUpdaters = {
@@ -4531,6 +4772,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationDeleteFromuserRolesCollectionArgs,
     WithTypename<UserRolesDeleteResponse>
   >;
+  deleteFromuser_watchedCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromuserWatchedCollectionArgs,
+    WithTypename<UserWatchedDeleteResponse>
+  >;
   insertIntoapi_tokensCollection?: GraphCacheOptimisticMutationResolver<
     MutationInsertIntoapiTokensCollectionArgs,
     Maybe<WithTypename<ApiTokensInsertResponse>>
@@ -4599,6 +4844,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationInsertIntouserRolesCollectionArgs,
     Maybe<WithTypename<UserRolesInsertResponse>>
   >;
+  insertIntouser_watchedCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntouserWatchedCollectionArgs,
+    Maybe<WithTypename<UserWatchedInsertResponse>>
+  >;
   updateapi_tokensCollection?: GraphCacheOptimisticMutationResolver<
     MutationUpdateapiTokensCollectionArgs,
     WithTypename<ApiTokensUpdateResponse>
@@ -4666,6 +4915,10 @@ export type GraphCacheOptimisticUpdaters = {
   updateuser_rolesCollection?: GraphCacheOptimisticMutationResolver<
     MutationUpdateuserRolesCollectionArgs,
     WithTypename<UserRolesUpdateResponse>
+  >;
+  updateuser_watchedCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateuserWatchedCollectionArgs,
+    WithTypename<UserWatchedUpdateResponse>
   >;
 };
 
@@ -4754,6 +5007,12 @@ export type GraphCacheUpdaters = {
     deleteFromuser_rolesCollection?: GraphCacheUpdateResolver<
       { deleteFromuser_rolesCollection: WithTypename<UserRolesDeleteResponse> },
       MutationDeleteFromuserRolesCollectionArgs
+    >;
+    deleteFromuser_watchedCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromuser_watchedCollection: WithTypename<UserWatchedDeleteResponse>;
+      },
+      MutationDeleteFromuserWatchedCollectionArgs
     >;
     insertIntoapi_tokensCollection?: GraphCacheUpdateResolver<
       {
@@ -4875,6 +5134,14 @@ export type GraphCacheUpdaters = {
       },
       MutationInsertIntouserRolesCollectionArgs
     >;
+    insertIntouser_watchedCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntouser_watchedCollection: Maybe<
+          WithTypename<UserWatchedInsertResponse>
+        >;
+      },
+      MutationInsertIntouserWatchedCollectionArgs
+    >;
     updateapi_tokensCollection?: GraphCacheUpdateResolver<
       { updateapi_tokensCollection: WithTypename<ApiTokensUpdateResponse> },
       MutationUpdateapiTokensCollectionArgs
@@ -4956,6 +5223,10 @@ export type GraphCacheUpdaters = {
     updateuser_rolesCollection?: GraphCacheUpdateResolver<
       { updateuser_rolesCollection: WithTypename<UserRolesUpdateResponse> },
       MutationUpdateuserRolesCollectionArgs
+    >;
+    updateuser_watchedCollection?: GraphCacheUpdateResolver<
+      { updateuser_watchedCollection: WithTypename<UserWatchedUpdateResponse> },
+      MutationUpdateuserWatchedCollectionArgs
     >;
   };
   Subscription?: {};

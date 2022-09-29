@@ -8,7 +8,7 @@ export const leagueTabs = {
     icon: MdOutlineLeaderboard,
   },
   roster: {
-    title: "Roster",
+    title: "Rosters",
     icon: IoPeopleSharp,
   },
   rules: {
