@@ -29,8 +29,9 @@ export const createContestants = async (
     contestants.map((contestant) => ({
       season: season.id,
       contestant: contestant.slug,
+      // TODO: remove avatar and fix slug/portrait for 3 names
       avatar_src: `${contestant.slug}_${season.order}_Avatar`,
-      portrait_src: `${contestant.slug}_${season.order}_Portrait`,
+      portrait_src: `${contestant.slug.replace(" ", "_")}_${season.order}_Portrait`,
     })),
     {
       onConflict: "season,contestant",

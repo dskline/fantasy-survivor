@@ -1,4 +1,4 @@
-import { SurvivorRuleId } from '@/seed/survivor/rules'
+import { SurvivorRuleId } from "@/seed/survivor/rules";
 import { dbClient } from "@/seed/dbClient";
 import { Season } from "@/seed/survivor/survivor.seed";
 
@@ -60,5 +60,12 @@ export class SeasonSeeder {
         }
       }
     }
+    await supabase.from("events").upsert(
+      Object.values(this.contestants).map((contestant) => ({
+        episode: episodeId,
+        rule: "Survived",
+        contestant_season: contestant.id,
+      }))
+    );
   }
 }

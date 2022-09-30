@@ -21,7 +21,7 @@ export enum Contestants {
   SAMI = "Sami Layadi",
 }
 
-export const tribes: { [key: string]: Tribe } = {
+export const tribes: { [key in 'Coco' | 'Vesi' | 'Baka']: Tribe } = {
   Coco: {
     name: "Coco",
     color: "blue",
