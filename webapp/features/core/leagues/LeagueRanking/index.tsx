@@ -60,6 +60,7 @@ export const LeagueRanking = ({ league, user }: Props) => {
       {view === Views.RANKING && (
         <ListUserRankings
           league={league}
+          currentUser={user}
           maxEpisodes={
             firstUnwatched === -1 ? totalEpisodes : firstUnwatched - 1
           }

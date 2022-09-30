@@ -45,7 +45,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
 
   return (
     <>
-      <div className="mx-auto flex max-w-2xl flex-col pt-6">
+      <div className="mx-auto flex max-w-3xl flex-col pt-6">
         <LeagueHeader
           league={league}
           user={user}
@@ -54,7 +54,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
         <div className="mt-4">
           <LeagueTabs user={user} />
         </div>
-        <main className="z-10 grid min-h-screen rounded-t-xl bg-white p-6 pb-40 shadow-2xl">
+        <main className="z-10 min-h-screen rounded-t-xl bg-white px-3 pt-6 pb-40 shadow-2xl md:px-6">
           <FadeIn show={tab === "ranking"}>
             <LeagueRanking league={league} user={user} />
           </FadeIn>
@@ -66,7 +66,9 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
             />
           </FadeIn>
           <FadeIn show={tab === "roster"}>
-            <AllRosters league={league} user={user} />
+            <div className="md:p-8">
+              <AllRosters league={league} user={user} />
+            </div>
           </FadeIn>
         </main>
       </div>

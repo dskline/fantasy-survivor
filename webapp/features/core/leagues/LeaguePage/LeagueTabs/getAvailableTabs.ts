@@ -10,10 +10,5 @@ export const getAvailableTabs = (user: LeagueUser) => {
   if (!user.participantId) {
     return PUBLIC_TABS;
   }
-  let tabs = Object.keys(leagueTabs) as LeaguePageTab[];
-
-  if (!user.features.includes("league_scores")) {
-    tabs = tabs.filter((tab) => tab !== "ranking");
-  }
-  return tabs;
+  return Object.keys(leagueTabs) as LeaguePageTab[];
 };
