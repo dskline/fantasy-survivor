@@ -28,6 +28,7 @@ const Page: NextPage<LeagueProps> = (props: LeagueProps) => {
       <QueryParamProvider adapter={NextAdapter}>
         <Head>
           <title>{metaTitle}</title>
+          <meta name="apple-mobile-web-app-title" content="Fantasy Survivor" />
           <meta name="description" content={description} />
 
           <meta property="og:type" content="website" />
