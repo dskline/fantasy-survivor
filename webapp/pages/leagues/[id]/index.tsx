@@ -5,13 +5,13 @@ import { NextAdapter } from "next-query-params";
 import Head from "next/head";
 import { QueryParamProvider } from "use-query-params";
 
-import { generateImageUrl } from "@/features/components/Image/generateImageUrl";
 import { ssrClient } from "@/features/core/db/graphql/ssrClient";
 import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
 import { LeaguePage } from "@/features/core/leagues/LeaguePage";
 import { toLeagueProps } from "@/features/core/leagues/LeaguePage/toLeagueProps";
 import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
+import { MetaIcons } from "@/features/utils/images/MetaIcons";
 
 type UrlParams = {
   id: string;
@@ -33,15 +33,9 @@ const Page: NextPage<LeagueProps> = (props: LeagueProps) => {
           <meta property="og:type" content="website" />
           <meta property="og:title" content={metaTitle} />
           <meta property="og:description" content={description} />
-          <meta
-            property="og:image"
-            content={generateImageUrl(season.logo_src, [
-              "ar_1:1",
-              "c_fill",
-              "g_auto",
-            ])}
-          />
+          <meta name="mobile-web-app-capable" content="yes" />
         </Head>
+        <MetaIcons src={season.logo_src} />
         <LeaguePage {...props} />
       </QueryParamProvider>
     </UserProvider>
