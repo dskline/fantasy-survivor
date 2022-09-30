@@ -29,6 +29,7 @@ export const ListUserRankings = ({ currentUser, users, filter }: Props) => {
         ) {
           return <></>;
         }
+        const roster = [...(user.userRoster?.roster || [])];
         const score =
           user.scoreByEpisode[filter.episodeMaxIndex] -
           user.scoreByEpisode[filter.episodeMinIndex - 1];
@@ -48,12 +49,12 @@ export const ListUserRankings = ({ currentUser, users, filter }: Props) => {
                 {user.userRoster?.teamName}
               </div>
               <div className="ml-3 flex flex-row-reverse md:ml-8 [&>*]:-ml-3">
-                {user.userRoster?.roster.reverse().map((item, index) => (
+                {roster.reverse().map((item, index) => (
                   <div
                     key={item.data.id}
                     className={classnames(
                       "rounded-full bg-gradient-to-r from-gray-200 to-white p-[2px]",
-                      index > 5 && "hidden md:block"
+                      index < 3 && "hidden md:block"
                     )}
                     title={item.data.nickname}
                   >
