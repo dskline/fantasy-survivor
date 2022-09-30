@@ -49,7 +49,7 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
   for (const episode of season?.episodesCollection?.edges || []) {
     const events = episode.node?.eventsCollection?.edges?.map(({ node }) => {
       const contestant = contestants?.find(
-        (c) => c.id === node.contestant_season?.id
+        (c) => c.id === node.contestant_season
       );
       if (!contestant) {
         throw new Error("Contestant not found");
