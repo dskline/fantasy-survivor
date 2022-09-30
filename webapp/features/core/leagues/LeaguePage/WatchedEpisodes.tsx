@@ -3,12 +3,7 @@ import { BsFillExclamationCircleFill } from "react-icons/bs";
 import { FaCheckCircle } from "react-icons/fa";
 import { VscEyeClosed } from "react-icons/vsc";
 
-import { useUpdateWatched } from "@/features/core/leagues/crud/updateWatched";
-import {
-  Episode,
-  LeagueProps,
-  LeagueUser,
-} from "@/features/core/leagues/LeaguePage/types";
+import { Episode } from "@/features/core/leagues/LeaguePage/types";
 
 type Props = {
   episodes: Array<Episode>;
@@ -67,7 +62,11 @@ export const WatchedEpisodes = ({
     <button
       type="button"
       onClick={onComplete}
-      className="rounded-lg bg-blue-600 px-4 py-2 text-blue-50"
+      className={classnames(
+        "rounded-lg bg-blue-600 px-4 py-2 text-blue-50",
+        "disabled:bg-gray-200 disabled:text-gray-500"
+      )}
+      disabled={episodes.filter((episode) => episode.watched).length <= 1}
     >
       {continueText}
     </button>

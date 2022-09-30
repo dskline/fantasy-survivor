@@ -38,6 +38,7 @@ export type LeagueProps = {
     points: number;
   }>;
   orderedEpisodes: Array<Episode>;
+  pointsByContestantId?: Record<string, Array<number>>;
 };
 export type LeagueUser = {
   id?: string;
@@ -46,7 +47,7 @@ export type LeagueUser = {
   userRoster?: UserRoster;
   features: Array<string>;
   watched: Array<string>;
-  // scoreByEpisode: Array<number>;
+  scoreByEpisode?: Array<number>;
 };
 export type RosterItem = {
   id?: string;

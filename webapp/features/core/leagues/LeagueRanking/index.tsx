@@ -6,6 +6,7 @@ import {
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
 import { WatchedEpisodes } from "@/features/core/leagues/LeaguePage/WatchedEpisodes";
+import { ListUserRankings } from "@/features/core/leagues/LeagueRanking/ListUserRankings";
 
 enum Views {
   "RANKING",
@@ -17,9 +18,8 @@ type Props = {
   user: LeagueUser;
 };
 export const LeagueRanking = ({ league, user }: Props) => {
-  const [numWatched, setNumWatched] = useState(user.watched.length);
   const totalEpisodes = league.orderedEpisodes.length;
-  const hasWatchedAll = numWatched === totalEpisodes;
+  const hasWatchedAll = user.watched.length === totalEpisodes;
   const [view, setView] = useState<Views>(
     hasWatchedAll ? Views.RANKING : Views.CONFIRM_WATCHED
   );
@@ -44,6 +44,7 @@ export const LeagueRanking = ({ league, user }: Props) => {
       }
     }
   };
+  const firstUnwatched = episodes.findIndex((e) => !e.watched);
 
   return (
     <div>
@@ -54,6 +55,14 @@ export const LeagueRanking = ({ league, user }: Props) => {
           spoilerMessage={`Mark the episodes you've watched to continue. We will only display the episodes you've watched in the rankings.`}
           continueText="Continue to the rankings"
           onComplete={() => setView(Views.RANKING)}
+        />
+      )}
+      {view === Views.RANKING && (
+        <ListUserRankings
+          league={league}
+          maxEpisodes={
+            firstUnwatched === -1 ? totalEpisodes : firstUnwatched - 1
+          }
         />
       )}
     </div>
