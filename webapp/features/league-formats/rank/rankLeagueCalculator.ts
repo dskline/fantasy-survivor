@@ -13,7 +13,7 @@ export const rankLeagueCalculator = (
   const pointsByContestantId = {} as Record<string, Array<number>>;
   for (const contestant of league.contestants) {
     pointsByContestantId[contestant.id] = [
-      ...Array.from({ length: numEpisodes }),
+      ...Array.from({ length: numEpisodes + 1 }),
     ].map(() => 0);
   }
   const pointsByEventId = {} as Record<string, number>;
@@ -23,21 +23,24 @@ export const rankLeagueCalculator = (
   for (let i = 0; i < numEpisodes; i++) {
     const episode = league.orderedEpisodes[i];
     for (const event of episode.events) {
-      pointsByContestantId[event.contestant.id][i] +=
+      pointsByContestantId[event.contestant.id][i + 1] +=
         pointsByEventId[event.rule];
     }
   }
   for (const user of users) {
-    user.scoreByEpisode = [...Array.from({ length: numEpisodes })].map(() => 0);
+    user.scoreByEpisode = [...Array.from({ length: numEpisodes + 1 })].map(
+      () => 0
+    );
     if (user.userRoster) {
       let totalScore = 0;
       for (let i = 0; i < numEpisodes; i++) {
         for (let j = 0; j < user.userRoster?.roster.length; j++) {
           const contestant = user.userRoster.roster[j];
-          const contestantPoints = pointsByContestantId[contestant.data.id][i];
+          const contestantPoints =
+            pointsByContestantId[contestant.data.id][i + 1];
           const contestantWeight = (ROSTER_SIZE - i) / ROSTER_SIZE;
           totalScore += contestantPoints * contestantWeight;
-          user.scoreByEpisode[i] = totalScore;
+          user.scoreByEpisode[i + 1] = totalScore;
         }
       }
     }

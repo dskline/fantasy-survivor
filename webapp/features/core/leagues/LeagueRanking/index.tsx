@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { useUpdateWatched } from "@/features/core/leagues/crud/updateWatched";
 import {
@@ -6,7 +6,7 @@ import {
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
 import { WatchedEpisodes } from "@/features/core/leagues/LeaguePage/WatchedEpisodes";
-import { ListUserRankings } from "@/features/core/leagues/LeagueRanking/ListUserRankings";
+import { LeagueRankingContainer } from "@/features/core/leagues/LeagueRanking/LeagueRankingContainer";
 
 enum Views {
   "RANKING",
@@ -44,7 +44,6 @@ export const LeagueRanking = ({ league, user }: Props) => {
       }
     }
   };
-  const firstUnwatched = episodes.findIndex((e) => !e.watched);
 
   return (
     <div>
@@ -58,12 +57,9 @@ export const LeagueRanking = ({ league, user }: Props) => {
         />
       )}
       {view === Views.RANKING && (
-        <ListUserRankings
-          league={league}
-          currentUser={user}
-          maxEpisodes={
-            firstUnwatched === -1 ? totalEpisodes : firstUnwatched - 1
-          }
+        <LeagueRankingContainer
+          league={{ ...league, orderedEpisodes: episodes }}
+          user={user}
         />
       )}
     </div>
