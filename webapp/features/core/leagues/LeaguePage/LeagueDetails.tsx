@@ -12,7 +12,7 @@ type Props = {
   onJoinLeague: () => void;
 };
 export const LeagueDetails = ({ league, user, onJoinLeague }: Props) => (
-  <>
+  <div className="px-3 md:px-6">
     <RuleDetails {...league} />
     {!user.participantId && (
       <button
@@ -23,5 +23,5 @@ export const LeagueDetails = ({ league, user, onJoinLeague }: Props) => (
         Join this league and begin filling out your roster
       </button>
     )}
-  </>
+  </div>
 );

@@ -54,21 +54,19 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
         <div className="mt-4">
           <LeagueTabs user={user} />
         </div>
-        <main className="z-10 min-h-screen rounded-t-xl bg-white px-3 pt-6 pb-40 shadow-2xl md:px-6">
-          <FadeIn show={tab === "ranking"}>
+        <main className="z-10 min-h-screen rounded-t-xl bg-white pt-6 pb-40 shadow-2xl">
+          <FadeIn className="md:px-6" show={tab === "ranking"}>
             <LeagueRanking league={league} user={user} />
           </FadeIn>
-          <FadeIn show={tab === "rules"}>
+          <FadeIn className="px-3 md:px-6" show={tab === "rules"}>
             <LeagueDetails
               league={league}
               user={user}
               onJoinLeague={() => setIsJoining(true)}
             />
           </FadeIn>
-          <FadeIn show={tab === "roster"}>
-            <div className="md:p-8">
-              <AllRosters league={league} user={user} />
-            </div>
+          <FadeIn className="px-3 md:px-16 md:pt-8" show={tab === "roster"}>
+            <AllRosters league={league} user={user} />
           </FadeIn>
         </main>
       </div>

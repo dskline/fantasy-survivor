@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { AnimatePresence } from "framer-motion";
 import { BsFilterRight } from "react-icons/bs";
 import { toast } from "react-toastify";
 
@@ -11,11 +12,6 @@ import {
 import { ListUserRankings } from "@/features/core/leagues/LeagueRanking/ListUserRankings";
 import { RankingFilter } from "@/features/core/leagues/LeagueRanking/types";
 
-enum Views {
-  "USER_RANKING" = "Players",
-  "CONTESTANT_RANKING" = "Contestant Breakdown",
-}
-
 type Props = {
   calculatedLeague: LeagueProps;
   users: Array<LeagueUser>;
@@ -26,7 +22,6 @@ export const LeagueRankingContent = ({
   users,
   currentUser,
 }: Props) => {
-  const [view, setView] = useState<Views>(Views.USER_RANKING);
   const episodes = calculatedLeague.orderedEpisodes;
   let lastWatchedEpisodeIndex = episodes.findIndex((e) => !e.watched) - 1;
   if (lastWatchedEpisodeIndex === -2) {
@@ -41,8 +36,8 @@ export const LeagueRankingContent = ({
     filter.episodeMaxIndex - filter.episodeMinIndex > 0;
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex justify-between">
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between px-3">
         <div className="flex items-center gap-2 text-sm">
           Displaying scores for episode
           {isMultipleEpisodes
@@ -50,7 +45,7 @@ export const LeagueRankingContent = ({
             : ` ${filter.episodeMinIndex}`}
           <Tooltip placement="bottom-start">
             <div className="w-64">
-              Roster creation ends at episode 2, so scores for episode 1 are
+              Roster selection ends at episode 2, so scores for episode 1 are
               omitted.
             </div>
           </Tooltip>
@@ -64,13 +59,15 @@ export const LeagueRankingContent = ({
           <BsFilterRight className="h-6 w-6" />
         </button>
       </div>
-      {view === Views.USER_RANKING && (
-        <ListUserRankings
-          currentUser={currentUser}
-          users={users}
-          filter={filter}
-        />
-      )}
+      <AnimatePresence>
+        <div className="flex gap-4">
+          <ListUserRankings
+            currentUser={currentUser}
+            users={users}
+            filter={filter}
+          />
+        </div>
+      </AnimatePresence>
     </div>
   );
 };
