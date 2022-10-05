@@ -17,8 +17,8 @@ export const LeagueRankingSection = ({ header, children }: Props) => {
     <motion.div
       layoutId={header}
       className={classnames(
-        "w-full rounded-lg border-2 border-blue-900/20 bg-blue-50",
-        isExpanded ? "" : "md:w-1/2"
+        "col-span-full rounded-lg border-2 border-blue-900/20 bg-blue-50",
+        isExpanded ? "" : "md:col-span-1"
       )}
     >
       <Container

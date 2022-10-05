@@ -14,7 +14,7 @@ type Props = {
   users: Array<LeagueUser>;
   filter: RankingFilter;
 };
-export const ListUserRankings = ({ currentUser, users, filter }: Props) => {
+const ListUserRankingsImpl = ({ currentUser, users, filter }: Props) => {
   const sortedUsers = users.sort((a, b) =>
     a.scoreByEpisode && b.scoreByEpisode
       ? b.scoreByEpisode[filter.episodeMaxIndex] -
@@ -115,3 +115,13 @@ export const ListUserRankings = ({ currentUser, users, filter }: Props) => {
     </LeagueRankingSection>
   );
 };
+
+export const ListUserRankings = React.memo(
+  ListUserRankingsImpl,
+  (prev, next) => (
+      prev.filter.episodeMinIndex === next.filter.episodeMinIndex &&
+      prev.filter.episodeMaxIndex === next.filter.episodeMaxIndex &&
+      prev.filter.lastWatchedEpisodeIndex ===
+        next.filter.lastWatchedEpisodeIndex
+    )
+);
