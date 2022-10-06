@@ -20,10 +20,9 @@ export const rankLeagueCalculator = (
   for (const event of league.orderedRules) {
     pointsByEventId[event.id] = event.points;
   }
-  for (let i = 0; i < numEpisodes; i++) {
-    const episode = league.orderedEpisodes[i];
-    for (const event of episode.events) {
-      pointsByContestantId[event.contestant.id][i + 1] +=
+  for (const contestant of league.contestants) {
+    for (const event of contestant.events || []) {
+      pointsByContestantId[contestant.id][event.episodeNumber] +=
         pointsByEventId[event.rule];
     }
   }

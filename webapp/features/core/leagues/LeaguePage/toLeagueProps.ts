@@ -12,9 +12,19 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
   const season = league.seasons;
   const show = season?.reality_series;
   const format = league.league_formats;
+
+  const orderedEpisodes: LeagueProps["orderedEpisodes"] = [];
+  for (const episode of season?.episodesCollection?.edges || []) {
+    orderedEpisodes.push({
+      id: episode.node?.id,
+      startTime: episode.node?.start_time,
+    });
+  }
+
   const contestants = season?.contestant_seasonsCollection?.edges?.map(
     ({ node }) => {
-      const { id, team_color, portrait_src, contestants } = node;
+      const { id, team_color, portrait_src, contestants, eventsCollection } =
+        node;
       if (!contestants) {
         throw new Error("Contestant not found");
       }
@@ -27,6 +37,14 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
         firstname: contestants.firstname,
         surname: contestants.surname,
         nickname: contestants.nickname,
+        events: eventsCollection?.edges?.map(
+          ({ node: { episode, rule, comment } }) => ({
+            episodeNumber:
+              orderedEpisodes.findIndex((e) => e.id === episode) + 1,
+            rule,
+            comment,
+          })
+        ),
       } as Contestant;
     }
   );
@@ -44,28 +62,6 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
     }
   }
   orderedRules.sort((a, b) => b.points - a.points);
-
-  const orderedEpisodes: LeagueProps["orderedEpisodes"] = [];
-  for (const episode of season?.episodesCollection?.edges || []) {
-    const events = episode.node?.eventsCollection?.edges?.map(({ node }) => {
-      const contestant = contestants?.find(
-        (c) => c.id === node.contestant_season
-      );
-      if (!contestant) {
-        throw new Error("Contestant not found");
-      }
-      return {
-        contestant,
-        rule: node.rule,
-        comment: node.comment,
-      };
-    });
-    orderedEpisodes.push({
-      id: episode.node?.id,
-      startTime: episode.node?.start_time,
-      events: events || [],
-    });
-  }
 
   if (!season || !show || !format || !contestants) {
     throw new Error("Error: Missing data");

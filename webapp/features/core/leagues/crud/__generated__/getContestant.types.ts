@@ -12,4 +12,18 @@ export type GetContestantFragment = {
     surname?: string | null;
     nickname?: string | null;
   } | null;
+  eventsCollection?: {
+    __typename?: "eventsConnection";
+    pageInfo: { __typename?: "PageInfo"; hasNextPage: boolean };
+    edges: Array<{
+      __typename?: "eventsEdge";
+      node: {
+        __typename?: "events";
+        id: any;
+        rule: string;
+        comment?: string | null;
+        episode: any;
+      };
+    }>;
+  } | null;
 };

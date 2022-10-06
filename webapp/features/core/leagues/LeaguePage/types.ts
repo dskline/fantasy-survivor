@@ -13,16 +13,16 @@ export type Contestant = {
   fullName: string;
   portrait_src: string;
   team_color: string;
+  events: Array<{
+    episodeNumber: number;
+    rule: string;
+    comment?: string | null;
+  }>;
 };
 export type Episode = {
   id: string;
   startTime: string;
   watched?: boolean;
-  events: Array<{
-    contestant: Contestant;
-    rule: string;
-    comment?: string | null;
-  }>;
 };
 
 export type LeagueProps = {

@@ -13,5 +13,18 @@ export const GET_CONTESTANT_FRAGMENT = gql<GetContestantFragment>`
       surname
       nickname
     }
+    eventsCollection {
+      pageInfo {
+        hasNextPage
+      }
+      edges {
+        node {
+          id
+          rule
+          comment
+          episode
+        }
+      }
+    }
   }
 `;

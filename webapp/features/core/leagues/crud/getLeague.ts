@@ -50,16 +50,6 @@ export const GET_LEAGUE = gql<GetLeagueQuery, GetLeagueQueryVariables>`
                 node {
                   id
                   start_time
-                  eventsCollection {
-                    edges {
-                      node {
-                        id
-                        contestant_season
-                        rule
-                        comment
-                      }
-                    }
-                  }
                 }
               }
             }

@@ -48,24 +48,7 @@ export type GetLeagueQuery = {
             __typename?: "episodesConnection";
             edges: Array<{
               __typename?: "episodesEdge";
-              node: {
-                __typename?: "episodes";
-                id: any;
-                start_time: any;
-                eventsCollection?: {
-                  __typename?: "eventsConnection";
-                  edges: Array<{
-                    __typename?: "eventsEdge";
-                    node: {
-                      __typename?: "events";
-                      id: any;
-                      contestant_season: any;
-                      rule: string;
-                      comment?: string | null;
-                    };
-                  }>;
-                } | null;
-              };
+              node: { __typename?: "episodes"; id: any; start_time: any };
             }>;
           } | null;
           contestant_seasonsCollection?: {
@@ -83,6 +66,20 @@ export type GetLeagueQuery = {
                   firstname: string;
                   surname?: string | null;
                   nickname?: string | null;
+                } | null;
+                eventsCollection?: {
+                  __typename?: "eventsConnection";
+                  pageInfo: { __typename?: "PageInfo"; hasNextPage: boolean };
+                  edges: Array<{
+                    __typename?: "eventsEdge";
+                    node: {
+                      __typename?: "events";
+                      id: any;
+                      rule: string;
+                      comment?: string | null;
+                      episode: any;
+                    };
+                  }>;
                 } | null;
               };
             }>;
