@@ -42,17 +42,19 @@ export class SeasonSeeder {
 
     for (const event of episode.events) {
       await supabase.from("events").upsert(
-        event.players.map((player) => {
-          const contestant = this.contestants[player];
-          return contestant
-            ? {
-                episode: episodeId,
-                rule: event.rule,
-                comment: event.comment,
-                contestant_season: contestant.id,
-              }
-            : [];
-        })
+        event.players
+          .filter((player) => !!this.contestants[player])
+          .map((player) => {
+            const contestant = this.contestants[player];
+            return contestant
+              ? {
+                  episode: episodeId,
+                  rule: event.rule,
+                  comment: event.comment,
+                  contestant_season: contestant.id,
+                }
+              : undefined;
+          })
       );
       if (event.rule === "ExitsGame" || event.rule === "VotedOut") {
         for (const player of event.players) {

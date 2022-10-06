@@ -13,6 +13,10 @@ export const episode2: SurvivorEpisode = {
       players: tribes.Coco.contestants,
     },
     {
+      rule: "SitOut",
+      players: [Contestants.NOELLE, Contestants.KARLA],
+    },
+    {
       rule: "VoteTarget",
       players: [Contestants.CODY, Contestants.JUSTINE, Contestants.NNEKA],
     },
