@@ -22,14 +22,14 @@ export const LeagueRankingContainer = ({ league, user }: Props) => {
   if (!data) {
     return <div>Loading...</div>;
   }
-  const users = rankLeagueCalculator(
+  const { league: calculatedLeague, users } = rankLeagueCalculator(
     league,
     Object.values(toLeagueUsers(league, data)) as Array<LeagueUser>
-  ).users;
+  );
 
   return (
     <LeagueRankingContent
-      calculatedLeague={league}
+      calculatedLeague={calculatedLeague}
       users={users}
       currentUser={user}
     />

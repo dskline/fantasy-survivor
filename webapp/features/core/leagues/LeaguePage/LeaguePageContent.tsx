@@ -55,7 +55,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
           <LeagueTabs user={user} />
         </div>
         <main className="z-10 min-h-screen rounded-t-xl bg-white pt-6 pb-40 shadow-2xl">
-          <FadeIn className="md:px-6" show={tab === "ranking"}>
+          <FadeIn className="px-4 md:px-6" show={tab === "ranking"}>
             <LeagueRanking league={league} user={user} />
           </FadeIn>
           <FadeIn className="px-3 md:px-6" show={tab === "rules"}>

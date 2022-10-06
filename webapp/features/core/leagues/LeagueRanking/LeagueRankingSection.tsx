@@ -16,13 +16,10 @@ export const LeagueRankingSection = ({ header, children }: Props) => {
   return (
     <motion.div
       layoutId={header}
-      className={classnames(
-        "col-span-full rounded-lg border-2 border-blue-900/20 bg-blue-50",
-        isExpanded ? "" : "md:col-span-1"
-      )}
+      className={classnames("col-span-full", isExpanded ? "" : "md:col-span-1")}
     >
       <Container
-        className="w-full"
+        className="w-full rounded-lg border-2 border-blue-900/20 bg-blue-50"
         onClick={isExpanded ? undefined : () => setIsExpanded(!isExpanded)}
         aria-label={isExpanded ? undefined : `Expand ${header}`}
       >

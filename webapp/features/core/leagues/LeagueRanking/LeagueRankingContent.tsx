@@ -9,6 +9,7 @@ import {
   LeagueProps,
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
+import { ListContestantRankings } from "@/features/core/leagues/LeagueRanking/ListContestantRankings";
 import { ListUserRankings } from "@/features/core/leagues/LeagueRanking/ListUserRankings";
 import { RankingFilter } from "@/features/core/leagues/LeagueRanking/types";
 
@@ -36,8 +37,8 @@ export const LeagueRankingContent = ({
     filter.episodeMaxIndex - filter.episodeMinIndex > 0;
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex justify-between px-3">
+    <div className="flex flex-col gap-3">
+      <div className="flex justify-between">
         <div className="flex items-center gap-2 text-sm">
           Displaying scores for episode
           {isMultipleEpisodes
@@ -60,12 +61,13 @@ export const LeagueRankingContent = ({
         </button>
       </div>
       <AnimatePresence>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid auto-cols-min grid-cols-2 gap-x-4 gap-y-6">
           <ListUserRankings
             currentUser={currentUser}
             users={users}
             filter={filter}
           />
+          <ListContestantRankings league={calculatedLeague} filter={filter} />
         </div>
       </AnimatePresence>
     </div>
