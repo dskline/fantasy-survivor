@@ -38,7 +38,7 @@ export const rankLeagueCalculator = (
           const contestant = user.userRoster.roster[j];
           const contestantPoints =
             pointsByContestantId[contestant.data.id][i + 1];
-          const contestantWeight = (ROSTER_SIZE - i) / ROSTER_SIZE;
+          const contestantWeight = (ROSTER_SIZE - j) / ROSTER_SIZE;
           totalScore += contestantPoints * contestantWeight;
           user.scoreByEpisode[i + 1] = totalScore;
         }
