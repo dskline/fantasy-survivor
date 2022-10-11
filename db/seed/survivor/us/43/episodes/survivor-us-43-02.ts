@@ -17,6 +17,10 @@ export const episode2: SurvivorEpisode = {
       players: [Contestants.NOELLE, Contestants.KARLA],
     },
     {
+      rule: "Idol",
+      players: [Contestants.CODY],
+    },
+    {
       rule: "VoteTarget",
       players: [Contestants.CODY, Contestants.JUSTINE, Contestants.NNEKA],
     },
