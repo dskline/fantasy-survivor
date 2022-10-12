@@ -71,10 +71,10 @@ const ListUserRankingsImpl = ({ currentUser, users, filter }: Props) => {
                   className={classnames(
                     "w-full [&>td]:px-0",
                     "[&>td:last-child>div]:rounded-r-lg [&>td:first-child>div]:rounded-l-lg",
-                    isExpanded ? "[&>td]:py-1 [&>td>div]:h-20 [&>td>div]:md:h-14" : "[&>td]:py-0.5 [&>td>div]:h-10",
-                    isExpanded || index < 5
-                      ? ""
-                      : "max-h-0 [&>td>div]:h-8",
+                    isExpanded
+                      ? "[&>td]:py-1 [&>td>div]:h-20 [&>td>div]:md:h-14"
+                      : "[&>td]:py-0.5 [&>td>div]:h-10",
+                    isExpanded || index < 5 ? "" : "max-h-0 [&>td>div]:h-8",
                     currentUser.id === user.id
                       ? "text-blue-700 [&>td>div]:border-blue-600/50 [&>td>div]:bg-blue-200/50"
                       : "text-gray-800 [&>td>div]:border-slate-200 [&>td>div]:bg-white"
@@ -84,6 +84,7 @@ const ListUserRankingsImpl = ({ currentUser, users, filter }: Props) => {
                     <UserRankingRow
                       isExpanded={isExpanded}
                       userRoster={user.userRoster}
+                      filter={filter}
                       score={score}
                       ranking={ranking}
                       pointDiffFromPrevious={

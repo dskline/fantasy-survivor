@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 import { Thumbnail } from "@/features/components/Image/Thumbnail";
 import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
+import { isEliminated } from "@/features/core/leagues/LeagueRanking/isEliminated";
 import { LeagueRankingSection } from "@/features/core/leagues/LeagueRanking/LeagueRankingSection";
 import { RankingFilter } from "@/features/core/leagues/LeagueRanking/types";
 
@@ -44,6 +45,7 @@ export const ListContestantRankings = ({ league, filter }: Props) => {
             if (!contestant) {
               return <></>;
             }
+            const eliminated = isEliminated(contestant, filter);
             return (
               <motion.div
                 layoutId={contestantId}
@@ -58,7 +60,8 @@ export const ListContestantRankings = ({ league, filter }: Props) => {
                   contestant.team_color === "red" &&
                     "border-red-600/40 bg-red-50",
                   contestant.team_color === "yellow" &&
-                    "border-yellow-600/40 bg-yellow-50/60"
+                    "border-yellow-600/40 bg-yellow-50/60",
+                  eliminated && "opacity-60"
                 )}
               >
                 {(isExpanded || index < 5) && (
@@ -67,7 +70,12 @@ export const ListContestantRankings = ({ league, filter }: Props) => {
                       <div className="overflow-hidden rounded-lg">
                         <Thumbnail src={contestant.portrait_src} size={28} />
                       </div>
-                      <div className="text-sm font-semibold">
+                      <div
+                        className={classnames(
+                          "text-sm font-semibold",
+                          eliminated && "line-through"
+                        )}
+                      >
                         {contestant.nickname}
                       </div>
                     </div>

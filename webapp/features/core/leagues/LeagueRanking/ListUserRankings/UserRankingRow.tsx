@@ -6,6 +6,8 @@ import { IoCaretDown, IoCaretUp } from "react-icons/io5";
 import { FadeIn } from "@/features/components/FadeIn/FadeIn";
 import { Thumbnail } from "@/features/components/Image/Thumbnail";
 import { UserRoster } from "@/features/core/leagues/LeaguePage/types";
+import { isEliminated } from "@/features/core/leagues/LeagueRanking/isEliminated";
+import { RankingFilter } from "@/features/core/leagues/LeagueRanking/types";
 
 type Props = {
   isExpanded: boolean;
@@ -14,6 +16,7 @@ type Props = {
   score: number;
   pointDiffFromPrevious?: number;
   userRoster: UserRoster;
+  filter: RankingFilter;
 };
 export const UserRankingRow = ({
   isExpanded,
@@ -22,6 +25,7 @@ export const UserRankingRow = ({
   score,
   pointDiffFromPrevious,
   userRoster,
+  filter,
 }: Props) => (
   <>
     <td>
@@ -62,18 +66,17 @@ export const UserRankingRow = ({
         <div className="flex text-sm font-semibold md:flex-1 md:items-center">
           {userRoster.teamName}
         </div>
-        <FadeIn
-          show={isExpanded}
-          className="ml-3 flex flex-row-reverse md:ml-8 [&>*]:-ml-3"
-        >
-          {[...userRoster.roster].reverse().map((item, index) => (
+        <FadeIn show={isExpanded} className="ml-3 flex md:ml-8 [&>*]:-ml-3">
+          {[...userRoster.roster].map((item, index) => (
             <div
               key={item.data.id}
               title={item.data.nickname}
               className={classnames(
                 "rounded-full bg-slate-200 p-[2px]",
-                index < 3 && "hidden md:block"
+                index < 3 && "hidden md:block",
+                isEliminated(item.data, filter) && "opacity-80 grayscale"
               )}
+              style={{ zIndex: 20 - index }}
             >
               <Thumbnail
                 src={item.data.portrait_src}
