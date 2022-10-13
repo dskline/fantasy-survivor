@@ -25,7 +25,7 @@ const ListUserRankingsImpl = ({ currentUser, users, filter }: Props) => {
         });
 
   return (
-    <LeagueRankingSection header="Leaderboard">
+    <LeagueRankingSection header="Leaderboard" initExpanded>
       {(isExpanded) => (
         <table className="w-full">
           <tbody>
