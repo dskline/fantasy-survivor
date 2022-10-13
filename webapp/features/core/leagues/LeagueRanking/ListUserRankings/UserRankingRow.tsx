@@ -73,7 +73,7 @@ export const UserRankingRow = ({
               title={item.data.nickname}
               className={classnames(
                 "rounded-full bg-slate-200 p-[2px]",
-                index < 3 && "hidden md:block",
+                index > 5 && "hidden md:block",
                 isEliminated(item.data, filter) && "opacity-80 grayscale"
               )}
               style={{ zIndex: 20 - index }}
