@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useUser } from "@supabase/auth-helpers-react";
+import { useSessionContext, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -15,6 +15,7 @@ import {
   Rulesets,
   Seasons,
 } from "@/features/core/db/graphql/schema";
+import { useSupabase } from '@/features/core/db/supabase/useSupabase';
 import { LeagueFormatPicker } from "@/features/core/leagues/CreateLeaguePage/LeagueFormatPicker";
 import { LeagueFormatSettings } from "@/features/core/leagues/CreateLeaguePage/LeagueFormatSettings";
 import { LeagueNameSection } from "@/features/core/leagues/CreateLeaguePage/LeagueNameSection";
@@ -42,7 +43,9 @@ export const CreateLeaguePage = ({
   initialValues,
 }: CreateLeagueProps) => {
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  const { isLoading } = useSessionContext();
+  const supabase = useSupabase();
+  const user = useUser();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const form = useForm<CreateLeagueFields>({
@@ -66,13 +69,14 @@ export const CreateLeaguePage = ({
       (format) => format.league_formats?.id === data.leagueFormat
     );
     const { data: createdId, error } = await createLeague(
+      supabase,
       data,
       user.id,
       season.id,
       selectedFormat
     );
     if (error) {
-      toast.error(error, { position: "bottom-center" });
+      toast.error(`${error}`, { position: "bottom-center" });
       return false;
     }
     await router.push(`/leagues/${createdId}`);

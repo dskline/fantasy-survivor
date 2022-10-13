@@ -1,4 +1,4 @@
-import { useUser } from "@supabase/auth-helpers-react";
+import { useSessionContext, useUser } from '@supabase/auth-helpers-react'
 
 import { useGetLeagueParticipants } from "@/features/core/leagues/crud/getLeagueParticipants";
 import { toLeagueUsers } from "@/features/core/leagues/LeaguePage/toLeagueUsers";
@@ -9,7 +9,8 @@ import {
 } from "@/features/core/leagues/LeaguePage/types";
 
 export const useLeagueUser = (league: LeagueProps): LeagueUser => {
-  const { user, isLoading } = useUser();
+  const { isLoading } = useSessionContext();
+  const user = useUser();
   const userId = user?.id;
 
   const { data, fetching } = useGetLeagueParticipants(

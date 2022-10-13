@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import { FadeIn } from "@/features/components/FadeIn/FadeIn";
 import { LoginModal } from "@/features/core/auth/login/LoginModal";
+import { useSupabase } from "@/features/core/db/supabase/useSupabase";
 import { createLeagueParticipant } from "@/features/core/leagues/crud/createLeagueParticipant";
 import { LeagueDetails } from "@/features/core/leagues/LeaguePage/LeagueDetails";
 import { LeagueHeader } from "@/features/core/leagues/LeaguePage/LeagueHeader";
@@ -22,6 +23,7 @@ type Props = {
   tab: LeaguePageTab;
 };
 export const LeaguePageContent = ({ league, user, tab }: Props) => {
+  const supabase = useSupabase();
   const [showLoginModal, setShowLoginModal] = React.useState(false);
   const [isJoining, setIsJoining] = React.useState(false);
 
@@ -29,7 +31,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
     if (isJoining && !user.id) {
       setShowLoginModal(true);
     } else if (isJoining && user.id) {
-      createLeagueParticipant({
+      createLeagueParticipant(supabase, {
         league: league.id,
         participant: user.id,
       })
@@ -41,7 +43,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
           toast.error("There was an error joining the league.");
         });
     }
-  }, [isJoining, user.id, league.id]);
+  }, [supabase, isJoining, user.id, league.id]);
 
   return (
     <>

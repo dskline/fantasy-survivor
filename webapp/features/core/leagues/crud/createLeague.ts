@@ -1,5 +1,7 @@
+import { SupabaseClient } from "@supabase/supabase-js";
+
 import { RsLeagueFormats } from "@/features/core/db/graphql/schema";
-import { dbFunction } from "@/features/core/db/supabase";
+import { Database } from "@/features/core/db/supabase/__generated__/types";
 import { CreateLeagueFields } from "@/features/core/leagues/CreateLeaguePage";
 
 function isNewRuleset(
@@ -15,7 +17,8 @@ function isNewRuleset(
   );
 }
 
-export const createLeague = async (
+export const createLeague = (
+  supabase: SupabaseClient<Database>,
   data: CreateLeagueFields,
   userId: string,
   seasonId: string,
@@ -24,7 +27,7 @@ export const createLeague = async (
   if (!selectedFormat) {
     return { data: undefined, error: "Invalid league format selected" };
   }
-  return await dbFunction("create_league", {
+  return supabase.rpc("create_league", {
     season_id: seasonId,
     format_id: data.leagueFormat,
     ruleset_id: data.ruleset.id,

@@ -1,5 +1,3 @@
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
-import { UserProvider } from "@supabase/auth-helpers-react";
 import { GetServerSideProps, NextPage } from "next";
 import { NextAdapter } from "next-query-params";
 import Head from "next/head";
@@ -24,22 +22,20 @@ const Page: NextPage<LeagueProps> = (props: LeagueProps) => {
   const metaTitle = title || `${show.title} League`;
   const description = `This is a ${format.title} fantasy league for ${show.title} Season ${season.order}.`;
   return (
-    <UserProvider supabaseClient={supabaseClient}>
-      <QueryParamProvider adapter={NextAdapter}>
-        <Head>
-          <title>{metaTitle}</title>
-          <meta name="apple-mobile-web-app-title" content="Fantasy Survivor" />
-          <meta name="description" content={description} />
+    <QueryParamProvider adapter={NextAdapter}>
+      <Head>
+        <title>{metaTitle}</title>
+        <meta name="apple-mobile-web-app-title" content="Fantasy Survivor" />
+        <meta name="description" content={description} />
 
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content={metaTitle} />
-          <meta property="og:description" content={description} />
-          <meta name="mobile-web-app-capable" content="yes" />
-        </Head>
-        <MetaIcons src={season.logo_src} />
-        <LeaguePage {...props} />
-      </QueryParamProvider>
-    </UserProvider>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={description} />
+        <meta name="mobile-web-app-capable" content="yes" />
+      </Head>
+      <MetaIcons src={season.logo_src} />
+      <LeaguePage {...props} />
+    </QueryParamProvider>
   );
 };
 export default withUrql(Page);

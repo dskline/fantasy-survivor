@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useUser } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/ui";
+
+import { useSupabase } from "@/features/core/db/supabase/useSupabase";
 
 type Props = {
   onLogin?: () => void;
 };
 export const LoginForm = ({ onLogin }: Props) => {
-  const { user } = useUser();
+  const supabaseClient = useSupabase();
+  const user = useUser();
   const userId = user?.id;
 
   useEffect(() => {

@@ -1,5 +1,7 @@
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
-import { UserProvider } from "@supabase/auth-helpers-react";
+import { useState } from "react";
+
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 
@@ -19,14 +21,18 @@ type UrlParams = {
 };
 type Props = CreateLeagueProps;
 
-const NewLeaguePage = (props: Props) => (
-  <UserProvider supabaseClient={supabaseClient}>
-    <Head>
-      <title>{`New League - ${props.show.title}: ${props.season.title}`}</title>
-    </Head>
-    <CreateLeaguePage {...props} />
-  </UserProvider>
-);
+const NewLeaguePage = (props: Props) => {
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+
+  return (
+    <SessionContextProvider supabaseClient={supabaseClient}>
+      <Head>
+        <title>{`New League - ${props.show.title}: ${props.season.title}`}</title>
+      </Head>
+      <CreateLeaguePage {...props} />
+    </SessionContextProvider>
+  );
+};
 export default withUrql(NewLeaguePage);
 
 export const getStaticProps: GetStaticProps<Props, UrlParams> = async (
