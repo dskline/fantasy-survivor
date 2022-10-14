@@ -96,14 +96,15 @@ export const UserRankingRow = ({
             {score.toFixed(2)}
             <span className="ml-1 text-xs">pts</span>
           </div>
-          {pointDiffFromPrevious && isExpanded && (
+          {(pointDiffFromPrevious !== undefined && isExpanded) && (
             <div
               className={classnames(
                 "text-xs",
-                pointDiffFromPrevious > 0 ? "text-green-700" : "text-red-600"
+                pointDiffFromPrevious > 0 && "text-green-700",
+                pointDiffFromPrevious < 0 && "text-red-600"
               )}
             >
-              {pointDiffFromPrevious > 0 && "+"}
+              {pointDiffFromPrevious >= 0 && "+"}
               {pointDiffFromPrevious.toFixed(2)}
             </div>
           )}
