@@ -67,7 +67,12 @@ export const ListContestantRankings = ({ league, filter }: Props) => {
                 {(isExpanded || index < 5) && (
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="overflow-hidden rounded-lg">
+                      <div
+                        className={classnames(
+                          "overflow-hidden rounded-lg",
+                          eliminated && "grayscale"
+                        )}
+                      >
                         <Thumbnail src={contestant.portrait_src} size={28} />
                       </div>
                       <div
