@@ -1,0 +1,10 @@
+{
+  "name": "Fantasy Survivor",
+  "short_name": "Fantasy Survivor",
+  "icons": [],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

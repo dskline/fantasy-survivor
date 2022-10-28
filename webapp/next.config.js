@@ -1,10 +1,14 @@
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = withPWA({
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com"]
+    domains: ["res.cloudinary.com"],
   },
   eslint: {
     dirs: ["features", "pages"],
   },
-};
+});
