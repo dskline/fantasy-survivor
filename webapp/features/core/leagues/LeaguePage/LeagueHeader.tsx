@@ -16,7 +16,7 @@ type Props = {
   onJoinLeague: () => void;
 };
 export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
-  const { title, season, show } = league;
+  const { title, season, show, orderedEpisodes } = league;
   return (
     <div className="px-4 md:px-0">
       <div className="flex items-center gap-4">
@@ -39,28 +39,35 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
             <LeaguePills {...league} />
           </div>
           <div className="mt-2">
-            <button
-              type="button"
-              className={classnames(
-                "flex items-center gap-2 rounded shadow-lg",
-                "py-1 px-2 text-xs font-semibold",
-                user.participantId
-                  ? "bg-green-600 pr-3 text-green-100"
-                  : "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-100",
-                user.isLoading && "bg-emerald-600/50"
+            {!user.isLoading &&
+              (!user.participantId || orderedEpisodes.length === 0) && (
+                <button
+                  type="button"
+                  className={classnames(
+                    "flex items-center gap-2 rounded shadow-lg",
+                    "py-1 px-2 text-xs font-semibold",
+                    user.participantId
+                      ? "bg-green-600 pr-3 text-green-100"
+                      : "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-100",
+                    user.isLoading && "bg-emerald-600/50"
+                  )}
+                  onClick={() => onJoinLeague()}
+                  disabled={!!user.participantId || user.isLoading}
+                >
+                  {user.participantId && (
+                    <>
+                      <BsCheckCircleFill className="h-3 w-3" />
+                      Joined
+                    </>
+                  )}
+                  {!user.participantId &&
+                    orderedEpisodes.length > 0 &&
+                    "Sign In"}
+                  {!user.participantId &&
+                    orderedEpisodes.length === 0 &&
+                    "Join"}
+                </button>
               )}
-              onClick={() => onJoinLeague()}
-              disabled={!!user.participantId || user.isLoading}
-            >
-              {!user.participantId ? (
-                "Join League"
-              ) : (
-                <>
-                  <BsCheckCircleFill className="h-3 w-3" />
-                  Joined
-                </>
-              )}
-            </button>
           </div>
         </div>
       </div>
