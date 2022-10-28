@@ -1,5 +1,5 @@
-import { Contestants, tribes } from '@/seed/survivor/us/42/tribes'
-import { SurvivorEpisode } from '@/seed/survivor/seeder/SeasonSeeder'
+import { SurvivorEpisode } from "@/seed/survivor/seeder/SeasonSeeder";
+import { Contestants, tribes } from "@/seed/survivor/us/42/tribes";
 
 export const episode1: SurvivorEpisode = {
   startTime: new Date("Mar 16 2022 20:00:00 GMT-0500"),

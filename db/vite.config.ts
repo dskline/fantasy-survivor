@@ -1,17 +1,21 @@
+import path from "node:path";
+import * as url from "node:url";
+
 import { defineConfig } from "vite";
-import path from "path";
 
 export default defineConfig({
-  // @ts-ignore
   test: {
     globalSetup: process.env.VITE_SEED_DB
-      ? path.resolve(__dirname, "./__tests__/seed.ts")
+      ? path.resolve(
+          path.dirname(url.fileURLToPath(import.meta.url)),
+          "./__tests__/seed.ts"
+        )
       : undefined,
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "."),
+      "@": path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), "."),
     },
   },
-  envPrefix: ['NEXT_', 'VITE_'],
+  envPrefix: ["NEXT_", "VITE_"],
 });

@@ -1,6 +1,6 @@
-import { SeasonSeeder } from "@/seed/survivor/seeder/SeasonSeeder";
-import { createSeason } from "@/seed/survivor/seeder/createSeason";
 import { createContestants } from "@/seed/survivor/seeder/createContestants";
+import { createSeason } from "@/seed/survivor/seeder/createSeason";
+import { PlayerIds, SeasonSeeder } from "@/seed/survivor/seeder/SeasonSeeder";
 
 export async function createSeasonSeeder(
   seriesId: string,
@@ -15,9 +15,9 @@ export async function createSeasonSeeder(
     throw new Error("Error creating contestants");
   }
 
-  const playerIds = contestants.reduce((previous, current, i) => {
-    previous[names[i]] = current;
-    return previous;
-  }, {});
+  const playerIds: PlayerIds = {};
+  for (const [i, contestant] of contestants.entries()) {
+    playerIds[names[i]] = contestant;
+  }
   return new SeasonSeeder(season, playerIds);
 }

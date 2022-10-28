@@ -1,5 +1,5 @@
-import { SurvivorRuleId } from "@/seed/survivor/rules";
 import { dbClient } from "@/seed/dbClient";
+import { SurvivorRuleId } from "@/seed/survivor/rules";
 import { Season } from "@/seed/survivor/survivor.seed";
 
 export type SurvivorEpisode = {
@@ -10,7 +10,7 @@ export type SurvivorEpisode = {
     comment?: string;
   }>;
 };
-type PlayerIds = { [key: string]: { id: string } };
+export type PlayerIds = { [key: string]: { id: string } };
 
 export class SeasonSeeder {
   season: Season;
