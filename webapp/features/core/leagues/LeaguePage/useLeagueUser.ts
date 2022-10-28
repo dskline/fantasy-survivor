@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { useUser } from "@supabase/auth-helpers-react";
 
 import { useGetLeagueParticipants } from "@/features/core/leagues/crud/getLeagueParticipants";
@@ -10,6 +12,7 @@ import {
 
 export const useLeagueUser = (league: LeagueProps): LeagueUser => {
   const { user, isLoading } = useUser();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const userId = user?.id;
 
   const { data, fetching } = useGetLeagueParticipants(
@@ -21,6 +24,12 @@ export const useLeagueUser = (league: LeagueProps): LeagueUser => {
     },
     !userId
   );
+
+  useEffect(() => {
+    if (!fetching && !isLoading) {
+      setIsInitialLoad(false);
+    }
+  }, [fetching, isLoading]);
 
   const participants = data?.league_participantsCollection?.edges || [];
   const participant = participants.find(
@@ -34,11 +43,11 @@ export const useLeagueUser = (league: LeagueProps): LeagueUser => {
   return data && userId
     ? {
         ...(toLeagueUsers(league, data)[userId] as LeagueUser),
-        isLoading: isLoading || fetching,
+        isLoading: isInitialLoad,
         features,
       }
     : {
-        isLoading: isLoading || fetching,
+        isLoading: isInitialLoad,
         userRoster: {} as UserRoster,
         features: [],
         watched: [],
