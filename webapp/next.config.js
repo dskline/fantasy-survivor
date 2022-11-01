@@ -1,17 +1,15 @@
-const withOffline = require("next-offline");
 const withPWA = require("next-pwa")({
   dest: "public",
+  sw: "service-worker.js",
 });
 
 /** @type {import('next').NextConfig} */
-module.exports = withOffline(
-  withPWA({
-    reactStrictMode: true,
-    images: {
-      domains: ["res.cloudinary.com"],
-    },
-    eslint: {
-      dirs: ["features", "pages"],
-    },
-  })
-);
+module.exports = withPWA({
+  reactStrictMode: true,
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
+  eslint: {
+    dirs: ["features", "pages"],
+  },
+});
