@@ -1,10 +1,9 @@
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
-import { UserProvider } from "@supabase/auth-helpers-react";
 import { GetServerSideProps, NextPage } from "next";
 import { NextAdapter } from "next-query-params";
 import Head from "next/head";
 import { QueryParamProvider } from "use-query-params";
 
+import { UserProvider } from "@/features/core/auth/UserProvider";
 import { ssrClient } from "@/features/core/db/graphql/ssrClient";
 import { withUrql } from "@/features/core/db/graphql/withUrql";
 import { getLeague } from "@/features/core/leagues/crud/getLeague";
@@ -24,7 +23,7 @@ const Page: NextPage<LeagueProps> = (props: LeagueProps) => {
   const metaTitle = title || `${show.title} League`;
   const description = `This is a ${format.title} fantasy league for ${show.title} Season ${season.order}.`;
   return (
-    <UserProvider supabaseClient={supabaseClient}>
+    <UserProvider>
       <QueryParamProvider adapter={NextAdapter}>
         <Head>
           <title>{metaTitle}</title>
