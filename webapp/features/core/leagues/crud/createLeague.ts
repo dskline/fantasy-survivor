@@ -30,8 +30,9 @@ export const createLeague = async (
     ruleset_id: data.ruleset.id,
     rule_data: isNewRuleset(data, selectedFormat)
       ? JSON.stringify(data.ruleset.rules)
-      : undefined,
-    title: data.title,
+      : // eslint-disable-next-line unicorn/no-null
+        null,
+    title: data.title || "",
     owner_id: userId,
   });
 };
