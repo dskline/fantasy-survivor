@@ -4,7 +4,6 @@ importScripts(
 importScripts(
   "https://www.gstatic.com/firebasejs/9.13.0/firebase-messaging-compat.js"
 );
-h;
 
 const firebaseConfig = {
   apiKey: "AIzaSyD4GfBThmiw7Ay-es5gT_Sj6CSM0xpqJiY",
