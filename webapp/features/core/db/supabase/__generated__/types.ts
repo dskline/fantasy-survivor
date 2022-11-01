@@ -9,6 +9,26 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      api_tokens: {
+        Row: {
+          owner: string;
+          name: string;
+          token: string;
+          id: string;
+        };
+        Insert: {
+          owner: string;
+          name: string;
+          token: string;
+          id?: string;
+        };
+        Update: {
+          owner?: string;
+          name?: string;
+          token?: string;
+          id?: string;
+        };
+      };
       contestant_seasons: {
         Row: {
           contestant: string;
@@ -35,6 +55,43 @@ export interface Database {
           team_color?: string | null;
         };
       };
+      contestants: {
+        Row: {
+          firstname: string;
+          surname: string | null;
+          nickname: string | null;
+          slug: string;
+        };
+        Insert: {
+          firstname: string;
+          surname?: string | null;
+          nickname?: string | null;
+          slug: string;
+        };
+        Update: {
+          firstname?: string;
+          surname?: string | null;
+          nickname?: string | null;
+          slug?: string;
+        };
+      };
+      episodes: {
+        Row: {
+          start_time: string;
+          id: string;
+          season: string;
+        };
+        Insert: {
+          start_time: string;
+          id?: string;
+          season?: string;
+        };
+        Update: {
+          start_time?: string;
+          id?: string;
+          season?: string;
+        };
+      };
       events: {
         Row: {
           rule: string;
@@ -58,6 +115,23 @@ export interface Database {
           contestant_season?: string;
         };
       };
+      league_formats: {
+        Row: {
+          id: string;
+          title: string;
+          description: string;
+        };
+        Insert: {
+          id: string;
+          title: string;
+          description: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          description?: string;
+        };
+      };
       league_participants: {
         Row: {
           id: string;
@@ -78,23 +152,6 @@ export interface Database {
           participant?: string;
         };
       };
-      rs_league_formats: {
-        Row: {
-          reality_series: string;
-          league_format: string;
-          default_ruleset: string;
-        };
-        Insert: {
-          reality_series?: string;
-          league_format?: string;
-          default_ruleset?: string;
-        };
-        Update: {
-          reality_series?: string;
-          league_format?: string;
-          default_ruleset?: string;
-        };
-      };
       leagues: {
         Row: {
           id: string;
@@ -105,6 +162,7 @@ export interface Database {
           title: string | null;
           format: string | null;
           is_private: boolean;
+          slug: string | null;
         };
         Insert: {
           id?: string;
@@ -115,6 +173,7 @@ export interface Database {
           title?: string | null;
           format?: string | null;
           is_private?: boolean;
+          slug?: string | null;
         };
         Update: {
           id?: string;
@@ -125,23 +184,50 @@ export interface Database {
           title?: string | null;
           format?: string | null;
           is_private?: boolean;
+          slug?: string | null;
         };
       };
-      league_formats: {
+      lp_contestants: {
         Row: {
+          rank: string | null;
           id: string;
-          title: string;
-          description: string;
+          contestant_season: string;
+          league_participant: string;
+          updated_at: string;
         };
         Insert: {
-          id: string;
-          title: string;
-          description: string;
+          rank?: string | null;
+          id?: string;
+          contestant_season?: string;
+          league_participant?: string;
+          updated_at?: string;
         };
         Update: {
+          rank?: string | null;
           id?: string;
-          title?: string;
-          description?: string;
+          contestant_season?: string;
+          league_participant?: string;
+          updated_at?: string;
+        };
+      };
+      profiles: {
+        Row: {
+          email: string;
+          id: string;
+          display_name: string | null;
+          thumbnail_src: string | null;
+        };
+        Insert: {
+          email: string;
+          id: string;
+          display_name?: string | null;
+          thumbnail_src?: string | null;
+        };
+        Update: {
+          email?: string;
+          id?: string;
+          display_name?: string | null;
+          thumbnail_src?: string | null;
         };
       };
       reality_series: {
@@ -173,46 +259,6 @@ export interface Database {
           updated_at?: string;
         };
       };
-      contestants: {
-        Row: {
-          firstname: string;
-          surname: string | null;
-          nickname: string | null;
-          slug: string;
-        };
-        Insert: {
-          firstname: string;
-          surname?: string | null;
-          nickname?: string | null;
-          slug: string;
-        };
-        Update: {
-          firstname?: string;
-          surname?: string | null;
-          nickname?: string | null;
-          slug?: string;
-        };
-      };
-      profiles: {
-        Row: {
-          id: string;
-          email: string;
-          display_name: string | null;
-          thumbnail_src: string | null;
-        };
-        Insert: {
-          id: string;
-          email: string;
-          display_name?: string | null;
-          thumbnail_src?: string | null;
-        };
-        Update: {
-          id?: string;
-          email?: string;
-          display_name?: string | null;
-          thumbnail_src?: string | null;
-        };
-      };
       roles: {
         Row: {
           id: string;
@@ -225,6 +271,23 @@ export interface Database {
         Update: {
           id?: string;
           display_name?: string;
+        };
+      };
+      rs_league_formats: {
+        Row: {
+          reality_series: string;
+          league_format: string;
+          default_ruleset: string;
+        };
+        Insert: {
+          reality_series?: string;
+          league_format?: string;
+          default_ruleset?: string;
+        };
+        Update: {
+          reality_series?: string;
+          league_format?: string;
+          default_ruleset?: string;
         };
       };
       rules: {
@@ -245,6 +308,26 @@ export interface Database {
           description?: string;
           is_negative?: boolean | null;
           reality_series?: string;
+        };
+      };
+      rulesets: {
+        Row: {
+          data: Json;
+          id: string;
+          updated_at: string;
+          created_by: string;
+        };
+        Insert: {
+          data: Json;
+          id?: string;
+          updated_at?: string;
+          created_by?: string;
+        };
+        Update: {
+          data?: Json;
+          id?: string;
+          updated_at?: string;
+          created_by?: string;
         };
       };
       seasons: {
@@ -273,24 +356,38 @@ export interface Database {
           reality_show?: string;
         };
       };
-      rulesets: {
+      user_fcm_tokens: {
         Row: {
-          data: Json;
+          user: string;
+          token: string;
           id: string;
-          updated_at: string;
-          created_by: string;
         };
         Insert: {
-          data: Json;
+          user: string;
+          token: string;
           id?: string;
-          updated_at?: string;
-          created_by?: string;
         };
         Update: {
-          data?: Json;
+          user?: string;
+          token?: string;
           id?: string;
-          updated_at?: string;
-          created_by?: string;
+        };
+      };
+      user_features: {
+        Row: {
+          user: string;
+          feature: string;
+          id: string;
+        };
+        Insert: {
+          user: string;
+          feature: string;
+          id?: string;
+        };
+        Update: {
+          user?: string;
+          feature?: string;
+          id?: string;
         };
       };
       user_roles: {
@@ -307,60 +404,20 @@ export interface Database {
           role?: string;
         };
       };
-      episodes: {
+      user_watched: {
         Row: {
-          start_time: string;
-          id: string;
-          season: string;
-        };
-        Insert: {
-          start_time: string;
-          id?: string;
-          season?: string;
-        };
-        Update: {
-          start_time?: string;
-          id?: string;
-          season?: string;
-        };
-      };
-      lp_contestants: {
-        Row: {
-          rank: string | null;
-          id: string;
-          contestant_season: string;
-          league_participant: string;
-        };
-        Insert: {
-          rank?: string | null;
-          id?: string;
-          contestant_season?: string;
-          league_participant?: string;
-        };
-        Update: {
-          rank?: string | null;
-          id?: string;
-          contestant_season?: string;
-          league_participant?: string;
-        };
-      };
-      api_tokens: {
-        Row: {
-          owner: string;
-          name: string;
-          token: string;
+          user: string;
+          episode: string;
           id: string;
         };
         Insert: {
-          owner: string;
-          name: string;
-          token: string;
+          user: string;
+          episode: string;
           id?: string;
         };
         Update: {
-          owner?: string;
-          name?: string;
-          token?: string;
+          user?: string;
+          episode?: string;
           id?: string;
         };
       };
@@ -374,9 +431,9 @@ export interface Database {
           season_id: string;
           format_id: string;
           ruleset_id: string;
-          title: unknown;
-          rule_data: unknown;
-          owner_id: unknown;
+          title: string;
+          rule_data: Json;
+          owner_id: string;
         };
         Returns: string;
       };
