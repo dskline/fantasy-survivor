@@ -5,6 +5,7 @@ import { episode3 } from "@/seed/survivor/us/43/episodes/survivor-us-43-03";
 import { episode4 } from "@/seed/survivor/us/43/episodes/survivor-us-43-04";
 import { episode5 } from "@/seed/survivor/us/43/episodes/survivor-us-43-05";
 import { episode6 } from "@/seed/survivor/us/43/episodes/survivor-us-43-06";
+import { episode7 } from "@/seed/survivor/us/43/episodes/survivor-us-43-07";
 import { Contestants } from "@/seed/survivor/us/43/tribes";
 
 export async function survivor43() {
@@ -19,4 +20,5 @@ export async function survivor43() {
   await seeder.recordEpisode(episode4);
   await seeder.recordEpisode(episode5);
   await seeder.recordEpisode(episode6);
+  await seeder.recordEpisode(episode7);
 }
