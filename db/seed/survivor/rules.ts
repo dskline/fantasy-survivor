@@ -56,11 +56,15 @@ const rules = {
   },
   FinalTribal: {
     description: "Player is included in the final tribal council",
-    defaultPointsAlloted: 3,
+    defaultPointsAlloted: 5,
   },
   SoleSurvivor: {
     description: "Player is the sole survivor/winner of the game",
-    defaultPointsAlloted: 3,
+    defaultPointsAlloted: 10,
+  },
+  RunnerUpSurvivor: {
+    description: "Player is the runner-up of the game (2nd place winner)",
+    defaultPointsAlloted: 5,
   },
 } as const;
 
