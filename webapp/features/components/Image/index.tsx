@@ -1,6 +1,6 @@
 import React from "react";
 
-import NextImage, { ImageProps } from "next/future/image";
+import NextImage, { ImageProps } from "next/image";
 
 import { generateImageUrl } from "@/features/components/Image/generateImageUrl";
 
