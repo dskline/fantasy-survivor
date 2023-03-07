@@ -5,10 +5,6 @@ CREATE TABLE IF NOT EXISTS public.profiles
     display_name  character varying COLLATE pg_catalog."default",
     thumbnail_src character varying COLLATE pg_catalog."default",
     CONSTRAINT users_pkey PRIMARY KEY (id),
-    CONSTRAINT profiles_email_fkey FOREIGN KEY (email)
-        REFERENCES auth.users (email) MATCH SIMPLE
-        ON UPDATE CASCADE
-        ON DELETE NO ACTION,
     CONSTRAINT profiles_id_fkey FOREIGN KEY (id)
         REFERENCES auth.users (id) MATCH SIMPLE
         ON UPDATE NO ACTION
