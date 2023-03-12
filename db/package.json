@@ -4,10 +4,10 @@
   "scripts": {
     "test": "vitest",
     "seed": "VITE_SEED_DB=true vitest",
-    "codegen": "supabase gen types typescript --local > ../webapp/features/core/db/supabase/__generated__/types.ts"
+    "codegen": "supabase gen types typescript --local > types.ts"
   },
   "dependencies": {
-    "@supabase/supabase-js": "1.35.6"
+    "@supabase/supabase-js": "2.10.0"
   },
   "devDependencies": {
     "@types/node": "18.7.16",

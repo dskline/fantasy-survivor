@@ -2,8 +2,7 @@ import { dbClient } from "@/seed/dbClient";
 import { Tribe } from "@/seed/survivor/index";
 import { SurvivorRuleId, survivorRules } from "@/seed/survivor/rules";
 import { createRankRuleset } from "@/seed/survivor/ruleset/rank/createRankRuleset";
-import { survivor42 } from "@/seed/survivor/us/42/episodes";
-import { survivor43 } from "@/seed/survivor/us/43/episodes";
+import { survivor44 } from "@/seed/survivor/us/44/episodes";
 
 export type Season = {
   id?: string;
@@ -22,6 +21,7 @@ export const seedSurvivor = async () => {
     Object.keys(survivorRules).map((r) => {
       const rule = survivorRules[r as SurvivorRuleId];
       return {
+        reality_series: "survivor_us",
         id: r,
         description: rule.description,
         is_negative: rule.defaultPointsAlloted < 0,
@@ -29,6 +29,5 @@ export const seedSurvivor = async () => {
     })
   );
   await createRankRuleset();
-  await survivor42();
-  await survivor43();
+  await survivor44();
 };

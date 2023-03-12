@@ -1,5 +1,5 @@
 import { dbClient, getAdminId } from "@/seed/dbClient";
-import { survivorRules, SurvivorRuleId } from '@/seed/survivor/rules'
+import { survivorRules, SurvivorRuleId } from "@/seed/survivor/rules";
 import { survivorUS } from "@/seed/survivor/us";
 
 const FORMAT_ID = "RANK";
@@ -34,14 +34,21 @@ export const createRankRuleset = async () => {
       };
     }
 
-    const { data } = await supabase.from("rulesets").upsert({
-      created_by: getAdminId(),
-      data: rulesetData,
-    });
+    const { data } = await supabase
+      .from("rulesets")
+      .upsert({
+        created_by: getAdminId(),
+        data: rulesetData,
+      })
+      .select("id");
+    if (!data?.length) {
+      throw new Error("Failed to create ruleset");
+    }
+
     await supabase.from("rs_league_formats").upsert({
       reality_series: survivorUS.slug,
       league_format: FORMAT_ID,
-      default_ruleset: data![0].id,
+      default_ruleset: data[0].id,
     });
   }
 };

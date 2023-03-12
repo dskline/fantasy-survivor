@@ -1,7 +1,7 @@
 import { RealitySeries } from "@/seed/survivor/survivor.seed";
-import { season42 } from "@/seed/survivor/us/42";
+import { season44 } from "@/seed/survivor/us/44";
 
 export const survivorUS: RealitySeries = {
   slug: "survivor_us",
-  seasons: [season42],
+  seasons: [season44],
 };
