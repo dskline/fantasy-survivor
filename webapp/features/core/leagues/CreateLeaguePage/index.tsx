@@ -42,7 +42,7 @@ export const CreateLeaguePage = ({
   initialValues,
 }: CreateLeagueProps) => {
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  const user = useUser();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const form = useForm<CreateLeagueFields>({
@@ -52,10 +52,10 @@ export const CreateLeaguePage = ({
   const ruleset = watch("ruleset");
 
   useEffect(() => {
-    if (!isLoading && user === null) {
+    if (user === null) {
       setShowLoginModal(true);
     }
-  }, [isLoading, user]);
+  }, [user]);
 
   const onSubmit = async (data: CreateLeagueFields) => {
     if (!user) {

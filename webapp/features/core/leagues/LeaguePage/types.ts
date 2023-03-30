@@ -11,6 +11,9 @@ export type Contestant = {
   firstname: string;
   surname: string;
   fullName: string;
+  age: number;
+  occupation: string;
+  hometown: string;
   portrait_src: string;
   team_color: string;
   events: Array<{

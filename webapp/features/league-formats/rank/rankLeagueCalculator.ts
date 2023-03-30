@@ -12,9 +12,9 @@ export const rankLeagueCalculator = (
   const numEpisodes = league.orderedEpisodes.length;
   const pointsByContestantId = {} as Record<string, Array<number>>;
   for (const contestant of league.contestants) {
-    pointsByContestantId[contestant.id] = [
-      ...Array.from({ length: numEpisodes + 1 }),
-    ].map(() => 0);
+    pointsByContestantId[contestant.id] = Array.from({
+      length: numEpisodes + 1,
+    }).map(() => 0);
   }
   const pointsByEventId = {} as Record<string, number>;
   for (const event of league.orderedRules) {
@@ -27,9 +27,7 @@ export const rankLeagueCalculator = (
     }
   }
   for (const user of users) {
-    user.scoreByEpisode = [...Array.from({ length: numEpisodes + 1 })].map(
-      () => 0
-    );
+    user.scoreByEpisode = Array.from({ length: numEpisodes + 1 }).map(() => 0);
     if (user.userRoster) {
       let totalScore = 0;
       for (let i = 0; i < numEpisodes; i++) {

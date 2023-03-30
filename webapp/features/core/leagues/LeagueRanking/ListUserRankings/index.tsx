@@ -70,10 +70,10 @@ const ListUserRankingsImpl = ({ currentUser, users, filter }: Props) => {
                   layoutId={user.id}
                   className={classnames(
                     "w-full [&>td]:px-0",
-                    "[&>td:last-child>div]:rounded-r-lg [&>td:first-child>div]:rounded-l-lg",
+                    "[&>td:first-child>div]:rounded-l-lg [&>td:last-child>div]:rounded-r-lg",
                     isExpanded
-                      ? "[&>td]:py-1 [&>td>div]:h-20 [&>td>div]:md:h-14"
-                      : "[&>td]:py-0.5 [&>td>div]:h-10",
+                      ? "[&>td>div]:h-20 [&>td>div]:md:h-14 [&>td]:py-1"
+                      : "[&>td>div]:h-10 [&>td]:py-0.5",
                     isExpanded || index < 5 ? "" : "max-h-0 [&>td>div]:h-8",
                     currentUser.id === user.id
                       ? "text-blue-700 [&>td>div]:border-blue-600/50 [&>td>div]:bg-blue-200/50"

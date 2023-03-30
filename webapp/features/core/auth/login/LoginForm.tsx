@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useUser } from "@supabase/auth-helpers-react";
-import { Auth } from "@supabase/ui";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 type Props = {
   onLogin?: () => void;
 };
 export const LoginForm = ({ onLogin }: Props) => {
-  const { user } = useUser();
+  const user = useUser();
   const userId = user?.id;
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   useEffect(() => {
     if (userId) {
@@ -18,11 +20,11 @@ export const LoginForm = ({ onLogin }: Props) => {
   }, [userId, onLogin]);
 
   return (
-    <div>
+    <Auth.UserContextProvider supabaseClient={supabaseClient}>
       <Auth
         supabaseClient={supabaseClient}
-        // providers={["google", "twitter", "twitch"]}
-        socialColors
+        providers={[]}
+        appearance={{ theme: ThemeSupa }}
       />
       {user && (
         <div>
@@ -31,6 +33,6 @@ export const LoginForm = ({ onLogin }: Props) => {
           </button>
         </div>
       )}
-    </div>
+    </Auth.UserContextProvider>
   );
 };

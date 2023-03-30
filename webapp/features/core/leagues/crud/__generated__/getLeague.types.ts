@@ -60,6 +60,9 @@ export type GetLeagueQuery = {
                 id: any;
                 portrait_src: string;
                 team_color?: string | null;
+                age?: number | null;
+                hometown?: string | null;
+                occupation?: string | null;
                 contestants?: {
                   __typename?: "contestants";
                   slug: string;

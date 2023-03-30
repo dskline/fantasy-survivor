@@ -30,7 +30,7 @@ export const LeagueTabButton = ({
     <Icon className="h-4 w-4 md:hidden" />
     <div className="relative">{title}</div>
     {hasNotification && !isActive && (
-      <div className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-red-500 md:top-0 md:-right-0.5" />
+      <div className="absolute right-1 top-1 h-2.5 w-2.5 rounded-full bg-red-500 md:-right-0.5 md:top-0" />
     )}
   </button>
 );

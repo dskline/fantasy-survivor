@@ -24,7 +24,7 @@ type TabProps = {
 const Tabs = ({ tabs, currentTab, setTab }: TabProps) => (
   <div
     className={classnames(
-      "fixed left-0 bottom-0 z-20 w-screen pt-2",
+      "fixed bottom-0 left-0 z-20 w-screen pt-2",
       "bg-gradient-to-t from-slate-600/60 to-slate-100/10",
       "md:static md:w-full md:bg-none md:px-4"
     )}

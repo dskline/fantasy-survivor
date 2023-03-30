@@ -37,7 +37,7 @@ export const SubmitButton = ({
       {isSubmitting && (
         <motion.div
           className={classnames(
-            "absolute top-0 left-0 h-full w-full",
+            "absolute left-0 top-0 h-full w-full",
             "box-border rounded-full border-4 border-transparent border-t-current"
           )}
           animate={{ rotate: 360 }}

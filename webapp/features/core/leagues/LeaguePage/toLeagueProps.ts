@@ -23,13 +23,24 @@ export const toLeagueProps = (data: GetLeagueQuery) => {
 
   const contestants = season?.contestant_seasonsCollection?.edges?.map(
     ({ node }) => {
-      const { id, team_color, portrait_src, contestants, eventsCollection } =
-        node;
+      const {
+        id,
+        age,
+        occupation,
+        hometown,
+        team_color,
+        portrait_src,
+        contestants,
+        eventsCollection,
+      } = node;
       if (!contestants) {
         throw new Error("Contestant not found");
       }
       return {
         id,
+        age,
+        occupation,
+        hometown,
         team_color,
         portrait_src,
         fullName: contestants.firstname + " " + contestants.surname,

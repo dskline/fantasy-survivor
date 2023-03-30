@@ -11,7 +11,7 @@ import {
 } from "@/features/core/leagues/LeaguePage/types";
 
 export const useLeagueUser = (league: LeagueProps): LeagueUser => {
-  const { user, isLoading } = useUser();
+  const user = useUser();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const userId = user?.id;
 
@@ -26,10 +26,10 @@ export const useLeagueUser = (league: LeagueProps): LeagueUser => {
   );
 
   useEffect(() => {
-    if (!fetching && !isLoading) {
+    if (!fetching) {
       setIsInitialLoad(false);
     }
-  }, [fetching, isLoading]);
+  }, [fetching]);
 
   const participants = data?.league_participantsCollection?.edges || [];
   const participant = participants.find(

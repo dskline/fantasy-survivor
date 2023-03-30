@@ -24,7 +24,7 @@ export const WatchedEpisodes = ({
       <div
         className={classnames(
           "rounded-lg border-2 border-red-700 bg-red-100",
-          "flex items-center gap-4 py-3 px-4 text-red-700"
+          "flex items-center gap-4 px-4 py-3 text-red-700"
         )}
       >
         <div>
@@ -42,7 +42,7 @@ export const WatchedEpisodes = ({
           key={episode.id}
           type="button"
           className={classnames(
-            "flex w-full items-center gap-2 rounded-lg py-2 px-4",
+            "flex w-full items-center gap-2 rounded-lg px-4 py-2",
             episode.watched && "bg-green-200 text-green-900",
             !episode.watched && "bg-slate-200 text-slate-500"
           )}

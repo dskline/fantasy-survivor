@@ -32,7 +32,7 @@ export const EditableRosterCard = ({
     }}
     renderActionBar={renderActionBar}
   >
-    {[...Array.from({ length: rosterSize })].map((_, i) => {
+    {Array.from({ length: rosterSize }).map((_, i) => {
       const rosterContestant = roster[i];
       const matchesSelected =
         rosterContestant?.data.id === selectedContestant.id;
@@ -57,7 +57,7 @@ export const EditableRosterCard = ({
                 !matchesSelected &&
                 rosterIndexForSelected === -1 &&
                 i < lastOpenIndex &&
-                "[&+div]:hover:block [&~button_.text-xl]:hover:opacity-20 [&~.static]:hover:hidden",
+                "[&+div]:hover:block [&~.static]:hover:hidden [&~button_.text-xl]:hover:opacity-20",
               !rosterContestant && i === rosterSize - 1 && "static"
             )}
             onClick={() => {

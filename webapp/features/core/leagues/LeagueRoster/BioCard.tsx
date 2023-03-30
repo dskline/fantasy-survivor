@@ -9,7 +9,8 @@ type Props = {
   preload?: boolean;
 };
 export const BioCard = ({ contestant, preload }: Props) => {
-  const { team_color, portrait_src, fullName } = contestant;
+  const { age, occupation, hometown, team_color, portrait_src, fullName } =
+    contestant;
 
   return (
     <div
@@ -54,11 +55,11 @@ export const BioCard = ({ contestant, preload }: Props) => {
           </div>
           <div className="flex items-center text-xs">
             <MdLocationOn className="h-4 w-4" />
-            <span>Unknown</span>
+            <span>{hometown}</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span>Age ?</span>
-            <span>Job ?</span>
+            <span>Age {age}</span>
+            <span>{occupation}</span>
           </div>
           <div>
             <span className="text-xs md:hidden">Lorem ipsum</span>

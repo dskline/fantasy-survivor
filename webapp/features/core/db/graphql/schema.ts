@@ -38,6 +38,7 @@ export type BigIntFilter = {
   gt?: InputMaybe<Scalars["BigInt"]>;
   gte?: InputMaybe<Scalars["BigInt"]>;
   in?: InputMaybe<Array<Scalars["BigInt"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["BigInt"]>;
   lte?: InputMaybe<Scalars["BigInt"]>;
   neq?: InputMaybe<Scalars["BigInt"]>;
@@ -49,6 +50,7 @@ export type BooleanFilter = {
   gt?: InputMaybe<Scalars["Boolean"]>;
   gte?: InputMaybe<Scalars["Boolean"]>;
   in?: InputMaybe<Array<Scalars["Boolean"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["Boolean"]>;
   lte?: InputMaybe<Scalars["Boolean"]>;
   neq?: InputMaybe<Scalars["Boolean"]>;
@@ -60,6 +62,7 @@ export type DateFilter = {
   gt?: InputMaybe<Scalars["Date"]>;
   gte?: InputMaybe<Scalars["Date"]>;
   in?: InputMaybe<Array<Scalars["Date"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["Date"]>;
   lte?: InputMaybe<Scalars["Date"]>;
   neq?: InputMaybe<Scalars["Date"]>;
@@ -71,10 +74,16 @@ export type DatetimeFilter = {
   gt?: InputMaybe<Scalars["Datetime"]>;
   gte?: InputMaybe<Scalars["Datetime"]>;
   in?: InputMaybe<Array<Scalars["Datetime"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["Datetime"]>;
   lte?: InputMaybe<Scalars["Datetime"]>;
   neq?: InputMaybe<Scalars["Datetime"]>;
 };
+
+export enum FilterIs {
+  NotNull = "NOT_NULL",
+  Null = "NULL",
+}
 
 /** Boolean expression comparing fields on type "Float" */
 export type FloatFilter = {
@@ -82,9 +91,15 @@ export type FloatFilter = {
   gt?: InputMaybe<Scalars["Float"]>;
   gte?: InputMaybe<Scalars["Float"]>;
   in?: InputMaybe<Array<Scalars["Float"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["Float"]>;
   lte?: InputMaybe<Scalars["Float"]>;
   neq?: InputMaybe<Scalars["Float"]>;
+};
+
+/** Boolean expression comparing fields on type "ID" */
+export type IdFilter = {
+  eq?: InputMaybe<Scalars["ID"]>;
 };
 
 /** Boolean expression comparing fields on type "Int" */
@@ -93,127 +108,128 @@ export type IntFilter = {
   gt?: InputMaybe<Scalars["Int"]>;
   gte?: InputMaybe<Scalars["Int"]>;
   in?: InputMaybe<Array<Scalars["Int"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["Int"]>;
   lte?: InputMaybe<Scalars["Int"]>;
   neq?: InputMaybe<Scalars["Int"]>;
 };
 
-/** Boolean expression comparing fields on type "JSON" */
-export type JsonFilter = {
-  eq?: InputMaybe<Scalars["JSON"]>;
-  neq?: InputMaybe<Scalars["JSON"]>;
-};
-
 /** The root type for creating and mutating data */
 export type Mutation = {
   __typename?: "Mutation";
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `api_tokens` collection */
   deleteFromapi_tokensCollection: ApiTokensDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `contestant_seasons` collection */
   deleteFromcontestant_seasonsCollection: ContestantSeasonsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `contestants` collection */
   deleteFromcontestantsCollection: ContestantsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `episodes` collection */
   deleteFromepisodesCollection: EpisodesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `events` collection */
   deleteFromeventsCollection: EventsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `league_formats` collection */
   deleteFromleague_formatsCollection: LeagueFormatsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `league_participants` collection */
   deleteFromleague_participantsCollection: LeagueParticipantsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `leagues` collection */
   deleteFromleaguesCollection: LeaguesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `lp_contestants` collection */
   deleteFromlp_contestantsCollection: LpContestantsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `reality_series` collection */
   deleteFromreality_seriesCollection: RealitySeriesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `roles` collection */
   deleteFromrolesCollection: RolesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `rs_league_formats` collection */
   deleteFromrs_league_formatsCollection: RsLeagueFormatsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `rules` collection */
   deleteFromrulesCollection: RulesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `rulesets` collection */
   deleteFromrulesetsCollection: RulesetsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `seasons` collection */
   deleteFromseasonsCollection: SeasonsDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `user_fcm_tokens` collection */
+  deleteFromuser_fcm_tokensCollection: UserFcmTokensDeleteResponse;
+  /** Deletes zero or more records from the `user_features` collection */
   deleteFromuser_featuresCollection: UserFeaturesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `user_roles` collection */
   deleteFromuser_rolesCollection: UserRolesDeleteResponse;
-  /** Deletes zero or more records from the collection */
+  /** Deletes zero or more records from the `user_watched` collection */
   deleteFromuser_watchedCollection: UserWatchedDeleteResponse;
-  /** Adds one or more `api_tokensInsertResponse` records to the collection */
+  /** Adds one or more `api_tokens` records to the collection */
   insertIntoapi_tokensCollection?: Maybe<ApiTokensInsertResponse>;
-  /** Adds one or more `contestant_seasonsInsertResponse` records to the collection */
+  /** Adds one or more `contestant_seasons` records to the collection */
   insertIntocontestant_seasonsCollection?: Maybe<ContestantSeasonsInsertResponse>;
-  /** Adds one or more `contestantsInsertResponse` records to the collection */
+  /** Adds one or more `contestants` records to the collection */
   insertIntocontestantsCollection?: Maybe<ContestantsInsertResponse>;
-  /** Adds one or more `episodesInsertResponse` records to the collection */
+  /** Adds one or more `episodes` records to the collection */
   insertIntoepisodesCollection?: Maybe<EpisodesInsertResponse>;
-  /** Adds one or more `eventsInsertResponse` records to the collection */
+  /** Adds one or more `events` records to the collection */
   insertIntoeventsCollection?: Maybe<EventsInsertResponse>;
-  /** Adds one or more `league_formatsInsertResponse` records to the collection */
+  /** Adds one or more `league_formats` records to the collection */
   insertIntoleague_formatsCollection?: Maybe<LeagueFormatsInsertResponse>;
-  /** Adds one or more `league_participantsInsertResponse` records to the collection */
+  /** Adds one or more `league_participants` records to the collection */
   insertIntoleague_participantsCollection?: Maybe<LeagueParticipantsInsertResponse>;
-  /** Adds one or more `leaguesInsertResponse` records to the collection */
+  /** Adds one or more `leagues` records to the collection */
   insertIntoleaguesCollection?: Maybe<LeaguesInsertResponse>;
-  /** Adds one or more `lp_contestantsInsertResponse` records to the collection */
+  /** Adds one or more `lp_contestants` records to the collection */
   insertIntolp_contestantsCollection?: Maybe<LpContestantsInsertResponse>;
-  /** Adds one or more `reality_seriesInsertResponse` records to the collection */
+  /** Adds one or more `reality_series` records to the collection */
   insertIntoreality_seriesCollection?: Maybe<RealitySeriesInsertResponse>;
-  /** Adds one or more `rolesInsertResponse` records to the collection */
+  /** Adds one or more `roles` records to the collection */
   insertIntorolesCollection?: Maybe<RolesInsertResponse>;
-  /** Adds one or more `rs_league_formatsInsertResponse` records to the collection */
+  /** Adds one or more `rs_league_formats` records to the collection */
   insertIntors_league_formatsCollection?: Maybe<RsLeagueFormatsInsertResponse>;
-  /** Adds one or more `rulesInsertResponse` records to the collection */
+  /** Adds one or more `rules` records to the collection */
   insertIntorulesCollection?: Maybe<RulesInsertResponse>;
-  /** Adds one or more `rulesetsInsertResponse` records to the collection */
+  /** Adds one or more `rulesets` records to the collection */
   insertIntorulesetsCollection?: Maybe<RulesetsInsertResponse>;
-  /** Adds one or more `seasonsInsertResponse` records to the collection */
+  /** Adds one or more `seasons` records to the collection */
   insertIntoseasonsCollection?: Maybe<SeasonsInsertResponse>;
-  /** Adds one or more `user_featuresInsertResponse` records to the collection */
+  /** Adds one or more `user_fcm_tokens` records to the collection */
+  insertIntouser_fcm_tokensCollection?: Maybe<UserFcmTokensInsertResponse>;
+  /** Adds one or more `user_features` records to the collection */
   insertIntouser_featuresCollection?: Maybe<UserFeaturesInsertResponse>;
-  /** Adds one or more `user_rolesInsertResponse` records to the collection */
+  /** Adds one or more `user_roles` records to the collection */
   insertIntouser_rolesCollection?: Maybe<UserRolesInsertResponse>;
-  /** Adds one or more `user_watchedInsertResponse` records to the collection */
+  /** Adds one or more `user_watched` records to the collection */
   insertIntouser_watchedCollection?: Maybe<UserWatchedInsertResponse>;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `api_tokens` collection */
   updateapi_tokensCollection: ApiTokensUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `contestant_seasons` collection */
   updatecontestant_seasonsCollection: ContestantSeasonsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `contestants` collection */
   updatecontestantsCollection: ContestantsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `episodes` collection */
   updateepisodesCollection: EpisodesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `events` collection */
   updateeventsCollection: EventsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `league_formats` collection */
   updateleague_formatsCollection: LeagueFormatsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `league_participants` collection */
   updateleague_participantsCollection: LeagueParticipantsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `leagues` collection */
   updateleaguesCollection: LeaguesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `lp_contestants` collection */
   updatelp_contestantsCollection: LpContestantsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `reality_series` collection */
   updatereality_seriesCollection: RealitySeriesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `roles` collection */
   updaterolesCollection: RolesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `rs_league_formats` collection */
   updaters_league_formatsCollection: RsLeagueFormatsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `rules` collection */
   updaterulesCollection: RulesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `rulesets` collection */
   updaterulesetsCollection: RulesetsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `seasons` collection */
   updateseasonsCollection: SeasonsUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `user_fcm_tokens` collection */
+  updateuser_fcm_tokensCollection: UserFcmTokensUpdateResponse;
+  /** Updates zero or more records in the `user_features` collection */
   updateuser_featuresCollection: UserFeaturesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `user_roles` collection */
   updateuser_rolesCollection: UserRolesUpdateResponse;
-  /** Updates zero or more records in the collection */
+  /** Updates zero or more records in the `user_watched` collection */
   updateuser_watchedCollection: UserWatchedUpdateResponse;
 };
 
@@ -308,6 +324,12 @@ export type MutationDeleteFromseasonsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationDeleteFromuserFcmTokensCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<UserFcmTokensFilter>;
+};
+
+/** The root type for creating and mutating data */
 export type MutationDeleteFromuserFeaturesCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<UserFeaturesFilter>;
@@ -398,6 +420,11 @@ export type MutationInsertIntorulesetsCollectionArgs = {
 /** The root type for creating and mutating data */
 export type MutationInsertIntoseasonsCollectionArgs = {
   objects: Array<SeasonsInsertInput>;
+};
+
+/** The root type for creating and mutating data */
+export type MutationInsertIntouserFcmTokensCollectionArgs = {
+  objects: Array<UserFcmTokensInsertInput>;
 };
 
 /** The root type for creating and mutating data */
@@ -521,6 +548,13 @@ export type MutationUpdateseasonsCollectionArgs = {
 };
 
 /** The root type for creating and mutating data */
+export type MutationUpdateuserFcmTokensCollectionArgs = {
+  atMost?: Scalars["Int"];
+  filter?: InputMaybe<UserFcmTokensFilter>;
+  set: UserFcmTokensUpdateInput;
+};
+
+/** The root type for creating and mutating data */
 export type MutationUpdateuserFeaturesCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<UserFeaturesFilter>;
@@ -539,6 +573,11 @@ export type MutationUpdateuserWatchedCollectionArgs = {
   atMost?: Scalars["Int"];
   filter?: InputMaybe<UserWatchedFilter>;
   set: UserWatchedUpdateInput;
+};
+
+export type Node = {
+  /** Retrieves a record by `ID` */
+  nodeId: Scalars["ID"];
 };
 
 /** Defines a per-field sorting order */
@@ -582,6 +621,8 @@ export type Query = {
   leaguesCollection?: Maybe<LeaguesConnection>;
   /** A pagable collection of type `lp_contestants` */
   lp_contestantsCollection?: Maybe<LpContestantsConnection>;
+  /** Retrieve a record by its `ID` */
+  node?: Maybe<Node>;
   /** A pagable collection of type `profiles` */
   profilesCollection?: Maybe<ProfilesConnection>;
   /** A pagable collection of type `reality_series` */
@@ -596,6 +637,8 @@ export type Query = {
   rulesetsCollection?: Maybe<RulesetsConnection>;
   /** A pagable collection of type `seasons` */
   seasonsCollection?: Maybe<SeasonsConnection>;
+  /** A pagable collection of type `user_fcm_tokens` */
+  user_fcm_tokensCollection?: Maybe<UserFcmTokensConnection>;
   /** A pagable collection of type `user_features` */
   user_featuresCollection?: Maybe<UserFeaturesConnection>;
   /** A pagable collection of type `user_roles` */
@@ -695,6 +738,11 @@ export type QueryLpContestantsCollectionArgs = {
 };
 
 /** The root type for querying data */
+export type QueryNodeArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root type for querying data */
 export type QueryProfilesCollectionArgs = {
   after?: InputMaybe<Scalars["Cursor"]>;
   before?: InputMaybe<Scalars["Cursor"]>;
@@ -765,6 +813,16 @@ export type QuerySeasonsCollectionArgs = {
 };
 
 /** The root type for querying data */
+export type QueryUserFcmTokensCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserFcmTokensFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserFcmTokensOrderBy>>;
+};
+
+/** The root type for querying data */
 export type QueryUserFeaturesCollectionArgs = {
   after?: InputMaybe<Scalars["Cursor"]>;
   before?: InputMaybe<Scalars["Cursor"]>;
@@ -800,6 +858,7 @@ export type StringFilter = {
   gt?: InputMaybe<Scalars["String"]>;
   gte?: InputMaybe<Scalars["String"]>;
   in?: InputMaybe<Array<Scalars["String"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["String"]>;
   lte?: InputMaybe<Scalars["String"]>;
   neq?: InputMaybe<Scalars["String"]>;
@@ -811,6 +870,7 @@ export type TimeFilter = {
   gt?: InputMaybe<Scalars["Time"]>;
   gte?: InputMaybe<Scalars["Time"]>;
   in?: InputMaybe<Array<Scalars["Time"]>>;
+  is?: InputMaybe<FilterIs>;
   lt?: InputMaybe<Scalars["Time"]>;
   lte?: InputMaybe<Scalars["Time"]>;
   neq?: InputMaybe<Scalars["Time"]>;
@@ -820,13 +880,16 @@ export type TimeFilter = {
 export type UuidFilter = {
   eq?: InputMaybe<Scalars["UUID"]>;
   in?: InputMaybe<Array<Scalars["UUID"]>>;
+  is?: InputMaybe<FilterIs>;
   neq?: InputMaybe<Scalars["UUID"]>;
 };
 
-export type ApiTokens = {
+export type ApiTokens = Node & {
   __typename?: "api_tokens";
   id: Scalars["UUID"];
   name: Scalars["String"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   owner: Scalars["UUID"];
   profiles?: Maybe<Profiles>;
   token: Scalars["String"];
@@ -855,6 +918,7 @@ export type ApiTokensEdge = {
 export type ApiTokensFilter = {
   id?: InputMaybe<UuidFilter>;
   name?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   owner?: InputMaybe<UuidFilter>;
   token?: InputMaybe<StringFilter>;
 };
@@ -896,14 +960,19 @@ export type ApiTokensUpdateResponse = {
   records: Array<ApiTokens>;
 };
 
-export type ContestantSeasons = {
+export type ContestantSeasons = Node & {
   __typename?: "contestant_seasons";
+  age?: Maybe<Scalars["Int"]>;
   avatar_src: Scalars["String"];
   contestant: Scalars["String"];
   contestants?: Maybe<Contestants>;
   eventsCollection?: Maybe<EventsConnection>;
+  hometown?: Maybe<Scalars["String"]>;
   id: Scalars["UUID"];
   lp_contestantsCollection?: Maybe<LpContestantsConnection>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
+  occupation?: Maybe<Scalars["String"]>;
   portrait_src: Scalars["String"];
   season: Scalars["UUID"];
   seasons?: Maybe<Seasons>;
@@ -949,18 +1018,25 @@ export type ContestantSeasonsEdge = {
 };
 
 export type ContestantSeasonsFilter = {
+  age?: InputMaybe<IntFilter>;
   avatar_src?: InputMaybe<StringFilter>;
   contestant?: InputMaybe<StringFilter>;
+  hometown?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
+  occupation?: InputMaybe<StringFilter>;
   portrait_src?: InputMaybe<StringFilter>;
   season?: InputMaybe<UuidFilter>;
   team_color?: InputMaybe<StringFilter>;
 };
 
 export type ContestantSeasonsInsertInput = {
+  age?: InputMaybe<Scalars["Int"]>;
   avatar_src?: InputMaybe<Scalars["String"]>;
   contestant?: InputMaybe<Scalars["String"]>;
+  hometown?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["UUID"]>;
+  occupation?: InputMaybe<Scalars["String"]>;
   portrait_src?: InputMaybe<Scalars["String"]>;
   season?: InputMaybe<Scalars["UUID"]>;
   team_color?: InputMaybe<Scalars["String"]>;
@@ -975,18 +1051,24 @@ export type ContestantSeasonsInsertResponse = {
 };
 
 export type ContestantSeasonsOrderBy = {
+  age?: InputMaybe<OrderByDirection>;
   avatar_src?: InputMaybe<OrderByDirection>;
   contestant?: InputMaybe<OrderByDirection>;
+  hometown?: InputMaybe<OrderByDirection>;
   id?: InputMaybe<OrderByDirection>;
+  occupation?: InputMaybe<OrderByDirection>;
   portrait_src?: InputMaybe<OrderByDirection>;
   season?: InputMaybe<OrderByDirection>;
   team_color?: InputMaybe<OrderByDirection>;
 };
 
 export type ContestantSeasonsUpdateInput = {
+  age?: InputMaybe<Scalars["Int"]>;
   avatar_src?: InputMaybe<Scalars["String"]>;
   contestant?: InputMaybe<Scalars["String"]>;
+  hometown?: InputMaybe<Scalars["String"]>;
   id?: InputMaybe<Scalars["UUID"]>;
+  occupation?: InputMaybe<Scalars["String"]>;
   portrait_src?: InputMaybe<Scalars["String"]>;
   season?: InputMaybe<Scalars["UUID"]>;
   team_color?: InputMaybe<Scalars["String"]>;
@@ -1000,11 +1082,13 @@ export type ContestantSeasonsUpdateResponse = {
   records: Array<ContestantSeasons>;
 };
 
-export type Contestants = {
+export type Contestants = Node & {
   __typename?: "contestants";
   contestant_seasonsCollection?: Maybe<ContestantSeasonsConnection>;
   firstname: Scalars["String"];
   nickname?: Maybe<Scalars["String"]>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   slug: Scalars["String"];
   surname?: Maybe<Scalars["String"]>;
 };
@@ -1041,6 +1125,7 @@ export type ContestantsEdge = {
 export type ContestantsFilter = {
   firstname?: InputMaybe<StringFilter>;
   nickname?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   slug?: InputMaybe<StringFilter>;
   surname?: InputMaybe<StringFilter>;
 };
@@ -1082,10 +1167,12 @@ export type ContestantsUpdateResponse = {
   records: Array<Contestants>;
 };
 
-export type Episodes = {
+export type Episodes = Node & {
   __typename?: "episodes";
   eventsCollection?: Maybe<EventsConnection>;
   id: Scalars["UUID"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   season: Scalars["UUID"];
   seasons?: Maybe<Seasons>;
   start_time: Scalars["Datetime"];
@@ -1132,6 +1219,7 @@ export type EpisodesEdge = {
 
 export type EpisodesFilter = {
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   season?: InputMaybe<UuidFilter>;
   start_time?: InputMaybe<DatetimeFilter>;
 };
@@ -1170,7 +1258,7 @@ export type EpisodesUpdateResponse = {
   records: Array<Episodes>;
 };
 
-export type Events = {
+export type Events = Node & {
   __typename?: "events";
   comment?: Maybe<Scalars["String"]>;
   contestant_season: Scalars["UUID"];
@@ -1178,6 +1266,8 @@ export type Events = {
   episode: Scalars["UUID"];
   episodes?: Maybe<Episodes>;
   id: Scalars["UUID"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   rule: Scalars["String"];
   rules?: Maybe<Rules>;
 };
@@ -1207,6 +1297,7 @@ export type EventsFilter = {
   contestant_season?: InputMaybe<UuidFilter>;
   episode?: InputMaybe<UuidFilter>;
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   rule?: InputMaybe<StringFilter>;
 };
 
@@ -1250,11 +1341,13 @@ export type EventsUpdateResponse = {
   records: Array<Events>;
 };
 
-export type LeagueFormats = {
+export type LeagueFormats = Node & {
   __typename?: "league_formats";
   description: Scalars["String"];
   id: Scalars["String"];
   leaguesCollection?: Maybe<LeaguesConnection>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
   title: Scalars["String"];
 };
@@ -1300,6 +1393,7 @@ export type LeagueFormatsEdge = {
 export type LeagueFormatsFilter = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   title?: InputMaybe<StringFilter>;
 };
 
@@ -1337,13 +1431,15 @@ export type LeagueFormatsUpdateResponse = {
   records: Array<LeagueFormats>;
 };
 
-export type LeagueParticipants = {
+export type LeagueParticipants = Node & {
   __typename?: "league_participants";
   created_at: Scalars["Datetime"];
   id: Scalars["UUID"];
   league: Scalars["UUID"];
   leagues?: Maybe<Leagues>;
   lp_contestantsCollection?: Maybe<LpContestantsConnection>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   participant: Scalars["UUID"];
   profiles?: Maybe<Profiles>;
 };
@@ -1381,6 +1477,7 @@ export type LeagueParticipantsFilter = {
   created_at?: InputMaybe<DatetimeFilter>;
   id?: InputMaybe<UuidFilter>;
   league?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   participant?: InputMaybe<UuidFilter>;
 };
 
@@ -1421,7 +1518,7 @@ export type LeagueParticipantsUpdateResponse = {
   records: Array<LeagueParticipants>;
 };
 
-export type Leagues = {
+export type Leagues = Node & {
   __typename?: "leagues";
   created_at: Scalars["Datetime"];
   created_by: Scalars["UUID"];
@@ -1430,6 +1527,8 @@ export type Leagues = {
   is_private: Scalars["Boolean"];
   league_formats?: Maybe<LeagueFormats>;
   league_participantsCollection?: Maybe<LeagueParticipantsConnection>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   profiles?: Maybe<Profiles>;
   ruleset?: Maybe<Scalars["UUID"]>;
   rulesets?: Maybe<Rulesets>;
@@ -1474,6 +1573,7 @@ export type LeaguesFilter = {
   format?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
   is_private?: InputMaybe<BooleanFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   ruleset?: InputMaybe<UuidFilter>;
   season?: InputMaybe<UuidFilter>;
   slug?: InputMaybe<StringFilter>;
@@ -1532,13 +1632,15 @@ export type LeaguesUpdateResponse = {
   records: Array<Leagues>;
 };
 
-export type LpContestants = {
+export type LpContestants = Node & {
   __typename?: "lp_contestants";
   contestant_season: Scalars["UUID"];
   contestant_seasons?: Maybe<ContestantSeasons>;
   id: Scalars["UUID"];
   league_participant: Scalars["UUID"];
   league_participants?: Maybe<LeagueParticipants>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   rank?: Maybe<Scalars["String"]>;
   updated_at: Scalars["Datetime"];
 };
@@ -1567,6 +1669,7 @@ export type LpContestantsFilter = {
   contestant_season?: InputMaybe<UuidFilter>;
   id?: InputMaybe<UuidFilter>;
   league_participant?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   rank?: InputMaybe<StringFilter>;
   updated_at?: InputMaybe<DatetimeFilter>;
 };
@@ -1611,15 +1714,18 @@ export type LpContestantsUpdateResponse = {
   records: Array<LpContestants>;
 };
 
-export type Profiles = {
+export type Profiles = Node & {
   __typename?: "profiles";
   api_tokensCollection?: Maybe<ApiTokensConnection>;
   display_name?: Maybe<Scalars["String"]>;
   id: Scalars["UUID"];
   league_participantsCollection?: Maybe<LeagueParticipantsConnection>;
   leaguesCollection?: Maybe<LeaguesConnection>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   rulesetsCollection?: Maybe<RulesetsConnection>;
   thumbnail_src?: Maybe<Scalars["String"]>;
+  user_fcm_tokensCollection?: Maybe<UserFcmTokensConnection>;
   user_featuresCollection?: Maybe<UserFeaturesConnection>;
   user_rolesCollection?: Maybe<UserRolesConnection>;
   user_watchedCollection?: Maybe<UserWatchedConnection>;
@@ -1661,6 +1767,15 @@ export type ProfilesRulesetsCollectionArgs = {
   orderBy?: InputMaybe<Array<RulesetsOrderBy>>;
 };
 
+export type ProfilesUserFcmTokensCollectionArgs = {
+  after?: InputMaybe<Scalars["Cursor"]>;
+  before?: InputMaybe<Scalars["Cursor"]>;
+  filter?: InputMaybe<UserFcmTokensFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<UserFcmTokensOrderBy>>;
+};
+
 export type ProfilesUserFeaturesCollectionArgs = {
   after?: InputMaybe<Scalars["Cursor"]>;
   before?: InputMaybe<Scalars["Cursor"]>;
@@ -1694,14 +1809,6 @@ export type ProfilesConnection = {
   pageInfo: PageInfo;
 };
 
-export type ProfilesDeleteResponse = {
-  __typename?: "profilesDeleteResponse";
-  /** Count of the records impacted by the mutation */
-  affectedCount: Scalars["Int"];
-  /** Array of records impacted by the mutation */
-  records: Array<Profiles>;
-};
-
 export type ProfilesEdge = {
   __typename?: "profilesEdge";
   cursor: Scalars["String"];
@@ -1711,15 +1818,8 @@ export type ProfilesEdge = {
 export type ProfilesFilter = {
   display_name?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   thumbnail_src?: InputMaybe<StringFilter>;
-};
-
-export type ProfilesInsertResponse = {
-  __typename?: "profilesInsertResponse";
-  /** Count of the records impacted by the mutation */
-  affectedCount: Scalars["Int"];
-  /** Array of records impacted by the mutation */
-  records: Array<Profiles>;
 };
 
 export type ProfilesOrderBy = {
@@ -1728,19 +1828,13 @@ export type ProfilesOrderBy = {
   thumbnail_src?: InputMaybe<OrderByDirection>;
 };
 
-export type ProfilesUpdateResponse = {
-  __typename?: "profilesUpdateResponse";
-  /** Count of the records impacted by the mutation */
-  affectedCount: Scalars["Int"];
-  /** Array of records impacted by the mutation */
-  records: Array<Profiles>;
-};
-
-export type RealitySeries = {
+export type RealitySeries = Node & {
   __typename?: "reality_series";
   created_at: Scalars["Datetime"];
   in_progress: Scalars["Boolean"];
   logo_src: Scalars["String"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   premiere_time?: Maybe<Scalars["Datetime"]>;
   rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
   rulesCollection?: Maybe<RulesConnection>;
@@ -1801,6 +1895,7 @@ export type RealitySeriesFilter = {
   created_at?: InputMaybe<DatetimeFilter>;
   in_progress?: InputMaybe<BooleanFilter>;
   logo_src?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   premiere_time?: InputMaybe<DatetimeFilter>;
   slug?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -1853,10 +1948,12 @@ export type RealitySeriesUpdateResponse = {
   records: Array<RealitySeries>;
 };
 
-export type Roles = {
+export type Roles = Node & {
   __typename?: "roles";
   display_name: Scalars["String"];
   id: Scalars["String"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   user_rolesCollection?: Maybe<UserRolesConnection>;
 };
 
@@ -1892,6 +1989,7 @@ export type RolesEdge = {
 export type RolesFilter = {
   display_name?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
 };
 
 export type RolesInsertInput = {
@@ -1925,11 +2023,13 @@ export type RolesUpdateResponse = {
   records: Array<Roles>;
 };
 
-export type RsLeagueFormats = {
+export type RsLeagueFormats = Node & {
   __typename?: "rs_league_formats";
   default_ruleset: Scalars["UUID"];
   league_format: Scalars["String"];
   league_formats?: Maybe<LeagueFormats>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   reality_series?: Maybe<RealitySeries>;
   rulesets?: Maybe<Rulesets>;
 };
@@ -1957,6 +2057,7 @@ export type RsLeagueFormatsEdge = {
 export type RsLeagueFormatsFilter = {
   default_ruleset?: InputMaybe<UuidFilter>;
   league_format?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   reality_series?: InputMaybe<StringFilter>;
 };
 
@@ -1994,12 +2095,14 @@ export type RsLeagueFormatsUpdateResponse = {
   records: Array<RsLeagueFormats>;
 };
 
-export type Rules = {
+export type Rules = Node & {
   __typename?: "rules";
   description: Scalars["String"];
   eventsCollection?: Maybe<EventsConnection>;
   id: Scalars["String"];
   is_negative?: Maybe<Scalars["Boolean"]>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   reality_series?: Maybe<RealitySeries>;
 };
 
@@ -2036,6 +2139,7 @@ export type RulesFilter = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   is_negative?: InputMaybe<BooleanFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   reality_series?: InputMaybe<StringFilter>;
 };
 
@@ -2076,12 +2180,14 @@ export type RulesUpdateResponse = {
   records: Array<Rules>;
 };
 
-export type Rulesets = {
+export type Rulesets = Node & {
   __typename?: "rulesets";
   created_by: Scalars["UUID"];
   data: Scalars["JSON"];
   id: Scalars["UUID"];
   leaguesCollection?: Maybe<LeaguesConnection>;
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   profiles?: Maybe<Profiles>;
   rs_league_formatsCollection?: Maybe<RsLeagueFormatsConnection>;
   updated_at: Scalars["Datetime"];
@@ -2128,6 +2234,7 @@ export type RulesetsEdge = {
 export type RulesetsFilter = {
   created_by?: InputMaybe<UuidFilter>;
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   updated_at?: InputMaybe<DatetimeFilter>;
 };
 
@@ -2167,13 +2274,15 @@ export type RulesetsUpdateResponse = {
   records: Array<Rulesets>;
 };
 
-export type Seasons = {
+export type Seasons = Node & {
   __typename?: "seasons";
   contestant_seasonsCollection?: Maybe<ContestantSeasonsConnection>;
   episodesCollection?: Maybe<EpisodesConnection>;
   id: Scalars["UUID"];
   leaguesCollection?: Maybe<LeaguesConnection>;
   logo_src: Scalars["String"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   order: Scalars["BigInt"];
   reality_series?: Maybe<RealitySeries>;
   reality_show: Scalars["String"];
@@ -2231,6 +2340,7 @@ export type SeasonsEdge = {
 export type SeasonsFilter = {
   id?: InputMaybe<UuidFilter>;
   logo_src?: InputMaybe<StringFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   order?: InputMaybe<BigIntFilter>;
   reality_show?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
@@ -2280,10 +2390,83 @@ export type SeasonsUpdateResponse = {
   records: Array<Seasons>;
 };
 
-export type UserFeatures = {
+export type UserFcmTokens = Node & {
+  __typename?: "user_fcm_tokens";
+  id: Scalars["UUID"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
+  profiles?: Maybe<Profiles>;
+  token: Scalars["String"];
+  user: Scalars["UUID"];
+};
+
+export type UserFcmTokensConnection = {
+  __typename?: "user_fcm_tokensConnection";
+  edges: Array<UserFcmTokensEdge>;
+  pageInfo: PageInfo;
+};
+
+export type UserFcmTokensDeleteResponse = {
+  __typename?: "user_fcm_tokensDeleteResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserFcmTokens>;
+};
+
+export type UserFcmTokensEdge = {
+  __typename?: "user_fcm_tokensEdge";
+  cursor: Scalars["String"];
+  node: UserFcmTokens;
+};
+
+export type UserFcmTokensFilter = {
+  id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
+  token?: InputMaybe<StringFilter>;
+  user?: InputMaybe<UuidFilter>;
+};
+
+export type UserFcmTokensInsertInput = {
+  id?: InputMaybe<Scalars["UUID"]>;
+  token?: InputMaybe<Scalars["String"]>;
+  user?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type UserFcmTokensInsertResponse = {
+  __typename?: "user_fcm_tokensInsertResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserFcmTokens>;
+};
+
+export type UserFcmTokensOrderBy = {
+  id?: InputMaybe<OrderByDirection>;
+  token?: InputMaybe<OrderByDirection>;
+  user?: InputMaybe<OrderByDirection>;
+};
+
+export type UserFcmTokensUpdateInput = {
+  id?: InputMaybe<Scalars["UUID"]>;
+  token?: InputMaybe<Scalars["String"]>;
+  user?: InputMaybe<Scalars["UUID"]>;
+};
+
+export type UserFcmTokensUpdateResponse = {
+  __typename?: "user_fcm_tokensUpdateResponse";
+  /** Count of the records impacted by the mutation */
+  affectedCount: Scalars["Int"];
+  /** Array of records impacted by the mutation */
+  records: Array<UserFcmTokens>;
+};
+
+export type UserFeatures = Node & {
   __typename?: "user_features";
   feature: Scalars["String"];
   id: Scalars["UUID"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   profiles?: Maybe<Profiles>;
   user: Scalars["UUID"];
 };
@@ -2311,6 +2494,7 @@ export type UserFeaturesEdge = {
 export type UserFeaturesFilter = {
   feature?: InputMaybe<StringFilter>;
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   user?: InputMaybe<UuidFilter>;
 };
 
@@ -2348,8 +2532,10 @@ export type UserFeaturesUpdateResponse = {
   records: Array<UserFeatures>;
 };
 
-export type UserRoles = {
+export type UserRoles = Node & {
   __typename?: "user_roles";
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   profiles?: Maybe<Profiles>;
   role: Scalars["String"];
   roles?: Maybe<Roles>;
@@ -2377,6 +2563,7 @@ export type UserRolesEdge = {
 };
 
 export type UserRolesFilter = {
+  nodeId?: InputMaybe<IdFilter>;
   role?: InputMaybe<StringFilter>;
   user?: InputMaybe<UuidFilter>;
 };
@@ -2412,11 +2599,13 @@ export type UserRolesUpdateResponse = {
   records: Array<UserRoles>;
 };
 
-export type UserWatched = {
+export type UserWatched = Node & {
   __typename?: "user_watched";
   episode: Scalars["UUID"];
   episodes?: Maybe<Episodes>;
   id: Scalars["UUID"];
+  /** Globally Unique Record Identifier */
+  nodeId: Scalars["ID"];
   profiles?: Maybe<Profiles>;
   user: Scalars["UUID"];
 };
@@ -2444,6 +2633,7 @@ export type UserWatchedEdge = {
 export type UserWatchedFilter = {
   episode?: InputMaybe<UuidFilter>;
   id?: InputMaybe<UuidFilter>;
+  nodeId?: InputMaybe<IdFilter>;
   user?: InputMaybe<UuidFilter>;
 };
 
@@ -2619,16 +2809,7 @@ export type GraphCacheKeysConfig = {
   profilesConnection?: (
     data: WithTypename<ProfilesConnection>
   ) => null | string;
-  profilesDeleteResponse?: (
-    data: WithTypename<ProfilesDeleteResponse>
-  ) => null | string;
   profilesEdge?: (data: WithTypename<ProfilesEdge>) => null | string;
-  profilesInsertResponse?: (
-    data: WithTypename<ProfilesInsertResponse>
-  ) => null | string;
-  profilesUpdateResponse?: (
-    data: WithTypename<ProfilesUpdateResponse>
-  ) => null | string;
   reality_series?: (data: WithTypename<RealitySeries>) => null | string;
   reality_seriesConnection?: (
     data: WithTypename<RealitySeriesConnection>
@@ -2708,6 +2889,22 @@ export type GraphCacheKeysConfig = {
   ) => null | string;
   seasonsUpdateResponse?: (
     data: WithTypename<SeasonsUpdateResponse>
+  ) => null | string;
+  user_fcm_tokens?: (data: WithTypename<UserFcmTokens>) => null | string;
+  user_fcm_tokensConnection?: (
+    data: WithTypename<UserFcmTokensConnection>
+  ) => null | string;
+  user_fcm_tokensDeleteResponse?: (
+    data: WithTypename<UserFcmTokensDeleteResponse>
+  ) => null | string;
+  user_fcm_tokensEdge?: (
+    data: WithTypename<UserFcmTokensEdge>
+  ) => null | string;
+  user_fcm_tokensInsertResponse?: (
+    data: WithTypename<UserFcmTokensInsertResponse>
+  ) => null | string;
+  user_fcm_tokensUpdateResponse?: (
+    data: WithTypename<UserFcmTokensUpdateResponse>
   ) => null | string;
   user_features?: (data: WithTypename<UserFeatures>) => null | string;
   user_featuresConnection?: (
@@ -2800,6 +2997,31 @@ export type GraphCacheResolvers = {
       QueryLpContestantsCollectionArgs,
       WithTypename<LpContestantsConnection> | string
     >;
+    node?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryNodeArgs,
+      | WithTypename<ApiTokens>
+      | WithTypename<ContestantSeasons>
+      | WithTypename<Contestants>
+      | WithTypename<Episodes>
+      | WithTypename<Events>
+      | WithTypename<LeagueFormats>
+      | WithTypename<LeagueParticipants>
+      | WithTypename<Leagues>
+      | WithTypename<LpContestants>
+      | WithTypename<Profiles>
+      | WithTypename<RealitySeries>
+      | WithTypename<Roles>
+      | WithTypename<RsLeagueFormats>
+      | WithTypename<Rules>
+      | WithTypename<Rulesets>
+      | WithTypename<Seasons>
+      | WithTypename<UserFcmTokens>
+      | WithTypename<UserFeatures>
+      | WithTypename<UserRoles>
+      | WithTypename<UserWatched>
+      | string
+    >;
     profilesCollection?: GraphCacheResolver<
       WithTypename<Query>,
       QueryProfilesCollectionArgs,
@@ -2834,6 +3056,11 @@ export type GraphCacheResolvers = {
       WithTypename<Query>,
       QuerySeasonsCollectionArgs,
       WithTypename<SeasonsConnection> | string
+    >;
+    user_fcm_tokensCollection?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryUserFcmTokensCollectionArgs,
+      WithTypename<UserFcmTokensConnection> | string
     >;
     user_featuresCollection?: GraphCacheResolver<
       WithTypename<Query>,
@@ -2883,6 +3110,11 @@ export type GraphCacheResolvers = {
       WithTypename<ApiTokens>,
       Record<string, never>,
       Scalars["String"] | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<ApiTokens>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     owner?: GraphCacheResolver<
       WithTypename<ApiTokens>,
@@ -2961,6 +3193,11 @@ export type GraphCacheResolvers = {
     >;
   };
   contestant_seasons?: {
+    age?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
     avatar_src?: GraphCacheResolver<
       WithTypename<ContestantSeasons>,
       Record<string, never>,
@@ -2981,6 +3218,11 @@ export type GraphCacheResolvers = {
       ContestantSeasonsEventsCollectionArgs,
       WithTypename<EventsConnection> | string
     >;
+    hometown?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
     id?: GraphCacheResolver<
       WithTypename<ContestantSeasons>,
       Record<string, never>,
@@ -2990,6 +3232,16 @@ export type GraphCacheResolvers = {
       WithTypename<ContestantSeasons>,
       ContestantSeasonsLpContestantsCollectionArgs,
       WithTypename<LpContestantsConnection> | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
+    occupation?: GraphCacheResolver<
+      WithTypename<ContestantSeasons>,
+      Record<string, never>,
+      Scalars["String"] | string
     >;
     portrait_src?: GraphCacheResolver<
       WithTypename<ContestantSeasons>,
@@ -3088,6 +3340,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars["String"] | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Contestants>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     slug?: GraphCacheResolver<
       WithTypename<Contestants>,
       Record<string, never>,
@@ -3169,6 +3426,11 @@ export type GraphCacheResolvers = {
       WithTypename<Episodes>,
       Record<string, never>,
       Scalars["UUID"] | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Episodes>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     season?: GraphCacheResolver<
       WithTypename<Episodes>,
@@ -3282,6 +3544,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars["UUID"] | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Events>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     rule?: GraphCacheResolver<
       WithTypename<Events>,
       Record<string, never>,
@@ -3368,6 +3635,11 @@ export type GraphCacheResolvers = {
       WithTypename<LeagueFormats>,
       LeagueFormatsLeaguesCollectionArgs,
       WithTypename<LeaguesConnection> | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<LeagueFormats>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     rs_league_formatsCollection?: GraphCacheResolver<
       WithTypename<LeagueFormats>,
@@ -3465,6 +3737,11 @@ export type GraphCacheResolvers = {
       WithTypename<LeagueParticipants>,
       LeagueParticipantsLpContestantsCollectionArgs,
       WithTypename<LpContestantsConnection> | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<LeagueParticipants>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     participant?: GraphCacheResolver<
       WithTypename<LeagueParticipants>,
@@ -3572,6 +3849,11 @@ export type GraphCacheResolvers = {
       WithTypename<Leagues>,
       LeaguesLeagueParticipantsCollectionArgs,
       WithTypename<LeagueParticipantsConnection> | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Leagues>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     profiles?: GraphCacheResolver<
       WithTypename<Leagues>,
@@ -3695,6 +3977,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       WithTypename<LeagueParticipants> | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<LpContestants>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     rank?: GraphCacheResolver<
       WithTypename<LpContestants>,
       Record<string, never>,
@@ -3792,6 +4079,11 @@ export type GraphCacheResolvers = {
       ProfilesLeaguesCollectionArgs,
       WithTypename<LeaguesConnection> | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     rulesetsCollection?: GraphCacheResolver<
       WithTypename<Profiles>,
       ProfilesRulesetsCollectionArgs,
@@ -3801,6 +4093,11 @@ export type GraphCacheResolvers = {
       WithTypename<Profiles>,
       Record<string, never>,
       Scalars["String"] | string
+    >;
+    user_fcm_tokensCollection?: GraphCacheResolver<
+      WithTypename<Profiles>,
+      ProfilesUserFcmTokensCollectionArgs,
+      WithTypename<UserFcmTokensConnection> | string
     >;
     user_featuresCollection?: GraphCacheResolver<
       WithTypename<Profiles>,
@@ -3830,18 +4127,6 @@ export type GraphCacheResolvers = {
       WithTypename<PageInfo> | string
     >;
   };
-  profilesDeleteResponse?: {
-    affectedCount?: GraphCacheResolver<
-      WithTypename<ProfilesDeleteResponse>,
-      Record<string, never>,
-      Scalars["Int"] | string
-    >;
-    records?: GraphCacheResolver<
-      WithTypename<ProfilesDeleteResponse>,
-      Record<string, never>,
-      Array<WithTypename<Profiles> | string>
-    >;
-  };
   profilesEdge?: {
     cursor?: GraphCacheResolver<
       WithTypename<ProfilesEdge>,
@@ -3852,30 +4137,6 @@ export type GraphCacheResolvers = {
       WithTypename<ProfilesEdge>,
       Record<string, never>,
       WithTypename<Profiles> | string
-    >;
-  };
-  profilesInsertResponse?: {
-    affectedCount?: GraphCacheResolver<
-      WithTypename<ProfilesInsertResponse>,
-      Record<string, never>,
-      Scalars["Int"] | string
-    >;
-    records?: GraphCacheResolver<
-      WithTypename<ProfilesInsertResponse>,
-      Record<string, never>,
-      Array<WithTypename<Profiles> | string>
-    >;
-  };
-  profilesUpdateResponse?: {
-    affectedCount?: GraphCacheResolver<
-      WithTypename<ProfilesUpdateResponse>,
-      Record<string, never>,
-      Scalars["Int"] | string
-    >;
-    records?: GraphCacheResolver<
-      WithTypename<ProfilesUpdateResponse>,
-      Record<string, never>,
-      Array<WithTypename<Profiles> | string>
     >;
   };
   reality_series?: {
@@ -3893,6 +4154,11 @@ export type GraphCacheResolvers = {
       WithTypename<RealitySeries>,
       Record<string, never>,
       Scalars["String"] | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<RealitySeries>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     premiere_time?: GraphCacheResolver<
       WithTypename<RealitySeries>,
@@ -4001,6 +4267,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars["String"] | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Roles>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     user_rolesCollection?: GraphCacheResolver<
       WithTypename<Roles>,
       RolesUserRolesCollectionArgs,
@@ -4082,6 +4353,11 @@ export type GraphCacheResolvers = {
       WithTypename<RsLeagueFormats>,
       Record<string, never>,
       WithTypename<LeagueFormats> | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<RsLeagueFormats>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     reality_series?: GraphCacheResolver<
       WithTypename<RsLeagueFormats>,
@@ -4175,6 +4451,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars["Boolean"] | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Rules>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     reality_series?: GraphCacheResolver<
       WithTypename<Rules>,
       Record<string, never>,
@@ -4261,6 +4542,11 @@ export type GraphCacheResolvers = {
       WithTypename<Rulesets>,
       RulesetsLeaguesCollectionArgs,
       WithTypename<LeaguesConnection> | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Rulesets>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     profiles?: GraphCacheResolver<
       WithTypename<Rulesets>,
@@ -4364,6 +4650,11 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars["String"] | string
     >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<Seasons>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     order?: GraphCacheResolver<
       WithTypename<Seasons>,
       Record<string, never>,
@@ -4450,6 +4741,93 @@ export type GraphCacheResolvers = {
       Array<WithTypename<Seasons> | string>
     >;
   };
+  user_fcm_tokens?: {
+    id?: GraphCacheResolver<
+      WithTypename<UserFcmTokens>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<UserFcmTokens>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
+    profiles?: GraphCacheResolver<
+      WithTypename<UserFcmTokens>,
+      Record<string, never>,
+      WithTypename<Profiles> | string
+    >;
+    token?: GraphCacheResolver<
+      WithTypename<UserFcmTokens>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    user?: GraphCacheResolver<
+      WithTypename<UserFcmTokens>,
+      Record<string, never>,
+      Scalars["UUID"] | string
+    >;
+  };
+  user_fcm_tokensConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<UserFcmTokensConnection>,
+      Record<string, never>,
+      Array<WithTypename<UserFcmTokensEdge> | string>
+    >;
+    pageInfo?: GraphCacheResolver<
+      WithTypename<UserFcmTokensConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >;
+  };
+  user_fcm_tokensDeleteResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserFcmTokensDeleteResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserFcmTokensDeleteResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserFcmTokens> | string>
+    >;
+  };
+  user_fcm_tokensEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<UserFcmTokensEdge>,
+      Record<string, never>,
+      Scalars["String"] | string
+    >;
+    node?: GraphCacheResolver<
+      WithTypename<UserFcmTokensEdge>,
+      Record<string, never>,
+      WithTypename<UserFcmTokens> | string
+    >;
+  };
+  user_fcm_tokensInsertResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserFcmTokensInsertResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserFcmTokensInsertResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserFcmTokens> | string>
+    >;
+  };
+  user_fcm_tokensUpdateResponse?: {
+    affectedCount?: GraphCacheResolver<
+      WithTypename<UserFcmTokensUpdateResponse>,
+      Record<string, never>,
+      Scalars["Int"] | string
+    >;
+    records?: GraphCacheResolver<
+      WithTypename<UserFcmTokensUpdateResponse>,
+      Record<string, never>,
+      Array<WithTypename<UserFcmTokens> | string>
+    >;
+  };
   user_features?: {
     feature?: GraphCacheResolver<
       WithTypename<UserFeatures>,
@@ -4460,6 +4838,11 @@ export type GraphCacheResolvers = {
       WithTypename<UserFeatures>,
       Record<string, never>,
       Scalars["UUID"] | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<UserFeatures>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     profiles?: GraphCacheResolver<
       WithTypename<UserFeatures>,
@@ -4533,6 +4916,11 @@ export type GraphCacheResolvers = {
     >;
   };
   user_roles?: {
+    nodeId?: GraphCacheResolver<
+      WithTypename<UserRoles>,
+      Record<string, never>,
+      Scalars["ID"] | string
+    >;
     profiles?: GraphCacheResolver<
       WithTypename<UserRoles>,
       Record<string, never>,
@@ -4629,6 +5017,11 @@ export type GraphCacheResolvers = {
       WithTypename<UserWatched>,
       Record<string, never>,
       Scalars["UUID"] | string
+    >;
+    nodeId?: GraphCacheResolver<
+      WithTypename<UserWatched>,
+      Record<string, never>,
+      Scalars["ID"] | string
     >;
     profiles?: GraphCacheResolver<
       WithTypename<UserWatched>,
@@ -4764,6 +5157,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationDeleteFromseasonsCollectionArgs,
     WithTypename<SeasonsDeleteResponse>
   >;
+  deleteFromuser_fcm_tokensCollection?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteFromuserFcmTokensCollectionArgs,
+    WithTypename<UserFcmTokensDeleteResponse>
+  >;
   deleteFromuser_featuresCollection?: GraphCacheOptimisticMutationResolver<
     MutationDeleteFromuserFeaturesCollectionArgs,
     WithTypename<UserFeaturesDeleteResponse>
@@ -4836,6 +5233,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationInsertIntoseasonsCollectionArgs,
     Maybe<WithTypename<SeasonsInsertResponse>>
   >;
+  insertIntouser_fcm_tokensCollection?: GraphCacheOptimisticMutationResolver<
+    MutationInsertIntouserFcmTokensCollectionArgs,
+    Maybe<WithTypename<UserFcmTokensInsertResponse>>
+  >;
   insertIntouser_featuresCollection?: GraphCacheOptimisticMutationResolver<
     MutationInsertIntouserFeaturesCollectionArgs,
     Maybe<WithTypename<UserFeaturesInsertResponse>>
@@ -4907,6 +5308,10 @@ export type GraphCacheOptimisticUpdaters = {
   updateseasonsCollection?: GraphCacheOptimisticMutationResolver<
     MutationUpdateseasonsCollectionArgs,
     WithTypename<SeasonsUpdateResponse>
+  >;
+  updateuser_fcm_tokensCollection?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateuserFcmTokensCollectionArgs,
+    WithTypename<UserFcmTokensUpdateResponse>
   >;
   updateuser_featuresCollection?: GraphCacheOptimisticMutationResolver<
     MutationUpdateuserFeaturesCollectionArgs,
@@ -4997,6 +5402,12 @@ export type GraphCacheUpdaters = {
     deleteFromseasonsCollection?: GraphCacheUpdateResolver<
       { deleteFromseasonsCollection: WithTypename<SeasonsDeleteResponse> },
       MutationDeleteFromseasonsCollectionArgs
+    >;
+    deleteFromuser_fcm_tokensCollection?: GraphCacheUpdateResolver<
+      {
+        deleteFromuser_fcm_tokensCollection: WithTypename<UserFcmTokensDeleteResponse>;
+      },
+      MutationDeleteFromuserFcmTokensCollectionArgs
     >;
     deleteFromuser_featuresCollection?: GraphCacheUpdateResolver<
       {
@@ -5118,6 +5529,14 @@ export type GraphCacheUpdaters = {
       },
       MutationInsertIntoseasonsCollectionArgs
     >;
+    insertIntouser_fcm_tokensCollection?: GraphCacheUpdateResolver<
+      {
+        insertIntouser_fcm_tokensCollection: Maybe<
+          WithTypename<UserFcmTokensInsertResponse>
+        >;
+      },
+      MutationInsertIntouserFcmTokensCollectionArgs
+    >;
     insertIntouser_featuresCollection?: GraphCacheUpdateResolver<
       {
         insertIntouser_featuresCollection: Maybe<
@@ -5213,6 +5632,12 @@ export type GraphCacheUpdaters = {
     updateseasonsCollection?: GraphCacheUpdateResolver<
       { updateseasonsCollection: WithTypename<SeasonsUpdateResponse> },
       MutationUpdateseasonsCollectionArgs
+    >;
+    updateuser_fcm_tokensCollection?: GraphCacheUpdateResolver<
+      {
+        updateuser_fcm_tokensCollection: WithTypename<UserFcmTokensUpdateResponse>;
+      },
+      MutationUpdateuserFcmTokensCollectionArgs
     >;
     updateuser_featuresCollection?: GraphCacheUpdateResolver<
       {

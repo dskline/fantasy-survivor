@@ -1,4 +1,4 @@
-import { useUser } from "@supabase/auth-helpers-react";
+import { useSession } from "@supabase/auth-helpers-react";
 import {
   AnyVariables,
   OperationContext,
@@ -9,7 +9,7 @@ import {
 export const useAuthMutation = <D, V extends AnyVariables>(
   query: TypedDocumentNode<D, V>
 ) => {
-  const { accessToken } = useUser();
+  const session = useSession();
   const [data, execute] = useMutation<D, V>(query);
   return {
     data,
@@ -18,7 +18,7 @@ export const useAuthMutation = <D, V extends AnyVariables>(
         fetchOptions: {
           headers: {
             apiKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${session?.access_token}`,
           },
         },
         ...context,

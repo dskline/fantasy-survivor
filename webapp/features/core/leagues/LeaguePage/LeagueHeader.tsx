@@ -45,7 +45,7 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
                   type="button"
                   className={classnames(
                     "flex items-center gap-2 rounded shadow-lg",
-                    "py-1 px-2 text-xs font-semibold",
+                    "px-2 py-1 text-xs font-semibold",
                     user.participantId
                       ? "bg-green-600 pr-3 text-green-100"
                       : "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-100",
@@ -61,11 +61,9 @@ export const LeagueHeader = ({ league, user, onJoinLeague }: Props) => {
                     </>
                   )}
                   {!user.participantId &&
-                    orderedEpisodes.length > 0 &&
+                    orderedEpisodes.length > 2 &&
                     "Sign In"}
-                  {!user.participantId &&
-                    orderedEpisodes.length === 0 &&
-                    "Join"}
+                  {!user.participantId && orderedEpisodes.length <= 2 && "Join"}
                 </button>
               )}
           </div>

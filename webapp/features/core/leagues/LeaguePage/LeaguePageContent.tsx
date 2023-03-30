@@ -14,7 +14,7 @@ import {
   LeagueUser,
 } from "@/features/core/leagues/LeaguePage/types";
 import { LeagueRanking } from "@/features/core/leagues/LeagueRanking";
-import { AllRosters } from "@/features/core/leagues/LeagueRoster/AllRosters";
+import { LeagueRoster } from "@/features/core/leagues/LeagueRoster";
 
 type Props = {
   league: LeagueProps;
@@ -56,7 +56,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
             <div className="mt-4">
               <LeagueTabs user={user} />
             </div>
-            <main className="z-10 min-h-screen rounded-t-xl bg-white pt-6 pb-40 shadow-2xl">
+            <main className="z-10 min-h-screen rounded-t-xl bg-white pb-40 pt-6 shadow-2xl">
               <FadeIn className="px-4 md:px-6" show={tab === "ranking"}>
                 <LeagueRanking league={league} user={user} />
               </FadeIn>
@@ -68,7 +68,7 @@ export const LeaguePageContent = ({ league, user, tab }: Props) => {
                 />
               </FadeIn>
               <FadeIn className="px-3 md:px-16 md:pt-8" show={tab === "roster"}>
-                <AllRosters league={league} user={user} />
+                <LeagueRoster league={league} user={user} />
               </FadeIn>
             </main>
           </>

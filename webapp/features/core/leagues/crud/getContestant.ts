@@ -7,6 +7,9 @@ export const GET_CONTESTANT_FRAGMENT = gql<GetContestantFragment>`
     id
     portrait_src
     team_color
+    age
+    hometown
+    occupation
     contestants {
       slug
       firstname

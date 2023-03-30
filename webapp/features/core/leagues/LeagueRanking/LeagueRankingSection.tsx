@@ -31,9 +31,9 @@ export const LeagueRankingSection = ({
       >
         <Header
           layoutId={`${header}-header`}
-          className="flex w-full items-center justify-between gap-2 py-2 px-4 text-slate-500"
-          onClick={!isExpanded ? undefined : () => setIsExpanded(!isExpanded)}
-          aria-label={!isExpanded ? undefined : `Collapse ${header}`}
+          className="flex w-full items-center justify-between gap-2 px-4 py-2 text-slate-500"
+          onClick={isExpanded ? () => setIsExpanded(!isExpanded) : undefined}
+          aria-label={isExpanded ? `Collapse ${header}` : undefined}
         >
           <span className="text-xs font-semibold uppercase">{header}</span>
           <span className="opacity-50">

@@ -53,7 +53,7 @@ export const ListContestantRankings = ({ league, filter }: Props) => {
                 className={classnames(
                   "rounded-lg",
                   isExpanded || index < 5
-                    ? "my-0.5 border-2 py-1 px-2"
+                    ? "my-0.5 border-2 px-2 py-1"
                     : "max-h-0 border-0 p-0",
                   contestant.team_color === "blue" &&
                     "border-blue-600/50 bg-blue-50",

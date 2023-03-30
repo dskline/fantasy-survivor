@@ -43,9 +43,9 @@ export const ContestantPicker = ({
             <ContestantChip
               contestant={contestant}
               className={
-                contestant.id !== selectedContestant.id
-                  ? "opacity-50 grayscale"
-                  : ""
+                contestant.id === selectedContestant.id
+                  ? ""
+                  : "opacity-50 grayscale"
               }
             />
           </button>

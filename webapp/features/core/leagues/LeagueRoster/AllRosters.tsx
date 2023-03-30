@@ -52,7 +52,7 @@ export const AllRosters = ({ league, user }: Props) => {
 
 const RosterItems = ({ roster }: { roster: Roster }) => (
   <>
-    {[...Array.from({ length: 9 })].map((_, i) => {
+    {Array.from({ length: 9 }).map((_, i) => {
       const rosterContestant = roster[i];
       return (
         <ContestantChip

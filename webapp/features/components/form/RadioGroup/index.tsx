@@ -37,7 +37,7 @@ export const RadioGroup = <T extends FieldValues>(props: Props<T>) => {
                 <div
                   tabIndex={-1}
                   className={classnames(
-                    "flex items-center gap-8 rounded-lg border-2 border-transparent py-2 px-8 shadow-md",
+                    "flex items-center gap-8 rounded-lg border-2 border-transparent px-8 py-2 shadow-md",
                     checked
                       ? "border-blue-600 bg-blue-100"
                       : classnames(

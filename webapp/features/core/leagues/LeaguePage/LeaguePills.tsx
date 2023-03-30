@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { LeagueProps } from "@/features/core/leagues/LeaguePage/types";
 
 export const LeaguePills = ({ show, season, format }: LeagueProps) => (
-  <div className="mt-1 mb-4 flex flex-wrap gap-2 text-xs">
+  <div className="mb-4 mt-1 flex flex-wrap gap-2 text-xs">
     <Pill>{show.title}</Pill>
     <Pill>{season.title}</Pill>
     <Pill>{format.title}</Pill>
